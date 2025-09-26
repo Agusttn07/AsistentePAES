@@ -167,17 +167,22 @@ body.dark footer {
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
     header { 
-        flex-direction: column; 
-        align-items: flex-start; 
+        flex-direction: row; /* Mantener en fila */
+        justify-content: space-between; /* Título a la izquierda, logo a la derecha */
+        align-items: center; 
         padding: 15px 20px; 
     }
     header img { 
-        margin: 10px 0 0 0; 
-        width: 140px; 
+        margin: 0; 
+        width: 120px; /* achicamos un poco el logo */
+        height: auto; 
     }
     header h1 { 
         font-size: 24px; 
+        margin: 0;
     }
+}
+
     main { 
         margin: 20px 15px; 
         padding: 25px; 
@@ -689,6 +694,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
