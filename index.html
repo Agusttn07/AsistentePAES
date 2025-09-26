@@ -179,21 +179,29 @@ body.dark footer {
     }
     main { 
         margin: 20px 15px; 
-        padding: 20px; 
+        padding: 25px; 
     }
     .input-row { 
-        flex-direction: column; 
-        gap: 10px; 
+        flex-direction: column; /* Apilar inputs verticalmente */
+        gap: 15px; 
+    }
+    .input-wrapper input, 
+    .input-wrapper select { 
+        font-size: 16px; /* Más grande para celular */
+        padding: 14px;   /* Recuadro más alto */
     }
     .buttons { 
         flex-direction: column; 
         align-items: stretch; 
-        gap: 10px; 
+        gap: 15px; 
     }
     .buttons button { 
         width: 100%; 
+        padding: 14px;  /* Botones más grandes */
+        font-size: 16px;
     }
 }
+
 </style>
 </head>
 
@@ -675,4 +683,5 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
