@@ -171,18 +171,21 @@ body.dark footer {
         justify-content: space-between; /* Título a la izquierda, logo a la derecha */
         align-items: center; 
         flex-wrap: nowrap;          /* Evitar que se baje el logo */
-        padding: 15px 20px; 
+        padding: 10px 15px;         /* Reducir padding */
     }
     header img { 
         margin: 0; 
-        width: 80px;    /* Reducimos más el logo para celular */
+        width: 60px;    /* Reducimos más el logo */
         height: auto; 
     }
     header h1 { 
-        font-size: 20px; 
-        margin: 0;
+        font-size: 18px; 
+        margin: 0; 
+        white-space: nowrap;  /* Evitar que el texto haga wrap */
+        flex-shrink: 1;       /* Permitir que el título se achique si es necesario */
     }
 }
+
 
     main { 
         margin: 20px 15px; 
@@ -695,6 +698,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
