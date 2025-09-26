@@ -166,37 +166,39 @@ body.dark footer {
 }
 
 /* ===== Ajustes para celulares ===== */
+/* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
     header { 
-        flex-direction: column;  /* Logo arriba del título */
-        align-items: center;      /* Centrar contenido */
-        padding: 15px 20px;
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 15px 20px; 
+    }
+    header img { 
+        margin: 10px 0 0 0; 
+        width: 140px; 
     }
     header h1 { 
         font-size: 24px; 
-        margin: 10px 0 0 0;      /* Separación con el logo */
-        text-align: center;
     }
-    header img { 
-        margin: 0; 
-        width: 120px;             /* Reducir un poco el logo */
-        height: auto;
-    }
-}
-
     main { 
         margin: 20px 15px; 
         padding: 25px; 
     }
+
+    /* Aquí apilamos todos los inputs verticalmente */
     .input-row { 
-        flex-direction: column; 
-        gap: 15px; 
+        flex-direction: column !important; /* Fuerza columna */
+        gap: 20px;
+    }
+    .input-wrapper { 
+        width: 100%; /* Asegura que cada input ocupe todo el ancho */
     }
     .input-wrapper input, 
     .input-wrapper select { 
         font-size: 16px; 
         padding: 14px; 
     }
+
     .buttons { 
         flex-direction: column; 
         align-items: stretch; 
@@ -208,6 +210,7 @@ body.dark footer {
         font-size: 16px;
     }
 }
+
 </style>
 </head>
 
@@ -722,6 +725,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
