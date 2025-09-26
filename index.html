@@ -167,26 +167,19 @@ body.dark footer {
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
     header { 
-        display: flex;
-        flex-direction: row;      /* Mantener en fila */
-        justify-content: space-between; /* Espacio entre título y logo */
-        align-items: center;
-        flex-wrap: nowrap;         /* Evitar que se baje el logo */
-        padding: 10px 15px;       /* Reducir padding */
+        flex-direction: column;  /* Logo arriba del título */
+        align-items: center;      /* Centrar contenido */
+        padding: 15px 20px;
     }
     header h1 { 
-        font-size: 16px; 
-        margin: 0; 
-        white-space: nowrap;      /* Evitar que haga wrap */
-        overflow: hidden;
-        text-overflow: ellipsis;  /* Cortar texto si no cabe */
-        max-width: 70%;           /* Limitar ancho máximo del título */
+        font-size: 24px; 
+        margin: 10px 0 0 0;      /* Separación con el logo */
+        text-align: center;
     }
     header img { 
-        width: 50px;              /* Reducimos más el logo */
-        height: auto; 
         margin: 0; 
-        flex-shrink: 0;           /* No permitir que se achique más */
+        width: 120px;             /* Reducir un poco el logo */
+        height: auto;
     }
 }
 
@@ -701,6 +694,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
