@@ -966,42 +966,26 @@ function invertirColores() {
 }
 
 
+    <!-- tu contenido -->
+    <button id="toggle-theme">Invertir colores</button>
+
+    <script>
+    // Seleccionamos elementos
+    const body = document.body;
+    const button = document.getElementById('toggle-theme');
+
+    // Revisar si ya hay preferencia guardada al cargar
+    if(localStorage.getItem('modoOscuro') === 'true'){
+        body.classList.add('dark');
+    }
+
+    // Cambiar tema al hacer clic y guardar en localStorage
+    button.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        localStorage.setItem('modoOscuro', body.classList.contains('dark'));
+    });
+    </script>
+
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
