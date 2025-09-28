@@ -191,28 +191,31 @@ body.dark footer {
 }
 
 /* ===== Ajustes para celulares ===== */
+/* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
     header {
-        flex-direction: column;  /* Logo arriba, texto abajo */
-        align-items: center;
-        text-align: center;
+        flex-direction: column; 
+        align-items: flex-start;   /* ahora alineamos a la izquierda */
+        text-align: left;          /* texto alineado a la izquierda */
         padding: 15px 20px;
     }
 
-    header h1 {
-        font-size: 15px;   /* lo achicamos para que quepa bien */
-        margin-top: 10px;
+    header .logo {
+        width: 100px;              /* más pequeño */
+        margin: 0 0 10px 0;        /* espacio debajo del logo */
+        align-self: flex-start;    /* asegura que quede a la izquierda */
     }
 
-    header .logo {
-        width: 120px;      /* logo más pequeño en celular */
-        margin-bottom: 10px;
+    header h1 {
+        font-size: 24px;           /* un poco más chico para celular */
+        margin: 0;
     }
 
     .header-description {
         font-size: 14px;
         margin-top: 6px;
-        max-width: 320px;  /* evita que el texto quede demasiado ancho */
+        max-width: 90%;           /* evita que se vea demasiado ancho */
+        line-height: 1.4;
     }
 }
 
@@ -731,6 +734,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
