@@ -379,22 +379,15 @@ body.dark footer {
     </div>
 
     <div class="input-row">
-        <div class="input-wrapper">
-            <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
-            <select id="historia_ciencias" onchange="mostrarCampo()">
-                <option value="">Selecciona...</option>
-                <option value="historia">Historia y Ciencias Sociales</option>
-                <option value="ciencias">Ciencias</option>
-            </select>
-        </div>
+    <div class="input-wrapper">
+        <label for="historia">Historia y Ciencias Sociales</label>
+        <input type="number" id="historia" min="0" max="1000">
     </div>
-
-    <div class="input-row" id="campoExtra" style="display:none;">
-        <div class="input-wrapper">
-            <label id="labelExtra" for="valorExtra"></label>
-            <input type="number" id="valorExtra" min="0" max="1000">
-        </div>
+    <div class="input-wrapper">
+        <label for="ciencias">Ciencias</label>
+        <input type="number" id="ciencias" min="0" max="1000">
     </div>
+</div>
 
     <div class="input-wrapper">
         <label for="mate2">Competencia Matemática 2 (M2)</label>
@@ -872,4 +865,5 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
