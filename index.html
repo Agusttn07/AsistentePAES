@@ -367,6 +367,49 @@ body.dark footer {
     <div id="resultado" aria-live="polite"></div>
 </main>
 
+
+<!-- ===== Contador PAES ===== -->
+<div id="contadorPAES" style="max-width:800px; margin:40px auto; padding:30px; background:#007bff; color:#fff; border-radius:12px; text-align:center; font-size:24px; box-shadow:0px 4px 12px rgba(0,0,0,0.1);">
+    <div>⏳ Faltan:</div>
+    <div id="tiempo" style="font-size:36px; font-weight:bold; margin-top:15px;">Cargando...</div>
+</div>
+
+<!-- ===== Fechas de cada prueba ===== -->
+<div id="fechasPAES" style="max-width:800px; margin:20px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;">
+    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">M2<br>Lunes 1, 15:00</div>
+    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Lenguaje<br>Martes 2, 09:00</div>
+    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Electivo Ciencias<br>Martes 2, 15:00</div>
+    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">M1<br>Miércoles 3, 09:00</div>
+    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Historia y Ciencias Sociales<br>Miércoles 3, 15:00</div>
+</div>
+
+<script>
+// ===== Script contador en tiempo real =====
+function actualizarContador() {
+    const fechaPAES = new Date("December 1, 2025 09:00:00").getTime();
+    const ahora = new Date().getTime();
+    const diferencia = fechaPAES - ahora;
+
+    if(diferencia <= 0){
+        document.getElementById("tiempo").innerHTML = "¡La PAES ha comenzado!";
+        clearInterval(intervalo);
+        return;
+    }
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+    document.getElementById("tiempo").innerHTML = 
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+}
+
+const intervalo = setInterval(actualizarContador, 1000);
+actualizarContador();
+</script>
+
+
 <footer>
     Toda la información presentada en esta plataforma ha sido recopilada y organizada a partir de los datos oficiales publicados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) de la Universidad de Chile.
 </footer>
@@ -745,6 +788,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
