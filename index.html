@@ -192,9 +192,10 @@ body.dark footer {
 
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
+
     header {
         flex-direction: column; 
-        align-items: flex-start;   /* SOLO en celular va a la izquierda */
+        align-items: flex-start;   /* va a la izquierda */
         text-align: left;
         padding: 15px 20px;
     }
@@ -216,33 +217,42 @@ body.dark footer {
         max-width: 90%;           
         line-height: 1.4;
     }
-}
 
     main { 
-        margin: 20px auto;     /* mantiene centrado también en celular */
+        margin: 20px auto;     
         padding: 25px; 
     }
-}
+
+    /* Inputs y select verticales */
     .input-row { 
+        display: flex;          /* asegúrate de que sea flex */
         flex-direction: column; 
         gap: 15px; 
     }
+
     .input-wrapper input, 
     .input-wrapper select { 
         font-size: 16px; 
         padding: 14px; 
+        width: 100%;          /* ocupa todo el ancho disponible */
     }
+
+    /* Botones apilados verticalmente */
     .buttons { 
+        display: flex;
         flex-direction: column; 
         align-items: stretch; 
         gap: 15px; 
     }
+
     .buttons button { 
         width: 100%; 
         padding: 14px;  
         font-size: 16px;
     }
+
 }
+
 </style>
 </head>
 <body>
@@ -734,6 +744,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
