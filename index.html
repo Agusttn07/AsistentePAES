@@ -218,15 +218,16 @@ body.dark footer {
     }
 
     header .logo {
-        width: 100px;              
-        margin: 0 0 10px 0;        
-        align-self: flex-start;    
-    }
+    margin: 0 0 4px 0; /* reduce espacio inferior a 4px */
+}
+
 
     header h1 {
-        font-size: 36px;           
-        margin: 0;
-    }
+    font-size: 36px;
+    margin: 0;         /* elimina margen arriba y abajo */
+    line-height: 1.2;  /* opcional: reduce un poco la altura de línea */
+}
+
 
     .header-description {
         font-size: 14px;
@@ -829,6 +830,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
