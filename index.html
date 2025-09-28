@@ -22,17 +22,18 @@ body.dark {
 
 /* ===== Header ===== */
 header { 
-    background: #fff; 
+    background: #fff;       /* Fondo claro */
     padding: 20px 40px; 
     display: flex; 
     align-items: center; 
     border-bottom: 1px solid #ddd; 
     gap: 20px;
 }
-header.dark { 
-    background: #222; 
+body.dark header { 
+    background: #222;       /* Fondo oscuro */
     border-color: #555; 
 }
+
 
 /* Logos */
 header .logo {
@@ -240,10 +241,10 @@ body.dark footer {
 <body>
 
 <header>
-    <!-- Logo claro -->
-    <img src="asistente_logo_negro.png" alt="Logo Asistente" class="logo light-logo">
-    <!-- Logo oscuro -->
-    <img src="asistente_logo_blanco.png" alt="Logo Asistente" class="logo dark-logo">
+    <!-- Logo negro (para fondo claro) -->
+    <img src="asistente_logo.png" alt="Logo Asistente" class="logo light-logo">
+    <!-- Logo blanco (para fondo oscuro) -->
+    <img src="asistente_logo_negro.png" alt="Logo Asistente" class="logo dark-logo">
 
     <div class="header-text">
         <h1>ASISTENTE DE POSTULACIONES</h1>
@@ -726,6 +727,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
