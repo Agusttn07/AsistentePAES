@@ -20,6 +20,22 @@ body.dark {
     color: #f5f5f5; 
 }
 
+/* Recuadros de fechas */
+.fechas-recuadro {
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    background: #e9ecef;  /* color claro */
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark .fechas-recuadro {
+    background: #444;      /* color oscuro */
+    color: #f5f5f5;
+}
+
+
 /* ===== Header ===== */
 header { 
     background: #fff;       /* Fondo claro */
@@ -376,11 +392,11 @@ body.dark footer {
 
 <!-- ===== Fechas de cada prueba ===== -->
 <div id="fechasPAES" style="max-width:800px; margin:20px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;">
-    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">M2<br>Lunes 1, 15:00</div>
-    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Lenguaje<br>Martes 2, 09:00</div>
-    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Electivo Ciencias<br>Martes 2, 15:00</div>
-    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">M1<br>Miércoles 3, 09:00</div>
-    <div style="padding:20px; background:#e9ecef; border-radius:12px; text-align:center; font-weight:bold;">Historia y Ciencias Sociales<br>Miércoles 3, 15:00</div>
+    <div class="fechas-recuadro">M2<br>Lunes 1, 15:00</div>
+    <div class="fechas-recuadro">Lenguaje<br>Martes 2, 09:00</div>
+    <div class="fechas-recuadro">Electivo Ciencias<br>Martes 2, 15:00</div>
+    <div class="fechas-recuadro">M1<br>Miércoles 3, 09:00</div>
+    <div class="fechas-recuadro">Historia y Ciencias Sociales<br>Miércoles 3, 15:00</div>
 </div>
 
 <!-- ===== Recuadro Temario PAES ===== -->
@@ -813,6 +829,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
