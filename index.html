@@ -79,7 +79,7 @@ body.dark header {
 header .logo {
     width: 200px;
     height: auto;
-    clip-path: inset(10px 5px 50px 5px); /* arriba derecha abajo izquierda */
+    clip-path: inset(40px 5px 60px 5px); /* arriba derecha abajo izquierda */
 }
 
 
@@ -244,9 +244,10 @@ body.dark footer {
     }
 
     header .logo {
-        width: 100px;
+        width: 100px;       /* más pequeño para móvil */
         margin: 0 0 10px 0;
         align-self: flex-start;
+        clip-path: inset(5px 2px 7px 2px); /* recorte proporcional al nuevo tamaño */
     }
 
     header h1 {
@@ -964,6 +965,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
