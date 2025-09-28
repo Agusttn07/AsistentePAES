@@ -930,11 +930,11 @@ function calcular() {
     `;
 }
 
+// ============================
+// FUNCIONES MODO OSCURO
+// ============================
 
-// ============================
-// MODO OSCURO
-// ============================
-// Función para aplicar el modo oscuro
+// Aplicar modo oscuro a los elementos y recuadros
 function aplicarModoOscuro(activar) {
     const body = document.body;
     const main = document.getElementById("main");
@@ -952,26 +952,38 @@ function aplicarModoOscuro(activar) {
         header.classList.remove("dark");
         logo.src = "asistente_logo.png";
     }
+
+    // Recuadros de fechas y temario
+    document.querySelectorAll("#fechasPAES > div, #temarioPAES").forEach(div => {
+        if (activar) {
+            div.classList.add("dark");
+        } else {
+            div.classList.remove("dark");
+        }
+    });
 }
 
-// Función que alterna el modo oscuro
+// Alternar modo oscuro al presionar el botón
 function invertirColores() {
     const modoActual = document.body.classList.contains("dark");
     aplicarModoOscuro(!modoActual);
     localStorage.setItem("modoOscuro", !modoActual);
 }
 
-// Detectar preferencia del sistema y/o localStorage
+// Ejecutar al cargar la página
 window.addEventListener("DOMContentLoaded", () => {
     const prefGuardada = localStorage.getItem("modoOscuro");
     if (prefGuardada !== null) {
-        // Aplicar la preferencia guardada
         aplicarModoOscuro(prefGuardada === "true");
     } else {
-        // Detectar modo oscuro del sistema si no hay preferencia guardada
+        // Detectar modo del sistema si no hay preferencia guardada
         const modoSistema = window.matchMedia("(prefers-color-scheme: dark)").matches;
         aplicarModoOscuro(modoSistema);
     }
+
+    // Botón
+    const boton = document.getElementById("btnModoOscuro");
+    boton.addEventListener("click", invertirColores);
 });
 
 
@@ -997,4 +1009,5 @@ window.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
