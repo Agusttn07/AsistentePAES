@@ -209,32 +209,32 @@ body.dark footer {
 
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
-
     header {
-        flex-direction: column; 
-        align-items: flex-start;   /* va a la izquierda */
+        flex-direction: column;
+        align-items: flex-start; /* ya lo tienes */
         text-align: left;
-        padding: 15px 20px;
+        padding: 5px 20px;       /* reduce padding superior/inferior */
     }
 
     header .logo {
-    margin: 0 0 4px 0; /* reduce espacio inferior a 4px */
-}
-
+        width: 100px;
+        margin: 0;               /* elimina margen inferior */
+    }
 
     header h1 {
-    font-size: 36px;
-    margin: 0;         /* elimina margen arriba y abajo */
-    line-height: 1.2;  /* opcional: reduce un poco la altura de línea */
-}
-
+        font-size: 36px;
+        margin: 2px 0 0 0;       /* margen superior casi 0 */
+        line-height: 1.2;
+    }
 
     .header-description {
         font-size: 14px;
-        margin-top: 6px;
-        max-width: 90%;           
+        margin: 2px 0 0 0;       /* margen superior casi 0 */
+        max-width: 90%;
         line-height: 1.4;
     }
+}
+
 
     main { 
         margin: 20px auto;     
@@ -830,6 +830,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
