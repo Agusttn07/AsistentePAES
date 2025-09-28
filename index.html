@@ -62,13 +62,11 @@ body.dark .fechas-recuadro {
 
 
 /* ===== Header ===== */
-header { 
-    background: #fff;       /* Fondo claro */
-    padding: 20px 40px; 
-    display: flex; 
-    align-items: center; 
-    border-bottom: 1px solid #ddd; 
-    gap: 20px;
+header {
+    display: flex;
+    flex-direction: column; /* organiza los elementos verticalmente */
+    align-items: flex-start; /* alinea logo y título a la izquierda */
+    padding: 20px;
 }
 body.dark header { 
     background: #222;       /* Fondo oscuro */
@@ -92,7 +90,7 @@ body.dark .dark-logo { display: block; }
 /* Título */
 header h1 {
     font-size: 42px;
-    margin: 0;
+    margin: 10px 0 0 0; /* separación del logo */
 }
 
 /* Descripción */
@@ -967,6 +965,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
