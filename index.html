@@ -309,7 +309,7 @@ body.dark footer {
     <div class="header-text">
         <h1>ASISTENTE DE POSTULACIONES</h1>
         <p class="header-description">
-            Simula tus puntajes PAES y explora las mejores 
+            Simula tus puntajes PAES y explora
             toda la variedad de universidades y carreras dentro de nuestro Asistente PAES. El simulador está diseñado 
             para guiarte en el proceso de admisión, ayudarte a comparar alternativas y tomar decisiones 
             informadas para alcanzar tus metas académicas.
@@ -324,9 +324,16 @@ body.dark footer {
             <input type="text" id="nombre">
         </div>
         <div class="input-wrapper">
-            <label for="curso">Curso</label>
-            <input type="text" id="curso">
-        </div>
+    <label for="curso">Curso</label>
+    <select id="curso">
+        <option value="">Selecciona...</option>
+        <option value="1ro Medio">1ro Medio</option>
+        <option value="2do Medio">2do Medio</option>
+        <option value="4to Medio">4to Medio</option>
+        <option value="Egresado/a">Egresado/a</option>
+    </select>
+</div>
+
     </div>
 
     <div class="input-row">
@@ -865,3 +872,4 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
