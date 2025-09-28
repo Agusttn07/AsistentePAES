@@ -934,17 +934,46 @@ function calcular() {
 // ============================
 // MODO OSCURO
 // ============================
-function invertirColores() {
-    document.body.classList.toggle("dark");
-    document.getElementById("main").classList.toggle("dark");
-    document.getElementById("header").classList.toggle("dark");
-
+// Función para aplicar el modo oscuro
+function aplicarModoOscuro(activar) {
+    const body = document.body;
+    const main = document.getElementById("main");
+    const header = document.getElementById("header");
     const logo = document.getElementById("logo");
-    if (document.body.classList.contains("dark")) {
+
+    if (activar) {
+        body.classList.add("dark");
+        main.classList.add("dark");
+        header.classList.add("dark");
         logo.src = "asistente_logo_negro.png";
     } else {
+        body.classList.remove("dark");
+        main.classList.remove("dark");
+        header.classList.remove("dark");
         logo.src = "asistente_logo.png";
     }
+}
+
+// Función que alterna el modo oscuro
+function invertirColores() {
+    const modoActual = document.body.classList.contains("dark");
+    aplicarModoOscuro(!modoActual);
+    localStorage.setItem("modoOscuro", !modoActual);
+}
+
+// Detectar preferencia del sistema y/o localStorage
+window.addEventListener("DOMContentLoaded", () => {
+    const prefGuardada = localStorage.getItem("modoOscuro");
+    if (prefGuardada !== null) {
+        // Aplicar la preferencia guardada
+        aplicarModoOscuro(prefGuardada === "true");
+    } else {
+        // Detectar modo oscuro del sistema si no hay preferencia guardada
+        const modoSistema = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        aplicarModoOscuro(modoSistema);
+    }
+});
+
 
     // Cambiar color de los recuadros de fechas y temario
     const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
@@ -965,27 +994,7 @@ function invertirColores() {
     });
 }
 
-
-    <!-- tu contenido -->
-    <button id="toggle-theme">Invertir colores</button>
-
-    <script>
-    // Seleccionamos elementos
-    const body = document.body;
-    const button = document.getElementById('toggle-theme');
-
-    // Revisar si ya hay preferencia guardada al cargar
-    if(localStorage.getItem('modoOscuro') === 'true'){
-        body.classList.add('dark');
-    }
-
-    // Cambiar tema al hacer clic y guardar en localStorage
-    button.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        localStorage.setItem('modoOscuro', body.classList.contains('dark'));
-    });
-    </script>
-
 </script>
 </body>
 </html>
+
