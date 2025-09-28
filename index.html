@@ -192,25 +192,29 @@ body.dark footer {
 
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
-    header { 
-        flex-direction: column; 
-        align-items: center; 
-        text-align: center; 
+    header {
+        flex-direction: column;  /* Logo arriba, texto abajo */
+        align-items: center;
+        text-align: center;
         padding: 15px 20px;
     }
-    header h1 { 
-        font-size: 28px; 
-        margin: 10px 0 0 0; 
+
+    header h1 {
+        font-size: 28px;   /* lo achicamos para que quepa bien */
+        margin-top: 10px;
     }
-    header .logo { 
-        width: 120px; 
-        margin: 0 0 10px 0; 
+
+    header .logo {
+        width: 120px;      /* logo más pequeño en celular */
+        margin-bottom: 10px;
     }
+
     .header-description {
         font-size: 14px;
         margin-top: 6px;
-        max-width: 320px;
+        max-width: 320px;  /* evita que el texto quede demasiado ancho */
     }
+}
 
     main { 
         margin: 20px 15px; 
@@ -727,6 +731,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
