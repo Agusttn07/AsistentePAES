@@ -734,6 +734,30 @@ const ponderaciones = {
 
 
 };
+
+document.getElementById("carrera").addEventListener("change", function () {
+    const universidad = document.getElementById("universidad").value;
+    const carrera = this.value;
+
+    if (universidad && carrera && ponderaciones[universidad] && ponderaciones[universidad][carrera]) {
+        const pond = ponderaciones[universidad][carrera];
+
+        const selectHC = document.getElementById("historia_ciencias");
+
+        if (pond.historia > 0 && pond.ciencias === 0) {
+            selectHC.value = "historia";
+            mostrarCampo(); // muestra el input de historia
+        } else if (pond.ciencias > 0 && pond.historia === 0) {
+            selectHC.value = "ciencias";
+            mostrarCampo(); // muestra el input de ciencias
+        } else {
+            // si tiene ambos con ponderación, no selecciona ninguno
+            selectHC.value = "";
+            document.getElementById("campoExtra").style.display = "none"; // oculta el campo
+        }
+    }
+});
+
 // ============================
 // FUNCIONES AUXILIARES
 // ============================
@@ -874,6 +898,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
