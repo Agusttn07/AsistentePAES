@@ -62,11 +62,14 @@ body.dark .fechas-recuadro {
 
 
 /* ===== Header ===== */
-header {
-    display: flex;
-    flex-direction: column; /* organiza los elementos verticalmente */
-    align-items: flex-start; /* alinea logo y título a la izquierda */
-    padding: 20px;
+header { 
+    background: #fff;       /* Fondo claro */
+    padding: 20px 40px; 
+    display: flex; 
+    flex-direction: column; /* apila logo y título verticalmente */
+    align-items: flex-start; /* alinea a la izquierda */
+    border-bottom: 1px solid #ddd; 
+    gap: 10px; /* separación entre logo y título */
 }
 body.dark header { 
     background: #222;       /* Fondo oscuro */
@@ -965,6 +968,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
