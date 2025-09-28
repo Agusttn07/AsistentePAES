@@ -77,11 +77,11 @@ body.dark header {
 
 /* Logos */
 header .logo {
-    width: auto;          /* se ajusta proporcionalmente */
-    max-height: 200px;     /* 🔹 ajusta este valor a lo que te guste */
+    width: 200px;
     height: auto;
-    transition: all 0.3s;
+    clip-path: inset(10px 5px 15px 5px); /* arriba derecha abajo izquierda */
 }
+
 
 header .dark-logo { display: none; }
 body.dark .light-logo { display: none; }
@@ -964,6 +964,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
