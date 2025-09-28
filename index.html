@@ -77,64 +77,6 @@ main.dark {
     color: #f5f5f5; 
 }
 
-<!-- ===== CONTADOR PAES ===== -->
-<div id="contador-container" style="margin-top: 40px; text-align: center;">
-    <div style="background: #007bff; color: white; padding: 30px; border-radius: 12px; font-size: 24px; font-weight: bold;">
-        Tiempo hasta la PAES:
-        <div id="contador" style="margin-top: 15px; font-size: 32px;"></div>
-    </div>
-
-    <!-- ===== FECHAS DE PRUEBAS ===== -->
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
-        <div style="background: #e9ecef; padding: 20px; border-radius: 10px; min-width: 200px;">
-            Matemática 2 (M2)<br>
-            <strong>Lunes 1 de diciembre, 15:00</strong>
-        </div>
-        <div style="background: #e9ecef; padding: 20px; border-radius: 10px; min-width: 200px;">
-            Lenguaje<br>
-            <strong>Martes 2 de diciembre, 09:00</strong>
-        </div>
-        <div style="background: #e9ecef; padding: 20px; border-radius: 10px; min-width: 200px;">
-            Electivo Ciencias<br>
-            <strong>Martes 2 de diciembre, 15:00</strong>
-        </div>
-        <div style="background: #e9ecef; padding: 20px; border-radius: 10px; min-width: 200px;">
-            Matemática 1 (M1)<br>
-            <strong>Miércoles 3 de diciembre, 09:00</strong>
-        </div>
-        <div style="background: #e9ecef; padding: 20px; border-radius: 10px; min-width: 200px;">
-            Historia y Ciencias Sociales<br>
-            <strong>Miércoles 3 de diciembre, 15:00</strong>
-        </div>
-    </div>
-</div>
-
-<script>
-// ===== CONTADOR =====
-function actualizarContador() {
-    const now = new Date().getTime();
-    const paes = new Date('December 1, 2025 09:00:00').getTime(); // Cambia el año según corresponda
-
-    const distance = paes - now;
-
-    if(distance < 0) {
-        document.getElementById('contador').innerHTML = "¡La PAES ha comenzado!";
-        clearInterval(intervalo);
-        return;
-    }
-
-    const dias = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById('contador').innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-}
-
-const intervalo = setInterval(actualizarContador, 1000);
-actualizarContador();
-</script>
-
 
 /* Inputs */
 .input-wrapper { 
@@ -803,6 +745,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
