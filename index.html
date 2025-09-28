@@ -776,49 +776,48 @@ document.getElementById("universidad").addEventListener("change", function(){
 // ============================
 // FUNCION CALCULAR PONDERADO
 // ============================
-function calcular(){
+function calcular() {
     const uni = document.getElementById("universidad").value;
     const carrera = document.getElementById("carrera").value;
-    const nem = parseFloat(document.getElementById("nem").value)||0;
-    const ranking = parseFloat(document.getElementById("ranking").value)||0;
-    const lectura = parseFloat(document.getElementById("lectura").value)||0;
-    const mate1 = parseFloat(document.getElementById("mate1").value)||0;
-    const mate2 = parseFloat(document.getElementById("mate2").value)||0;
-    const seleccionElectiva = document.getElementById("historia_ciencias").value;
-    const valorExtra = parseFloat(document.getElementById("valorExtra").value)||0;
+    const nem = parseFloat(document.getElementById("nem").value) || 0;
+    const ranking = parseFloat(document.getElementById("ranking").value) || 0;
+    const lectura = parseFloat(document.getElementById("lectura").value) || 0;
+    const mate1 = parseFloat(document.getElementById("mate1").value) || 0;
+    const mate2 = parseFloat(document.getElementById("mate2").value) || 0;
+    const historia = parseFloat(document.getElementById("historia").value) || 0;
+    const ciencias = parseFloat(document.getElementById("ciencias").value) || 0;
+    const valorExtra = parseFloat(document.getElementById("valorExtra").value) || 0;
 
-    if(!uni || !carrera || lectura===0 || mate1===0 || valorExtra===0){
-        document.getElementById("resultado").innerHTML='<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
+    if (!uni || !carrera || lectura === 0 || mate1 === 0 || historia === 0 || ciencias === 0) {
+        document.getElementById("resultado").innerHTML = '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1, Historia y Ciencias</span>';
         return;
     }
 
     const pond = ponderaciones[uni][carrera];
-    if(!pond){
-        document.getElementById("resultado").innerHTML='<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
+    if (!pond) {
+        document.getElementById("resultado").innerHTML = '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
         return;
     }
 
-    // calcular puntaje ponderado
+    // calcular puntaje ponderado sumando ambos puntajes electivos
     const puntaje = Math.round(
-        lectura*pond.cl/100 +
-        mate1*pond.m1/100 +
-        mate2*pond.m2/100 +
-        valorExtra*(seleccionElectiva==='historia'?pond.historia/100:pond.ciencias/100) +
-        nem*pond.nem/100 +
-        ranking*pond.ranking/100
+        lectura * pond.cl / 100 +
+        mate1 * pond.m1 / 100 +
+        mate2 * pond.m2 / 100 +
+        historia * pond.historia / 100 +
+        ciencias * pond.ciencias / 100 +
+        nem * pond.nem / 100 +
+        ranking * pond.ranking / 100
     );
 
     // calcular diferencia con el puntaje de corte
     const diferencia = Math.round(puntaje - pond.corte);
-    let estado = '';
-    if(diferencia >= 0){
-        estado = `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`;
-    } else {
-        estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
-    }
+    let estado = diferencia >= 0
+        ? `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`
+        : `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
 
     // mostrar resultados
-    document.getElementById("resultado").innerHTML=`
+    document.getElementById("resultado").innerHTML = `
         <b>Universidad:</b> ${uni}<br>
         <b>Carrera:</b> ${carrera}<br>
         <b>Puntaje ponderado estimado:</b> ${puntaje}<br>
@@ -826,6 +825,7 @@ function calcular(){
         <b>Estado:</b> ${estado}
     `;
 }
+
 
 // ============================
 // MODO OSCURO
@@ -865,5 +865,6 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
