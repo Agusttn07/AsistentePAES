@@ -380,12 +380,19 @@ body.dark footer {
 
     <div class="input-row">
     <div class="input-wrapper">
-        <label for="historia">Historia y Ciencias Sociales</label>
-        <input type="number" id="historia" min="0" max="1000">
+        <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
+        <select id="historia_ciencias" onchange="mostrarCampo()">
+            <option value="">Selecciona...</option>
+            <option value="historia">Historia y Ciencias Sociales</option>
+            <option value="ciencias">Ciencias</option>
+        </select>
     </div>
+</div>
+
+<div class="input-row" id="campoExtra" style="display:none;">
     <div class="input-wrapper">
-        <label for="ciencias">Ciencias</label>
-        <input type="number" id="ciencias" min="0" max="1000">
+        <label id="labelExtra" for="valorExtra"></label>
+        <input type="number" id="valorExtra" min="0" max="1000">
     </div>
 </div>
 
@@ -784,39 +791,42 @@ function calcular() {
     const lectura = parseFloat(document.getElementById("lectura").value) || 0;
     const mate1 = parseFloat(document.getElementById("mate1").value) || 0;
     const mate2 = parseFloat(document.getElementById("mate2").value) || 0;
-    const historia = parseFloat(document.getElementById("historia").value) || 0;
-    const ciencias = parseFloat(document.getElementById("ciencias").value) || 0;
+    const seleccionElectiva = document.getElementById("historia_ciencias").value;
     const valorExtra = parseFloat(document.getElementById("valorExtra").value) || 0;
 
-    if (!uni || !carrera || lectura === 0 || mate1 === 0 || historia === 0 || ciencias === 0) {
-        document.getElementById("resultado").innerHTML = '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1, Historia y Ciencias</span>';
+    if (!uni || !carrera || lectura === 0 || mate1 === 0 || valorExtra === 0) {
+        document.getElementById("resultado").innerHTML = 
+            '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
         return;
     }
 
     const pond = ponderaciones[uni][carrera];
     if (!pond) {
-        document.getElementById("resultado").innerHTML = '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
+        document.getElementById("resultado").innerHTML = 
+            '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
         return;
     }
 
-    // calcular puntaje ponderado sumando ambos puntajes electivos
+    // Calcular puntaje ponderado
     const puntaje = Math.round(
         lectura * pond.cl / 100 +
         mate1 * pond.m1 / 100 +
         mate2 * pond.m2 / 100 +
-        historia * pond.historia / 100 +
-        ciencias * pond.ciencias / 100 +
+        valorExtra * (seleccionElectiva === 'historia' ? pond.historia / 100 : pond.ciencias / 100) +
         nem * pond.nem / 100 +
         ranking * pond.ranking / 100
     );
 
-    // calcular diferencia con el puntaje de corte
+    // Calcular diferencia con el puntaje de corte
     const diferencia = Math.round(puntaje - pond.corte);
-    let estado = diferencia >= 0
-        ? `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`
-        : `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
+    let estado = '';
+    if (diferencia >= 0) {
+        estado = `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`;
+    } else {
+        estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
+    }
 
-    // mostrar resultados
+    // Mostrar resultados
     document.getElementById("resultado").innerHTML = `
         <b>Universidad:</b> ${uni}<br>
         <b>Carrera:</b> ${carrera}<br>
@@ -865,6 +875,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
