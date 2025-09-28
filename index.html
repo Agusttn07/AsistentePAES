@@ -785,6 +785,40 @@ function limpiarCampos(){
     lastEdited=null;
 }
 
+function aplicarValidaciones() {
+    const reglas = {
+        nem: { min: 100, max: 1000, permitirCero: false },
+        ranking: { min: 100, max: 1000, permitirCero: false },
+        lectura: { min: 100, max: 1000, permitirCero: false },
+        mate1: { min: 100, max: 1000, permitirCero: false },
+        valorExtra: { min: 100, max: 1000, permitirCero: true },
+        mate2: { min: 100, max: 1000, permitirCero: true }
+    };
+
+    Object.keys(reglas).forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener("change", () => {
+            let val = parseInt(input.value);
+            const { min, max, permitirCero } = reglas[id];
+
+            if (isNaN(val)) return;
+
+            if (permitirCero && val === 0) {
+                return; // 0 es válido
+            }
+
+            if (val < min) input.value = min;
+            if (val > max) input.value = max;
+        });
+    });
+}
+
+// Llamar cuando cargue la página
+aplicarValidaciones();
+
+
 let lastEdited = null;
 ["lectura","mate1","mate2","valorExtra","nem","ranking"].forEach(id => {
     document.getElementById(id).addEventListener("input", ()=>{lastEdited=id;});
@@ -929,6 +963,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
