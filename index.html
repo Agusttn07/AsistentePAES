@@ -789,11 +789,31 @@ function invertirColores() {
     } else {
         logo.src = "asistente_logo.png";
     }
+
+    // Cambiar color de los recuadros de fechas y temario
+    const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
+    fechas.forEach(div => {
+        if (document.body.classList.contains("dark")) {
+            div.style.background = "#444"; // fondo oscuro
+            div.style.color = "#fff";      // texto claro
+        } else {
+            // Restaurar colores originales
+            if (div.id === "temarioPAES") {
+                div.style.background = "#ffc107"; // amarillo del temario
+                div.style.color = "#000";         // texto negro
+            } else {
+                div.style.background = "#e9ecef"; // gris original de fechas
+                div.style.color = "#000";         // texto negro
+            }
+        }
+    });
 }
+
 
 </script>
 </body>
 </html>
+
 
 
 
