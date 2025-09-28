@@ -933,59 +933,18 @@ function calcular() {
 // ============================
 // FUNCIONES MODO OSCURO
 // ============================
+function invertirColores() {
+    document.body.classList.toggle("dark");
+    document.getElementById("main").classList.toggle("dark");
+    document.getElementById("header").classList.toggle("dark");
 
-// Aplicar modo oscuro a los elementos y recuadros
-function aplicarModoOscuro(activar) {
-    const body = document.body;
-    const main = document.getElementById("main");
-    const header = document.getElementById("header");
     const logo = document.getElementById("logo");
-
-    if (activar) {
-        body.classList.add("dark");
-        main.classList.add("dark");
-        header.classList.add("dark");
+    if (document.body.classList.contains("dark")) {
         logo.src = "asistente_logo_negro.png";
     } else {
-        body.classList.remove("dark");
-        main.classList.remove("dark");
-        header.classList.remove("dark");
         logo.src = "asistente_logo.png";
     }
-
-    // Recuadros de fechas y temario
-    document.querySelectorAll("#fechasPAES > div, #temarioPAES").forEach(div => {
-        if (activar) {
-            div.classList.add("dark");
-        } else {
-            div.classList.remove("dark");
-        }
-    });
 }
-
-// Alternar modo oscuro al presionar el botón
-function invertirColores() {
-    const modoActual = document.body.classList.contains("dark");
-    aplicarModoOscuro(!modoActual);
-    localStorage.setItem("modoOscuro", !modoActual);
-}
-
-// Ejecutar al cargar la página
-window.addEventListener("DOMContentLoaded", () => {
-    const prefGuardada = localStorage.getItem("modoOscuro");
-    if (prefGuardada !== null) {
-        aplicarModoOscuro(prefGuardada === "true");
-    } else {
-        // Detectar modo del sistema si no hay preferencia guardada
-        const modoSistema = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        aplicarModoOscuro(modoSistema);
-    }
-
-    // Botón
-    const boton = document.getElementById("btnModoOscuro");
-    boton.addEventListener("click", invertirColores);
-});
-
 
     // Cambiar color de los recuadros de fechas y temario
     const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
@@ -1009,5 +968,6 @@ window.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
