@@ -209,67 +209,67 @@ body.dark footer {
 
 /* ===== Ajustes para celulares ===== */
 @media (max-width: 600px) {
+
     header {
         flex-direction: column;
-        align-items: flex-start; /* ya lo tienes */
+        align-items: flex-start;   /* va a la izquierda */
         text-align: left;
-        padding: 5px 20px;       /* reduce padding superior/inferior */
+        padding: 15px 20px;
     }
 
     header .logo {
         width: 100px;
-        margin: 0;               /* elimina margen inferior */
+        margin: 0 0 10px 0;
+        align-self: flex-start;
     }
 
     header h1 {
         font-size: 36px;
-        margin: 2px 0 0 0;       /* margen superior casi 0 */
-        line-height: 1.2;
+        margin: 0;
     }
 
     .header-description {
         font-size: 14px;
-        margin: 2px 0 0 0;       /* margen superior casi 0 */
+        margin-top: 6px;
         max-width: 90%;
         line-height: 1.4;
     }
-}
 
-
-    main { 
-        margin: 20px auto;     
-        padding: 25px; 
+    main {
+        margin: 20px auto;
+        padding: 25px;
     }
 
     /* Inputs y select verticales */
-    .input-row { 
-        display: flex;          /* asegúrate de que sea flex */
-        flex-direction: column; 
-        gap: 15px; 
+    .input-row {
+        display: flex;          /* asegura que sea flex */
+        flex-direction: column;
+        gap: 15px;
     }
 
-    .input-wrapper input, 
-    .input-wrapper select { 
-        font-size: 16px; 
-        padding: 14px; 
-        width: 100%;          /* ocupa todo el ancho disponible */
+    .input-wrapper input,
+    .input-wrapper select {
+        font-size: 16px;
+        padding: 14px;
+        width: 100%;           /* ocupa todo el ancho disponible */
     }
 
     /* Botones apilados verticalmente */
-    .buttons { 
+    .buttons {
         display: flex;
-        flex-direction: column; 
-        align-items: stretch; 
-        gap: 15px; 
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
     }
 
-    .buttons button { 
-        width: 100%; 
-        padding: 14px;  
+    .buttons button {
+        width: 100%;
+        padding: 14px;
         font-size: 16px;
     }
 
 }
+
 
 </style>
 </head>
@@ -830,6 +830,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
