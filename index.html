@@ -479,6 +479,18 @@ actualizarContador();
     Toda la información presentada en esta plataforma ha sido recopilada y organizada a partir de los datos oficiales publicados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) de la Universidad de Chile.
 </footer>
 
+<label for="universidad">Universidad:</label>
+<select id="universidad" onchange="cargarCarreras()">
+    <option value="">Seleccione...</option>
+</select>
+
+<label for="carrera">Carrera:</label>
+<select id="carrera" onchange="mostrarMensajePrueba()">
+    <option value="">Seleccione...</option>
+</select>
+
+<p id="mensajePrueba" style="font-weight:bold;color:blue;"></p>
+    
 <script>
 // ============================
 // PONDERACIONES POR UNIVERSIDAD
@@ -735,6 +747,45 @@ const ponderaciones = {
 
 };
 
+
+// Función para llenar el select de carreras según universidad
+function cargarCarreras() {
+    const uni = document.getElementById("universidad").value;
+    const carreraSelect = document.getElementById("carrera");
+    carreraSelect.innerHTML = "<option value=''>Seleccione...</option>";
+    document.getElementById("mensajePrueba").innerText = "";
+
+    if (ponderaciones[uni]) {
+        Object.keys(ponderaciones[uni]).forEach(c => {
+            const option = document.createElement("option");
+            option.value = c;
+            option.text = c;
+            carreraSelect.appendChild(option);
+        });
+    }
+}
+
+// Función para mostrar el mensaje según la carrera seleccionada
+function mostrarMensajePrueba() {
+    const uni = document.getElementById("universidad").value;
+    const carrera = document.getElementById("carrera").value;
+    const mensaje = document.getElementById("mensajePrueba");
+    mensaje.innerText = "";
+
+    if (uni && carrera) {
+        const ponder = ponderaciones[uni][carrera];
+        const tieneCiencias = ponder.ciencias > 0;
+        const tieneHistoria = ponder.historia > 0;
+
+        if (tieneCiencias && tieneHistoria) {
+            mensaje.innerText = "Puedes rendir Ciencias o Historia para esta carrera";
+        } else if (tieneCiencias) {
+            mensaje.innerText = "Para esta carrera se requiere rendir la prueba de Ciencias";
+        } else if (tieneHistoria) {
+            mensaje.innerText = "Para esta carrera se requiere rendir la prueba de Historia y Ciencias Sociales";
+        }
+    }
+}
 // ============================
 // FUNCIONES AUXILIARES
 // ============================
@@ -875,6 +926,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
