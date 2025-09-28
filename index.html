@@ -359,22 +359,22 @@ body.dark footer {
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nem">Notas de Enseñanza Media (NEM) <a href="https://demre.cl/paes/factores-seleccion/notas-ensenanza-media" target="_blank">*</a></label>
-            <input type="number" id="nem" min="0" max="1000">
+            <input type="number" id="nem" min="100" max="1000">
         </div>
         <div class="input-wrapper">
             <label for="ranking">Ranking <a href="https://demre.cl/paes/factores-seleccion/puntaje-ranking" target="_blank">*</a></label>
-            <input type="number" id="ranking" min="0" max="1000">
+            <input type="number" id="ranking" min="100" max="1000">
         </div>
     </div>
 
     <div class="input-row">
         <div class="input-wrapper">
             <label for="lectura">Competencia Lectora</label>
-            <input type="number" id="lectura" min="0" max="1000">
+            <input type="number" id="lectura" min="100" max="1000">
         </div>
         <div class="input-wrapper">
             <label for="mate1">Competencia Matemática 1 (M1)</label>
-            <input type="number" id="mate1" min="0" max="1000">
+            <input type="number" id="mate1" min="100" max="1000">
         </div>
     </div>
 
@@ -811,6 +811,33 @@ document.getElementById("universidad").addEventListener("change", function(){
 // FUNCION CALCULAR PONDERADO
 // ============================
 function calcular() {
+    function validarInputs() {
+    const nem = document.getElementById("nem");
+    const ranking = document.getElementById("ranking");
+    const lectura = document.getElementById("lectura");
+    const mate1 = document.getElementById("mate1");
+    const valorExtra = document.getElementById("valorExtra");
+    const mate2 = document.getElementById("mate2");
+
+    // Reglas: NEM, Ranking, Lectora y M1 -> entre 100 y 1000
+    [nem, ranking, lectura, mate1].forEach(input => {
+        if (input.value !== "") {
+            let val = parseInt(input.value);
+            if (val < 100) input.value = 100;
+            if (val > 1000) input.value = 1000;
+        }
+    });
+
+    // Reglas: Historia/Ciencias y M2 -> 0 o entre 100 y 1000
+    [valorExtra, mate2].forEach(input => {
+        if (input.value !== "") {
+            let val = parseInt(input.value);
+            if (val !== 0 && val < 100) input.value = 100;
+            if (val > 1000) input.value = 1000;
+        }
+    });
+}
+
     const uni = document.getElementById("universidad").value;
     const carrera = document.getElementById("carrera").value;
     const nem = parseFloat(document.getElementById("nem").value) || 0;
@@ -902,6 +929,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
