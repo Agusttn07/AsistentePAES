@@ -409,28 +409,21 @@ body.dark footer {
     </div>
 
     <div class="input-row">
-        <div class="input-wrapper">
-            <label for="universidad">Universidad</label>
-            <select id="universidad">
-                <option value="">Selecciona...</option>
-                <option value="Universidad de Chile">Universidad de Chile</option>
-                <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
-                <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
-                <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
-                <option value="otra">Otra universidad</option>
-
-            </select>
-        </div>
-        <div class="input-wrapper">
-            <label for="carrera">Carrera</label>
-            <select id="carrera">
-                <option value="">Selecciona...</option>
-                <!-- Se llenará dinámicamente según universidad -->
-            </select>
-        </div>
+    <div class="input-wrapper">
+        <label for="universidad">Universidad</label>
+        <select id="universidad">
+            <option value="">Selecciona...</option>
+            <option value="Universidad de Chile">Universidad de Chile</option>
+            <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
+            <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
+            <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
+            <option value="otra">Otra universidad</option>
+        </select>
     </div>
+</div>
 
-    <div id="custom-uni-fields" style="display:none; margin-top:20px;">
+<!-- Aquí sí va fuera -->
+<div id="custom-uni-fields" style="display:none; margin-top:20px;">
     <div class="input-row">
         <div class="input-wrapper">
             <label for="otraUniversidad">Nombre de la universidad</label>
@@ -482,6 +475,17 @@ body.dark footer {
 </div>
 
 
+        </div>
+        <div class="input-wrapper">
+            <label for="carrera">Carrera</label>
+            <select id="carrera">
+                <option value="">Selecciona...</option>
+                <!-- Se llenará dinámicamente según universidad -->
+            </select>
+        </div>
+    </div>
+
+   
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nem">Notas de Enseñanza Media (NEM) <a href="https://demre.cl/paes/factores-seleccion/notas-ensenanza-media" target="_blank">*</a></label>
@@ -872,8 +876,6 @@ const ponderaciones = {
     "Terapia Ocupacional": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 0, "ciencias": 20, "corte": 708.1 }
 }
 
-
-
 };
 
 
@@ -1135,6 +1137,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
