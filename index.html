@@ -66,10 +66,10 @@ header {
     background: #fff;       /* Fondo claro */
     padding: 20px 40px; 
     display: flex; 
-    flex-direction: column; /* apila logo y título verticalmente */
-    align-items: flex-start; /* alinea a la izquierda */
+    flex-direction: row;       /* logo y botones en fila */
+    align-items: center;       /* centrados verticalmente */
+    justify-content: space-between; /* logo izq, botones der */
     border-bottom: 1px solid #ddd; 
-    gap: 10px; /* separación entre logo y título */
 }
 body.dark header { 
     background: #222;       /* Fondo oscuro */
@@ -81,19 +81,47 @@ header .logo {
     width: 155px;
     height: auto;
     clip-path: inset(45px 5px 50px 5px); /* arriba derecha abajo izquierda */
-    margin-left: -10px;
-    margin-top: -50px;
+    margin: 0; /* limpiamos márgenes anteriores */
 }
-
 
 header .dark-logo { display: none; }
 body.dark .light-logo { display: none; }
 body.dark .dark-logo { display: block; }
 
+/* Botones en el header */
+.header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.header-buttons button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #0e3448;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.header-buttons button:hover {
+    background: #14506a;
+    transform: scale(1.05);
+}
+
+/* ===== Bloque de título y descripción ===== */
+.header-text {
+    text-align: center;   /* centrado */
+    margin-top: 20px;     /* espacio debajo del header */
+}
+
 /* Título */
-header h1 {
+.header-text h1 {
     font-size: 44px;
-    margin: -40px 0 0 0; /* separación del logo */
+    margin: 0;
 }
 
 /* Descripción */
@@ -106,6 +134,7 @@ header h1 {
 body.dark .header-description { 
     color: #ddd; 
 }
+
 
 /* ===== Main ===== */
 main { 
@@ -355,16 +384,29 @@ body.dark footer {
     <!-- Logo blanco (para fondo oscuro) -->
     <img src="asistente_logo_negro.png" alt="Logo Asistente" class="logo dark-logo">
 
-    <div class="header-text">
-        <h1>ASISTENTE DE POSTULACIONES</h1>
-        <p class="header-description">
+    <header>
+  <!-- Logo -->
+  <img src="asistente_logo.png" alt="Logo Asistente" class="logo light-logo">
+  <img src="asistente_logo_negro.png" alt="Logo Asistente" class="logo dark-logo">
+
+  <!-- Botones -->
+  <div class="header-buttons">
+    <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">Simulador</button>
+    <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">Fechas</button>
+  </div>
+</header>
+
+<!-- Ahora el bloque de texto va aquí -->
+<div class="header-text">
+  <h1>ASISTENTE DE POSTULACIONES</h1>
+  <p class="header-description">
     Simula tus puntajes PAES y explora toda la variedad de universidades y carreras dentro de nuestro Asistente PAES.<br>
     El simulador está diseñado para guiarte en el proceso de admisión,
     ayudarte a comparar alternativas y tomar decisiones informadas
     para alcanzar tus metas académicas.
-</p>
-    </div>
-</header>
+  </p>
+</div>
+
 
 <main id="main">
     <div class="input-row">
@@ -1020,6 +1062,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
