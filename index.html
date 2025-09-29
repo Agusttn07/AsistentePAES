@@ -63,48 +63,54 @@ body.dark .fechas-recuadro {
 
 /* ===== Header ===== */
 header { 
-    background: #fff; /* Fondo claro */ 
+    background: #fff; 
     padding: 20px 40px; 
     display: flex; 
-    flex-direction: column; /* apila logo y título verticalmente */ 
-    align-items: flex-start; /* alinea a la izquierda */ 
+    flex-direction: row;          /* logo y botones en fila */
+    align-items: center; 
+    justify-content: space-between; 
     border-bottom: 1px solid #ddd; 
-    gap: 10px; /* separación entre logo y título */ 
-} 
+}
 body.dark header { 
-    background: #222; /* Fondo oscuro */ 
+    background: #222; 
     border-color: #555; 
-} 
+}
 
-/* Logos */ 
-header .logo { 
-    width: 155px; 
-    height: auto; 
-    clip-path: inset(45px 5px 50px 5px); /* arriba derecha abajo izquierda */ 
-    margin-left: -10px; 
-    margin-top: -50px; 
-} 
+/* Logos */
+header .logo {
+    width: 155px;
+    height: auto;
+    clip-path: inset(45px 5px 50px 5px); 
+    margin: 0; 
+}
+header .dark-logo { display: none; }
+body.dark .light-logo { display: none; }
+body.dark .dark-logo { display: block; }
 
-header .dark-logo { display: none; } 
-body.dark .light-logo { display: none; } 
-body.dark .dark-logo { display: block; } 
+/* Botones */
+.header-buttons {
+    display: flex;
+    gap: 20px;
+}
 
-/* Título */ 
-header h1 { 
-    font-size: 44px; 
-    margin: -40px 0 0 0; /* separación del logo */ 
-} 
-
-/* Descripción */ 
-.header-description { 
-    font-size: 15px; 
-    color: #555; 
-    margin-top: 8px; 
-    line-height: 1.5; 
-} 
+/* Título y descripción (fuera del header) */
+.header-text {
+    text-align: center;
+    margin: 20px auto;
+}
+.header-text h1 {
+    font-size: 44px;
+    margin: 0;
+}
+.header-description {
+    font-size: 15px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+}
 body.dark .header-description { 
     color: #ddd; 
-} 
+}
 
 
 /* ===== Main ===== */
@@ -355,16 +361,28 @@ body.dark footer {
     <!-- Logo blanco (para fondo oscuro) -->
     <img src="asistente_logo_negro.png" alt="Logo Asistente" class="logo dark-logo">
 
-    <div class="header-text">
-        <h1>ASISTENTE DE POSTULACIONES</h1>
-        <p class="header-description">
-    Simula tus puntajes PAES y explora toda la variedad de universidades y carreras dentro de nuestro Asistente PAES.<br>
-    El simulador está diseñado para guiarte en el proceso de admisión,
-    ayudarte a comparar alternativas y tomar decisiones informadas
-    para alcanzar tus metas académicas.
-</p>
+    <!-- Botones -->
+    <div class="header-buttons">
+        <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
+            Simulador
+        </button>
+        <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">
+            Fechas
+        </button>
     </div>
 </header>
+
+<!-- Título y descripción van fuera del header -->
+<div class="header-text">
+    <h1>ASISTENTE DE POSTULACIONES</h1>
+    <p class="header-description">
+        Simula tus puntajes PAES y explora toda la variedad de universidades y carreras dentro de nuestro Asistente PAES.<br>
+        El simulador está diseñado para guiarte en el proceso de admisión,
+        ayudarte a comparar alternativas y tomar decisiones informadas
+        para alcanzar tus metas académicas.
+    </p>
+</div>
+
     
 <main id="main">
     <div class="input-row">
@@ -1020,6 +1038,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
