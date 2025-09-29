@@ -63,77 +63,48 @@ body.dark .fechas-recuadro {
 
 /* ===== Header ===== */
 header { 
-    background: #fff;       /* Fondo claro */
+    background: #fff; /* Fondo claro */ 
     padding: 20px 40px; 
     display: flex; 
-    flex-direction: row;       /* logo y botones en fila */
-    align-items: center;       /* centrados verticalmente */
-    justify-content: space-between; /* logo izq, botones der */
+    flex-direction: column; /* apila logo y título verticalmente */ 
+    align-items: flex-start; /* alinea a la izquierda */ 
     border-bottom: 1px solid #ddd; 
-}
+    gap: 10px; /* separación entre logo y título */ 
+} 
 body.dark header { 
-    background: #222;       /* Fondo oscuro */
+    background: #222; /* Fondo oscuro */ 
     border-color: #555; 
-}
+} 
 
-/* Logos */
-header .logo {
-    width: 155px;
-    height: auto;
-    clip-path: inset(45px 5px 50px 5px); /* arriba derecha abajo izquierda */
-    margin: 0; /* limpiamos márgenes anteriores */
-}
+/* Logos */ 
+header .logo { 
+    width: 155px; 
+    height: auto; 
+    clip-path: inset(45px 5px 50px 5px); /* arriba derecha abajo izquierda */ 
+    margin-left: -10px; 
+    margin-top: -50px; 
+} 
 
-header .dark-logo { display: none; }
-body.dark .light-logo { display: none; }
-body.dark .dark-logo { display: block; }
+header .dark-logo { display: none; } 
+body.dark .light-logo { display: none; } 
+body.dark .dark-logo { display: block; } 
 
-/* Botones en el header */
-.header-buttons {
-    display: flex;
-    gap: 15px;
-}
+/* Título */ 
+header h1 { 
+    font-size: 44px; 
+    margin: -40px 0 0 0; /* separación del logo */ 
+} 
 
-.header-buttons button {
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #0e3448;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-    transition: background 0.3s, transform 0.2s;
-}
-
-.header-buttons button:hover {
-    background: #14506a;
-    transform: scale(1.05);
-}
-
-/* ===== Bloque de título y descripción ===== */
-.header-text {
-    text-align: center;   /* centrado */
-    margin-top: 20px;     /* espacio debajo del header */
-}
-
-/* Título */
-.header-text h1 {
-    font-size: 44px;
-    margin: 0;
-}
-
-/* Descripción */
-.header-description {
-    font-size: 15px;
-    color: #555;
-    margin-top: 8px;
-    line-height: 1.5;
-}
+/* Descripción */ 
+.header-description { 
+    font-size: 15px; 
+    color: #555; 
+    margin-top: 8px; 
+    line-height: 1.5; 
+} 
 body.dark .header-description { 
     color: #ddd; 
-}
+} 
 
 
 /* ===== Main ===== */
@@ -1062,6 +1033,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
