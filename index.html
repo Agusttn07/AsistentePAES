@@ -62,28 +62,28 @@ body.dark .fechas-recuadro {
 
 
 /* ===== Header ===== */
-header { 
-    background: #fff; 
-    padding: 0px 40px; 
-    display: flex; 
-    flex-direction: row;          /* logo y botones en fila */
-    align-items: center; 
-    justify-content: space-between; 
-    border-bottom: 1px solid #ddd; 
+header {
+    height: 100px; /* ajusta según necesites */
+    background: #fff;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
 }
-body.dark header { 
-    background: #222; 
-    border-color: #555; 
+
+body.dark header {
+    background: #222;
+    border-color: #555;
 }
+
 
 /* Logos */
 header .logo {
-    width: 155px;
-    height: auto;
-    clip-path: inset(65px 5px 75px 5px); 
-    margin: -40px; 
-    margin-left: 10px; /* mueve a la derecha */
+    max-height: 80px;
+    width: auto;
 }
+
 header .dark-logo { display: none; }
 body.dark .light-logo { display: none; }
 body.dark .dark-logo { display: block; }
@@ -1043,6 +1043,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
