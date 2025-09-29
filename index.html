@@ -417,6 +417,8 @@ body.dark footer {
                 <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
                 <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
                 <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
+                <option value="otra">Otra universidad</option>
+
             </select>
         </div>
         <div class="input-wrapper">
@@ -427,6 +429,58 @@ body.dark footer {
             </select>
         </div>
     </div>
+
+    <div id="custom-uni-fields" style="display:none; margin-top:20px;">
+    <div class="input-row">
+        <div class="input-wrapper">
+            <label for="otraUniversidad">Nombre de la universidad</label>
+            <input type="text" id="otraUniversidad">
+        </div>
+        <div class="input-wrapper">
+            <label for="otraCarrera">Nombre de la carrera</label>
+            <input type="text" id="otraCarrera">
+        </div>
+    </div>
+
+    <p style="font-weight:bold;">Ponderaciones (%)</p>
+    <div class="input-row">
+        <div class="input-wrapper">
+            <label for="pondNem">NEM</label>
+            <input type="number" id="pondNem" min="0" max="100">
+        </div>
+        <div class="input-wrapper">
+            <label for="pondRanking">Ranking</label>
+            <input type="number" id="pondRanking" min="0" max="100">
+        </div>
+    </div>
+    <div class="input-row">
+        <div class="input-wrapper">
+            <label for="pondLectura">Lectura</label>
+            <input type="number" id="pondLectura" min="0" max="100">
+        </div>
+        <div class="input-wrapper">
+            <label for="pondMate1">Matemática 1</label>
+            <input type="number" id="pondMate1" min="0" max="100">
+        </div>
+    </div>
+    <div class="input-row">
+        <div class="input-wrapper">
+            <label for="pondMate2">Matemática 2</label>
+            <input type="number" id="pondMate2" min="0" max="100">
+        </div>
+        <div class="input-wrapper">
+            <label for="pondHistoria">Historia</label>
+            <input type="number" id="pondHistoria" min="0" max="100">
+        </div>
+    </div>
+    <div class="input-row">
+        <div class="input-wrapper">
+            <label for="pondCiencias">Ciencias</label>
+            <input type="number" id="pondCiencias" min="0" max="100">
+        </div>
+    </div>
+</div>
+
 
     <div class="input-row">
         <div class="input-wrapper">
@@ -822,6 +876,17 @@ const ponderaciones = {
 
 };
 
+
+document.getElementById("universidad").addEventListener("change", function() {
+    const customFields = document.getElementById("custom-uni-fields");
+    if (this.value === "otra") {
+        customFields.style.display = "block";
+    } else {
+        customFields.style.display = "none";
+    }
+});
+
+
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
     const carrera = this.value;
@@ -929,31 +994,33 @@ document.getElementById("universidad").addEventListener("change", function(){
 // ============================
 function calcular() {
     function validarInputs() {
-    const nem = document.getElementById("nem");
-    const ranking = document.getElementById("ranking");
-    const lectura = document.getElementById("lectura");
-    const mate1 = document.getElementById("mate1");
-    const valorExtra = document.getElementById("valorExtra");
-    const mate2 = document.getElementById("mate2");
+        const nem = document.getElementById("nem");
+        const ranking = document.getElementById("ranking");
+        const lectura = document.getElementById("lectura");
+        const mate1 = document.getElementById("mate1");
+        const valorExtra = document.getElementById("valorExtra");
+        const mate2 = document.getElementById("mate2");
 
-    // Reglas: NEM, Ranking, Lectora y M1 -> entre 100 y 1000
-    [nem, ranking, lectura, mate1].forEach(input => {
-        if (input.value !== "") {
-            let val = parseInt(input.value);
-            if (val < 100) input.value = 100;
-            if (val > 1000) input.value = 1000;
-        }
-    });
+        // Reglas: NEM, Ranking, Lectora y M1 -> entre 100 y 1000
+        [nem, ranking, lectura, mate1].forEach(input => {
+            if (input.value !== "") {
+                let val = parseInt(input.value);
+                if (val < 100) input.value = 100;
+                if (val > 1000) input.value = 1000;
+            }
+        });
 
-    // Reglas: Historia/Ciencias y M2 -> 0 o entre 100 y 1000
-    [valorExtra, mate2].forEach(input => {
-        if (input.value !== "") {
-            let val = parseInt(input.value);
-            if (val !== 0 && val < 100) input.value = 100;
-            if (val > 1000) input.value = 1000;
-        }
-    });
-}
+        // Reglas: Historia/Ciencias y M2 -> 0 o entre 100 y 1000
+        [valorExtra, mate2].forEach(input => {
+            if (input.value !== "") {
+                let val = parseInt(input.value);
+                if (val !== 0 && val < 100) input.value = 100;
+                if (val > 1000) input.value = 1000;
+            }
+        });
+    }
+
+    validarInputs();
 
     const uni = document.getElementById("universidad").value;
     const carrera = document.getElementById("carrera").value;
@@ -965,17 +1032,33 @@ function calcular() {
     const seleccionElectiva = document.getElementById("historia_ciencias").value;
     const valorExtra = parseFloat(document.getElementById("valorExtra").value) || 0;
 
-    if (!uni || !carrera || lectura === 0 || mate1 === 0 || valorExtra === 0) {
+    if (!uni || (!carrera && uni !== "otra") || lectura === 0 || mate1 === 0 || valorExtra === 0) {
         document.getElementById("resultado").innerHTML = 
             '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
         return;
     }
 
-    const pond = ponderaciones[uni][carrera];
-    if (!pond) {
-        document.getElementById("resultado").innerHTML = 
-            '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
-        return;
+    let pond;
+
+    // === CASO: OTRA UNIVERSIDAD ===
+    if (uni === "otra") {
+        pond = {
+            nem: parseFloat(document.getElementById("pondNem").value) || 0,
+            ranking: parseFloat(document.getElementById("pondRanking").value) || 0,
+            cl: parseFloat(document.getElementById("pondLectura").value) || 0,
+            m1: parseFloat(document.getElementById("pondMate1").value) || 0,
+            m2: parseFloat(document.getElementById("pondMate2").value) || 0,
+            historia: parseFloat(document.getElementById("pondHistoria").value) || 0,
+            ciencias: parseFloat(document.getElementById("pondCiencias").value) || 0,
+            corte: 0 // no hay corte definido en "otra"
+        };
+    } else {
+        pond = ponderaciones[uni][carrera];
+        if (!pond) {
+            document.getElementById("resultado").innerHTML = 
+                '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
+            return;
+        }
     }
 
     // Calcular puntaje ponderado
@@ -988,14 +1071,23 @@ function calcular() {
         ranking * pond.ranking / 100
     );
 
-    // Calcular diferencia con el puntaje de corte
-    const diferencia = Math.round(puntaje - pond.corte);
-    let estado = '';
-    if (diferencia >= 0) {
-        estado = `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`;
-    } else {
-        estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
+    // Calcular diferencia con el puntaje de corte (solo si existe)
+    let resultadoHTML = `<div style="font-weight:bold; font-size:18px; color:#0e3448;">
+        Puntaje ponderado: ${puntaje}
+    </div>`;
+
+    if (uni !== "otra") {
+        const diferencia = Math.round(puntaje - pond.corte);
+        if (diferencia >= 0) {
+            resultadoHTML += `<p>✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos</p>`;
+        } else {
+            resultadoHTML += `<p>❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos</p>`;
+        }
     }
+
+    document.getElementById("resultado").innerHTML = resultadoHTML;
+}
+
 
     // Mostrar resultados
     document.getElementById("resultado").innerHTML = `
@@ -1043,6 +1135,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
