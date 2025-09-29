@@ -191,6 +191,29 @@ body.dark .input-wrapper select {
     background: #0e3448; 
 }
 
+/* SCROLLEAR */
+.header-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.header-buttons button {
+    padding: 10px 18px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #0e3448;
+    color: white;
+    transition: background 0.3s;
+}
+
+.header-buttons button:hover {
+    background: #14506a;
+}
+
+
 /* Resultado */
 #resultado { 
     margin-top: 25px; 
@@ -420,6 +443,16 @@ body.dark footer {
     </div>
 
     <div id="resultado" aria-live="polite"></div>
+
+<div class="header-buttons">
+  <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
+    Simulador
+  </button>
+  <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">
+    Fechas
+  </button>
+</div>
+
 </main>
 
 
@@ -967,6 +1000,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
