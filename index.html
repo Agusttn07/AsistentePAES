@@ -934,7 +934,7 @@ const ponderaciones = {
 };
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
-    const carrera = this.value;
+    const carreraSelect = document.getElementById("carrera")
 
     if (universidad && carrera && ponderaciones[universidad] && ponderaciones[universidad][carrera]) {
         const pond = ponderaciones[universidad][carrera];
@@ -1066,7 +1066,7 @@ function calcular() {
 }
 
     const uni = selectedUniValue;
-    const carrera = document.getElementById("carrera").value;
+    const carreraSelect = document.getElementById("carrera").value;
     const nem = parseFloat(document.getElementById("nem").value) || 0;
     const ranking = parseFloat(document.getElementById("ranking").value) || 0;
     const lectura = parseFloat(document.getElementById("lectura").value) || 0;
@@ -1247,6 +1247,7 @@ document.addEventListener('click', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
