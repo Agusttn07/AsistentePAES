@@ -439,21 +439,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-        <div class="input-wrapper">
-            <label for="universidad">Universidad</label>
-            <select id="universidad">
-                <div id="logoUniversidad" style="margin-top:10px;">
-  <img id="imgUniversidad" src="" alt="" style="height:50px; display:none;">
+    <div class="input-wrapper">
+        <label for="universidad">Universidad</label>
+        <select id="universidad">
+            <option value="">Selecciona...</option>
+            <option value="Universidad de Chile">Universidad de Chile</option>
+            <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
+            <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
+            <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
+            <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
+        </select>
+
+        <div id="logoUniversidad" style="margin-top:10px;">
+            <img id="imgUniversidad" src="" alt="" style="height:50px; display:none;">
+        </div>
+    </div>
 </div>
 
-                <option value="">Selecciona...</option>
-                <option value="Universidad de Chile">Universidad de Chile</option>
-                <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
-                <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
-                <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
-                <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
-            </select>
-        </div>
         <div class="input-wrapper">
             <label for="carrera">Carrera</label>
             <select id="carrera">
@@ -1120,5 +1122,6 @@ document.getElementById("universidad").addEventListener("change", function() {
 </script>
 </body>
 </html>
+
 
 
