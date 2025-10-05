@@ -1017,7 +1017,7 @@ function calcular() {
 
     if (!uni || !carrera || lectura === 0 || mate1 === 0 || valorExtra === 0) {
         document.getElementById("resultado").innerHTML = 
-            '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
+            '<span style="color:#c0392b; font-weight:600;">Debes rellenar todos los campos correspondientes</span>';
         return;
     }
 
@@ -1047,6 +1047,11 @@ function calcular() {
         estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
     }
 
+    const logoHTML = logos[uni]
+    ? `<img src="${logos[uni]}" alt="${uni}" 
+       style="height:40px; vertical-align:middle; margin-left:10px; border-radius:6px; background:white; padding:3px; box-shadow:0 1px 4px rgba(0,0,0,0.2);">`
+    : "";
+    
     // Mostrar resultados
     document.getElementById("resultado").innerHTML = `
         <b>Universidad:</b> ${uni}<br>
@@ -1122,6 +1127,7 @@ document.getElementById("universidad").addEventListener("change", function() {
 </script>
 </body>
 </html>
+
 
 
 
