@@ -379,6 +379,55 @@ body.dark footer {
 
 }
 
+.dropdown {
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+}
+
+.dropdown-selected {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.option {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #f0f0f0;
+}
+
+.logo-option {
+  height: 25px;
+  width: auto;
+}
+
+
 
 </style>
 </head>
@@ -439,21 +488,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-    <div class="input-wrapper">
-        <label for="universidad">Universidad</label>
-        <select id="universidad">
-            <option value="">Selecciona...</option>
-            <option value="Universidad de Chile">Universidad de Chile</option>
-            <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
-            <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
-            <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
-            <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
-        </select>
+  <div class="input-wrapper">
+    <label for="universidad">Universidad</label>
 
-        <div id="logoUniversidad" style="margin-top:10px;">
-            <img id="imgUniversidad" src="" alt="" style="height:50px; display:none;">
+    <!-- Menú personalizado con logos -->
+    <div class="dropdown">
+      <div class="dropdown-selected" id="selectedUni">
+        Selecciona una universidad
+      </div>
+      <div class="dropdown-options" id="uniOptions">
+        <div class="option" data-value="Universidad de Chile">
+          <img src="logos/uchile.png" alt="UCH" class="logo-option"> Universidad de Chile
         </div>
+        <div class="option" data-value="Pontificia Universidad Católica de Chile">
+          <img src="logos/uc.png" alt="PUC" class="logo-option"> Pontificia Universidad Católica de Chile
+        </div>
+        <div class="option" data-value="Universidad Técnica Federico Santa María">
+          <img src="logos/usm.png" alt="USM" class="logo-option"> Universidad Técnica Federico Santa María
+        </div>
+        <div class="option" data-value="Universidad de Santiago de Chile">
+          <img src="logos/usach.png" alt="USACH" class="logo-option"> Universidad de Santiago de Chile
+        </div>
+        <div class="option" data-value="Universidad Adolfo Ibáñez">
+          <img src="logos/uai.png" alt="UAI" class="logo-option"> Universidad Adolfo Ibáñez
+        </div>
+      </div>
     </div>
+  </div>
+
 
     <div class="input-wrapper">
         <label for="carrera">Carrera</label>
@@ -1005,7 +1067,7 @@ function calcular() {
     });
 }
 
-    const uni = document.getElementById("universidad").value;
+    const uni = selectedUniValue;
     const carrera = document.getElementById("carrera").value;
     const nem = parseFloat(document.getElementById("nem").value) || 0;
     const ranking = parseFloat(document.getElementById("ranking").value) || 0;
@@ -1046,12 +1108,7 @@ function calcular() {
     } else {
         estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
     }
-
-    const logoHTML = logos[uni]
-    ? `<img src="${logos[uni]}" alt="${uni}" 
-       style="height:40px; vertical-align:middle; margin-left:10px; border-radius:6px; background:white; padding:3px; box-shadow:0 1px 4px rgba(0,0,0,0.2);">`
-    : "";
-    
+ 
     // Mostrar resultados
     document.getElementById("resultado").innerHTML = `
         <b>Universidad:</b> ${uni}<br>
@@ -1102,31 +1159,26 @@ function invertirColores() {
 </script>
 
 <script>
-// === Mostrar logo según universidad seleccionada ===
-document.getElementById("universidad").addEventListener("change", function() {
-    const universidad = this.value;
-    const img = document.getElementById("imgUniversidad");
+const dropdown = document.querySelector('.dropdown');
+const selected = document.getElementById('selectedUni');
+const options = document.querySelector('.dropdown-options');
+let selectedUniValue = ""; // guardará la universidad seleccionada
 
-    const logos = {
-        "Universidad de Chile": "logos/uchile.png",
-        "Pontificia Universidad Católica de Chile": "logos/uc.png",
-        "Universidad Técnica Federico Santa María": "logos/usm.png",
-        "Universidad de Santiago de Chile": "logos/usach.png",
-        "Universidad Adolfo Ibáñez": "logos/uai.png"
-};
+dropdown.addEventListener('click', () => {
+  options.style.display = options.style.display === 'block' ? 'none' : 'block';
+});
 
-
-    if (logos[universidad]) {
-        img.src = logos[universidad];
-        img.style.display = "block";
-    } else {
-        img.src = "";
-        img.style.display = "none";
-    }
+document.querySelectorAll('.option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    selected.innerHTML = `<img src="${opt.querySelector('img').src}" class="logo-option"> ${opt.textContent}`;
+    selectedUniValue = opt.dataset.value;
+    options.style.display = 'none';
+  });
 });
 </script>
 </body>
 </html>
+
 
 
 
