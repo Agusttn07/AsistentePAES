@@ -932,7 +932,6 @@ const ponderaciones = {
 
       
 };
-
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
     const carrera = this.value;
@@ -1152,6 +1151,48 @@ function invertirColores() {
     });
 }
 
+<script>
+// --- Manejo del menú desplegable con logos ---
+const dropdown = document.querySelector(".dropdown");
+const selected = document.getElementById("selectedUni");
+const optionsContainer = document.getElementById("uniOptions");
+const carreraSelect = document.getElementById("carrera");
+
+dropdown.addEventListener("click", () => {
+  optionsContainer.style.display = 
+    optionsContainer.style.display === "block" ? "none" : "block";
+});
+
+document.querySelectorAll("#uniOptions .option").forEach(option => {
+  option.addEventListener("click", () => {
+    const universidad = option.dataset.value;
+    selected.textContent = universidad;   // mostrar selección
+    optionsContainer.style.display = "none";
+
+    // --- Limpiar carreras previas ---
+    carreraSelect.innerHTML = '<option value="">Selecciona...</option>';
+
+    // --- Llenar carreras dinámicamente desde ponderaciones ---
+    if (ponderaciones[universidad]) {
+      Object.keys(ponderaciones[universidad]).forEach(carrera => {
+        const opt = document.createElement("option");
+        opt.value = carrera;
+        opt.textContent = carrera;
+        carreraSelect.appendChild(opt);
+      });
+    }
+  });
+});
+
+// Cerrar menú si se hace click fuera
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) {
+    optionsContainer.style.display = "none";
+  }
+});
+</script>
+
+
 </script>
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
@@ -1186,6 +1227,7 @@ document.addEventListener('click', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
