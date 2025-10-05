@@ -439,23 +439,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-    <div class="input-wrapper">
-        <label for="universidad">Universidad</label>
-        <select id="universidad">
-            <option value="">Selecciona...</option>
-            <option value="Universidad de Chile">Universidad de Chile</option>
-            <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
-            <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
-            <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
-            <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
-        </select>
-
-        <div id="logoUniversidad" style="margin-top:10px;">
-            <img id="imgUniversidad" src="" alt="" style="height:50px; display:none;">
+        <div class="input-wrapper">
+            <label for="universidad">Universidad</label>
+            <select id="universidad">
+                <option value="">Selecciona...</option>
+                <option value="Universidad de Chile">Universidad de Chile</option>
+                <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
+                <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
+                <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
+                <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
+            </select>
         </div>
-    </div>
-</div>
-
         <div class="input-wrapper">
             <label for="carrera">Carrera</label>
             <select id="carrera">
@@ -1095,33 +1089,7 @@ function invertirColores() {
 </script>
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-
-
-<script>
-const logos = {
-  "Universidad de Chile": "logos/uchile.png",
-  "Pontificia Universidad Católica de Chile": "logos/uc.png",
-  "Universidad Técnica Federico Santa María": "logos/usm.png",
-  "Universidad de Santiago de Chile": "logos/usach.png",
-  "Universidad Adolfo Ibáñez": "logos/uai.png"
-};
-
-document.getElementById("universidad").addEventListener("change", function() {
-  const seleccion = this.value;
-  const logo = logos[seleccion];
-  const img = document.getElementById("imgUniversidad");
-  
-  if (logo) {
-    img.src = logo;
-    img.style.display = "inline";
-    img.alt = seleccion;
-  } else {
-    img.style.display = "none";
-  }
-});
 </script>
 </body>
 </html>
-
-
 
