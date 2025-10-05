@@ -141,6 +141,55 @@ body.dark .header-description {
     color: #ddd; 
 }
 
+.dropdown {
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+}
+
+.dropdown-selected {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.option {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #f0f0f0;
+}
+
+.logo-option {
+  height: 25px;
+  width: auto;
+}
+
+
 
 /* ===== Main ===== */
 main { 
@@ -378,56 +427,6 @@ body.dark footer {
 }
 
 }
-
-.dropdown {
-  position: relative;
-  width: 100%;
-  font-size: 14px;
-}
-
-.dropdown-selected {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdown-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-}
-
-.option {
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.option:hover {
-  background: #f0f0f0;
-}
-
-.logo-option {
-  height: 25px;
-  width: auto;
-}
-
-
 
 </style>
 </head>
@@ -1162,12 +1161,14 @@ function invertirColores() {
 const dropdown = document.querySelector('.dropdown');
 const selected = document.getElementById('selectedUni');
 const options = document.querySelector('.dropdown-options');
-let selectedUniValue = ""; // guardará la universidad seleccionada
+let selectedUniValue = ""; // Guardará la universidad seleccionada
 
+// Mostrar / ocultar menú
 dropdown.addEventListener('click', () => {
   options.style.display = options.style.display === 'block' ? 'none' : 'block';
 });
 
+// Cuando el usuario selecciona una universidad
 document.querySelectorAll('.option').forEach(opt => {
   opt.addEventListener('click', () => {
     selected.innerHTML = `<img src="${opt.querySelector('img').src}" class="logo-option"> ${opt.textContent}`;
@@ -1175,9 +1176,18 @@ document.querySelectorAll('.option').forEach(opt => {
     options.style.display = 'none';
   });
 });
+
+// Cerrar menú al hacer clic fuera
+document.addEventListener('click', (e) => {
+  if (!dropdown.contains(e.target)) {
+    options.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
+
+
 
 
 
