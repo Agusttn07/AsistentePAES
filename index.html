@@ -6,24 +6,24 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5MGTJJS9');</script>
-<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Título Google -->
+    <!-- Título que aparecerá en Google -->
     <title>Asistente PAES - Simulador</title>
 
-    <!-- Descripción Google -->
+    <!-- Descripción que Google mostrará en los resultados -->
     <meta name="description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
 
-    <!-- Palabras clave -->
+    <!-- Palabras clave (menos relevante hoy, pero ayuda un poco) -->
     <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes,">
 
     <!-- Ícono del sitio -->
     <link rel="icon" type="image/png" href="logo.png">
 
-    <!-- RRSS -->
+    <!-- Open Graph: para cuando compartan tu sitio en redes -->
     <meta property="og:title" content="Simulador de Puntajes PAES">
     <meta property="og:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
     <meta property="og:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
@@ -140,55 +140,6 @@ body.dark .dark-logo { display: block; }
 body.dark .header-description { 
     color: #ddd; 
 }
-
-.dropdown {
-  position: relative;
-  width: 100%;
-  font-size: 14px;
-}
-
-.dropdown-selected {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdown-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-}
-
-.option {
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.option:hover {
-  background: #f0f0f0;
-}
-
-.logo-option {
-  height: 25px;
-  width: auto;
-}
-
 
 
 /* ===== Main ===== */
@@ -428,6 +379,7 @@ body.dark footer {
 
 }
 
+
 </style>
 </head>
 <body>
@@ -487,43 +439,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-  <div class="input-wrapper">
-    <label for="universidad">Universidad</label>
-
-    <!-- Menú personalizado con logos -->
-    <div class="dropdown">
-      <div class="dropdown-selected" id="selectedUni">
-        Selecciona una universidad
-      </div>
-      <div class="dropdown-options" id="uniOptions">
-        <div class="option" data-value="Universidad de Chile">
-          <img src="logos/uchile.png" alt="UCH" class="logo-option"> Universidad de Chile
+        <div class="input-wrapper">
+            <label for="universidad">Universidad</label>
+            <select id="universidad">
+                <option value="">Selecciona...</option>
+                <option value="Universidad de Chile">Universidad de Chile</option>
+                <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
+                <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
+                <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
+                <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
+            </select>
         </div>
-        <div class="option" data-value="Pontificia Universidad Católica de Chile">
-          <img src="logos/uc.png" alt="PUC" class="logo-option"> Pontificia Universidad Católica de Chile
+        <div class="input-wrapper">
+            <label for="carrera">Carrera</label>
+            <select id="carrera">
+                <option value="">Selecciona...</option>
+                <!-- Se llenará dinámicamente según universidad -->
+            </select>
         </div>
-        <div class="option" data-value="Universidad Técnica Federico Santa María">
-          <img src="logos/usm.png" alt="USM" class="logo-option"> Universidad Técnica Federico Santa María
-        </div>
-        <div class="option" data-value="Universidad de Santiago de Chile">
-          <img src="logos/usach.png" alt="USACH" class="logo-option"> Universidad de Santiago de Chile
-        </div>
-        <div class="option" data-value="Universidad Adolfo Ibáñez">
-          <img src="logos/uai.png" alt="UAI" class="logo-option"> Universidad Adolfo Ibáñez
-        </div>
-      </div>
     </div>
-  </div>
-
-
-    <div class="input-wrapper">
-        <label for="carrera">Carrera</label>
-        <select id="carrera">
-            <option value="">Selecciona...</option>
-            <!-- Se llenará dinámicamente según universidad -->
-        </select>
-    </div>
-</div>
 
     <div class="input-row">
         <div class="input-wrapper">
@@ -932,9 +866,10 @@ const ponderaciones = {
 
       
 };
+
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
-    const carreraSelect = document.getElementById("carrera")
+    const carrera = this.value;
 
     if (universidad && carrera && ponderaciones[universidad] && ponderaciones[universidad][carrera]) {
         const pond = ponderaciones[universidad][carrera];
@@ -1065,8 +1000,8 @@ function calcular() {
     });
 }
 
-    const uni = selectedUniValue;
-    const carreraSelect = document.getElementById("carrera").value;
+    const uni = document.getElementById("universidad").value;
+    const carrera = document.getElementById("carrera").value;
     const nem = parseFloat(document.getElementById("nem").value) || 0;
     const ranking = parseFloat(document.getElementById("ranking").value) || 0;
     const lectura = parseFloat(document.getElementById("lectura").value) || 0;
@@ -1077,7 +1012,7 @@ function calcular() {
 
     if (!uni || !carrera || lectura === 0 || mate1 === 0 || valorExtra === 0) {
         document.getElementById("resultado").innerHTML = 
-            '<span style="color:#c0392b; font-weight:600;">Debes rellenar todos los campos correspondientes</span>';
+            '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
         return;
     }
 
@@ -1106,7 +1041,7 @@ function calcular() {
     } else {
         estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
     }
- 
+
     // Mostrar resultados
     document.getElementById("resultado").innerHTML = `
         <b>Universidad:</b> ${uni}<br>
@@ -1151,111 +1086,9 @@ function invertirColores() {
     });
 }
 
-<script>
-// --- Manejo del menú desplegable con logos ---
-const dropdown = document.querySelector(".dropdown");
-const selected = document.getElementById("selectedUni");
-const optionsContainer = document.getElementById("uniOptions");
-const carreraSelect = document.getElementById("carrera");
-
-dropdown.addEventListener("click", () => {
-  optionsContainer.style.display = 
-    optionsContainer.style.display === "block" ? "none" : "block";
-});
-
-document.querySelectorAll("#uniOptions .option").forEach(option => {
-  option.addEventListener("click", () => {
-    const universidad = option.dataset.value;
-    selected.textContent = universidad;   // mostrar selección
-    optionsContainer.style.display = "none";
-
-    // --- Limpiar carreras previas ---
-    carreraSelect.innerHTML = '<option value="">Selecciona...</option>';
-
-    // --- Llenar carreras dinámicamente desde ponderaciones ---
-    if (ponderaciones[universidad]) {
-      Object.keys(ponderaciones[universidad]).forEach(carrera => {
-        const opt = document.createElement("option");
-        opt.value = carrera;
-        opt.textContent = carrera;
-        carreraSelect.appendChild(opt);
-      });
-    }
-  });
-});
-
-// Cerrar menú si se hace click fuera
-document.addEventListener("click", (e) => {
-  if (!dropdown.contains(e.target)) {
-    optionsContainer.style.display = "none";
-  }
-});
 </script>
-
-<script>
-(function(){
-   if(!window.chatbase||window.chatbase("getState")!=="initialized"){
-      window.chatbase=(...arguments)=>{
-         if(!window.chatbase.q){window.chatbase.q=[]}
-         window.chatbase.q.push(arguments)
-      };
-      window.chatbase=new Proxy(window.chatbase,{
-         get(target,prop){
-            if(prop==="q"){return target.q}
-            return(...args)=>target(prop,...args)
-         }
-      })
-   }
-   const onLoad=function(){
-      const script=document.createElement("script");
-      script.src="https://www.chatbase.co/embed.min.js";
-      script.id="xpAdjyorppIPJ_A763pYA";
-      script.domain="www.chatbase.co";
-      document.body.appendChild(script)
-   };
-   if(document.readyState==="complete"){onLoad()}
-   else{window.addEventListener("load",onLoad)}
-})();
-</script>
-
-<script>
-const dropdown = document.querySelector('.dropdown');
-const selected = document.getElementById('selectedUni');
-const options = document.querySelector('.dropdown-options');
-let selectedUniValue = ""; // Guardará la universidad seleccionada
-
-// Mostrar / ocultar menú
-dropdown.addEventListener('click', () => {
-  options.style.display = options.style.display === 'block' ? 'none' : 'block';
-});
-
-// Cuando el usuario selecciona una universidad
-document.querySelectorAll('.option').forEach(opt => {
-  opt.addEventListener('click', () => {
-    selected.innerHTML = `<img src="${opt.querySelector('img').src}" class="logo-option"> ${opt.textContent}`;
-    selectedUniValue = opt.dataset.value;
-    options.style.display = 'none';
-  });
-});
-
-// Cerrar menú al hacer clic fuera
-document.addEventListener('click', (e) => {
-  if (!dropdown.contains(e.target)) {
-    options.style.display = 'none';
-  }
-});
+    <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
