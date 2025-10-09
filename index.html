@@ -90,19 +90,6 @@ body.dark .fechas-recuadro {
     color: #f5f5f5;
 }
 
-.configuracion-recuadro {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    transition: background 0.3s, color 0.3s;
-}
-body.dark .configuracion-recuadro {
-    background: #444;
-    color: #f5f5f5;
-}
-
 
 /* HEADER */
 header {
@@ -435,25 +422,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
 </div>
   
-<div id="configuracion" class="configuracion-recuadro">
-    <h2 style="text-align:center; color:#0e3448;">Configuración personalizada</h2>
-
+<main id="main">
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre">
         </div>
         <div class="input-wrapper">
-            <label for="curso">Curso</label>
-            <select id="curso">
-                <option value="">Selecciona...</option>
-                <option value="1ro Medio">1ro Medio</option>
-                <option value="2do Medio">2do Medio</option>
-                <option value="3ro Medio">3ro Medio</option>
-                <option value="4to Medio">4to Medio</option>
-                <option value="Egresado/a">Egresado/a</option>
-            </select>
-        </div>
+    <label for="curso">Curso</label>
+    <select id="curso">
+        <option value="">Selecciona...</option>
+        <option value="1ro Medio">1ro Medio</option>
+        <option value="2do Medio">2do Medio</option>
+        <option value="4to Medio">3ro Medio</option>
+        <option value="4to Medio">4to Medio</option>
+        <option value="Egresado/a">Egresado/a</option>
+    </select>
+</div>
+
     </div>
 
     <div class="input-row">
@@ -466,7 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
                 <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
                 <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
-                <option value="Otra Universidad">Otra Universidad</option>
+                <option value="otra">Otra Universidad</option>
             </select>
         </div>
         <div class="input-wrapper">
@@ -474,10 +460,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <select id="carrera">
                 <option value="">Selecciona...</option>
             </select>
+            <!-- Campos personalizados para otra universidad -->
+<div id="opcionOtraUniversidad" style="display:none; margin-top: 20px;">
+  <h3>Datos Personalizados</h3>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="uniPersonalizada">Nombre de la Universidad</label>
+      <input type="text" id="uniPersonalizada" placeholder="Ej: Universidad del Futuro">
+    </div>
+    <div class="input-wrapper">
+      <label for="carreraPersonalizada">Nombre de la Carrera</label>
+      <input type="text" id="carreraPersonalizada" placeholder="Ej: Ingeniería en Robótica">
+    </div>
+  </div>
+
+  <h4 style="margin-top:15px;">Ponderaciones Personalizadas (%)</h4>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondNem">NEM</label>
+      <input type="number" id="pondNem" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondRanking">Ranking</label>
+      <input type="number" id="pondRanking" min="0" max="100">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondLenguaje">Lenguaje</label>
+      <input type="number" id="pondLenguaje" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondM1">Matemática 1 (M1)</label>
+      <input type="number" id="pondM1" min="0" max="100">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondM2">Matemática 2 (M2)</label>
+      <input type="number" id="pondM2" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondElectivo">Historia o Ciencias</label>
+      <input type="number" id="pondElectivo" min="0" max="100">
+    </div>
+  </div>
+</div>
+
         </div>
     </div>
 
-    <!-- AÑADIDO: fila NEM + Ranking (tal como pediste) -->
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nem">Notas de Enseñanza Media (NEM) <a href="https://demre.cl/paes/factores-seleccion/notas-ensenanza-media" target="_blank">*</a></label>
@@ -501,53 +537,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-        <div class="input-wrapper">
-            <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
-            <select id="historia_ciencias" onchange="mostrarCampo()">
-                <option value="">Selecciona...</option>
-                <option value="historia">Historia y Ciencias Sociales</option>
-                <option value="ciencias">Ciencias</option>
-            </select>
-        </div>
+    <div class="input-wrapper">
+        <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
+        <select id="historia_ciencias" onchange="mostrarCampo()">
+            <option value="">Selecciona...</option>
+            <option value="historia">Historia y Ciencias Sociales</option>
+            <option value="ciencias">Ciencias</option>
+        </select>
     </div>
+</div>
 
-    <div class="input-row" id="campoExtra" style="display:none;">
-        <div class="input-wrapper">
-            <label id="labelExtra" for="valorExtra"></label>
-            <input type="number" id="valorExtra" min="0" max="1000">
-        </div>
+<div class="input-row" id="campoExtra" style="display:none;">
+    <div class="input-wrapper">
+        <label id="labelExtra" for="valorExtra"></label>
+        <input type="number" id="valorExtra" min="0" max="1000">
     </div>
+</div>
 
     <div class="input-wrapper">
         <label for="mate2">Competencia Matemática 2 (M2)</label>
         <input type="number" id="mate2" min="0" max="1000">
     </div>
 
-    <!-- AÑADIDO: párrafo informativo (tal como pediste) -->
     <p class="info">
         Escala desde el 100 al 1.000<br>
         En caso de no rendir una prueba, ingresa 0 respectivamente.<br>
         📌 ¿No conoces las ponderaciones de alguna universidad? 👉 <a href="https://demre.cl" target="_blank">Haz clic aquí para ver la oferta oficial en el DEMRE</a>
     </p>
 
-    <!-- Botones debajo -->
-    <div class="buttons" style="justify-content:center;">
+    <div class="buttons">
         <button class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
         <button class="calc-btn" onclick="calcular()">Hacer simulación</button>
         <button class="calc-btn" onclick="invertirColores()">Invertir colores</button>
     </div>
-</div>
 
-<!-- Resultado -->
-<div id="resultado" aria-live="polite"></div>
-
-<!-- ====== FUNCIÓN PARA INVERTIR COLORES (REEMPLAZA O AGREGA EN TU <script>) ====== -->
-<script>
-function invertirColores() {
-    // Alterna el modo oscuro global (y por CSS body.dark afectará .configuracion-recuadro)
-    document.body.classList.toggle('dark');
-}
-</script>
+    <div id="resultado" aria-live="polite"></div>
 
 <div class="header-buttons">
   <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
@@ -557,7 +581,6 @@ function invertirColores() {
     Fechas
   </button>
 </div>
-
 
 </main>
 
@@ -897,184 +920,7 @@ const ponderaciones = {
 
       
 };
-/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (usa los botones y texto originales) --- */
 
-// Obtener referencias a elementos que ya existen
-const universidadSelect = document.getElementById("universidad");
-const carreraSelect = document.getElementById("carrera");
-const resultadoDiv = document.getElementById("resultado");
-
-// Botones y texto ya existentes en tu HTML
-const textoEscala = document.getElementById("textoEscala"); // contenedor de "Escala desde el 100 al 1.000..."
-const btnLimpiar = document.getElementById("btnLimpiar");
-const btnSimular = document.getElementById("btnSimular");
-const btnInvertir = document.getElementById("btnInvertir");
-
-// Agregar "Otra Universidad" si no existe aún
-if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
-  const opt = document.createElement("option");
-  opt.value = "Otra Universidad";
-  opt.textContent = "Otra Universidad";
-  universidadSelect.appendChild(opt);
-}
-
-// Escuchar cambios de universidad
-universidadSelect.addEventListener("change", function () {
-  const uni = this.value;
-
-  if (uni === "Otra Universidad") {
-    carreraSelect.innerHTML = `<option value="Otra carrera" selected>Otra carrera</option>`;
-    mostrarFormularioPersonalizado();
-
-    // Ocultar botón "Hacer Simulación"
-    if (btnSimular) btnSimular.style.display = "none";
-
-    // Mover texto y botones debajo de la Configuración Personalizada
-    const form = document.getElementById("customForm");
-    if (form) {
-      form.parentNode.insertBefore(textoEscala, form.nextSibling);
-      form.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
-      form.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
-      form.parentNode.insertBefore(btnInvertir, btnSimular.nextSibling);
-    }
-
-  } else {
-    // Volver a mostrar "Hacer Simulación"
-    if (btnSimular) btnSimular.style.display = "inline-block";
-
-    ocultarFormularioPersonalizado();
-
-    // Restaurar carreras normales
-    if (ponderaciones[uni]) {
-      carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
-      for (const carrera in ponderaciones[uni]) {
-        const opt = document.createElement("option");
-        opt.value = carrera;
-        opt.textContent = carrera;
-        carreraSelect.appendChild(opt);
-      }
-    }
-
-    // Devolver los elementos a su posición original (debajo de los resultados)
-    resultadoDiv.parentNode.insertBefore(textoEscala, resultadoDiv.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnInvertir, btnSimular.nextSibling);
-  }
-});
-
-// Crear bloque de Configuración Personalizada
-function mostrarFormularioPersonalizado() {
-  if (document.getElementById("customForm")) return; // Evita duplicados
-
-  const div = document.createElement("div");
-  div.id = "customForm";
-  div.style.marginTop = "25px";
-  div.style.padding = "20px";
-  div.style.background = "#ffffff";
-  div.style.border = "1px solid #ccc";
-  div.style.borderRadius = "8px";
-
-  div.innerHTML = `
-    <h3>Configuración personalizada</h3>
-    <div class="input-row">
-      <div class="input-wrapper">
-        <label>Universidad</label>
-        <input type="text" id="otraUniNombre" placeholder="Ej: Universidad Ejemplo">
-      </div>
-      <div class="input-wrapper">
-        <label>Carrera</label>
-        <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería en Software">
-      </div>
-      <div class="input-wrapper">
-        <label>Puntaje de Corte (opcional)</label>
-        <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 720">
-      </div>
-    </div>
-
-    <div class="input-row">
-      <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Ranking</label><input type="number" id="pRanking" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Lenguaje</label><input type="number" id="pLenguaje" min="0" max="100"></div>
-    </div>
-
-    <div class="input-row">
-      <div class="input-wrapper"><label>% M1</label><input type="number" id="pM1" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% M2</label><input type="number" id="pM2" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
-    </div>
-
-    <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
-  `;
-
-  // Insertar el bloque justo antes del resultado
-  resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
-}
-
-function ocultarFormularioPersonalizado() {
-  const form = document.getElementById("customForm");
-  if (form) form.remove();
-}
-
-// Cálculo del puntaje personalizado
-function calcularPersonalizado() {
-  const sum = [
-    +document.getElementById("pNEM").value || 0,
-    +document.getElementById("pRanking").value || 0,
-    +document.getElementById("pLenguaje").value || 0,
-    +document.getElementById("pM1").value || 0,
-    +document.getElementById("pM2").value || 0,
-    +document.getElementById("pExtra").value || 0
-  ].reduce((a, b) => a + b, 0);
-
-  if (sum !== 100) {
-    alert("❌ La suma de los porcentajes debe ser exactamente 100%.");
-    return;
-  }
-
-  const nem = +document.getElementById("nem").value || 0;
-  const ranking = +document.getElementById("ranking").value || 0;
-  const lenguaje = +document.getElementById("lectura").value || 0;
-  const m1 = +document.getElementById("mate1").value || 0;
-  const m2 = +document.getElementById("mate2").value || 0;
-  const extra = +document.getElementById("valorExtra").value || 0;
-
-  if (lenguaje === 0 || m1 === 0 || extra === 0) {
-    alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
-    return;
-  }
-
-  const ponderado =
-    nem * (+document.getElementById("pNEM").value / 100) +
-    ranking * (+document.getElementById("pRanking").value / 100) +
-    lenguaje * (+document.getElementById("pLenguaje").value / 100) +
-    m1 * (+document.getElementById("pM1").value / 100) +
-    m2 * (+document.getElementById("pM2").value / 100) +
-    extra * (+document.getElementById("pExtra").value / 100);
-
-  const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
-  const carrera = document.getElementById("otraCarrera").value || "Otra carrera";
-  const corte = +document.getElementById("pCorte").value || null;
-
-  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
-  if (corte) {
-    if (ponderado >= corte) {
-      mensaje += `<br>🎉 Tu puntaje supera el corte (${corte}). ¡Felicitaciones!`;
-    } else {
-      mensaje += `<br>⚠️ Tu puntaje está por debajo del corte (${corte}).`;
-    }
-  }
-
-  resultadoDiv.innerHTML = mensaje;
-}
-
-// Ampliar botón "Limpiar Campos" para incluir Configuración Personalizada
-const originalLimpiarCampos = window.limpiarCampos;
-window.limpiarCampos = function () {
-  if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
-  const custom = document.getElementById("customForm");
-  if (custom) custom.querySelectorAll("input").forEach(input => (input.value = ""));
-};
 
 
 document.getElementById("carrera").addEventListener("change", function () {
@@ -1097,6 +943,7 @@ document.getElementById("carrera").addEventListener("change", function () {
             document.getElementById("campoExtra").style.display = "none";
         }
     }
+
 });
 
 // FUNCIONES AUXILIARES
@@ -1204,6 +1051,37 @@ function calcular() {
 
     const uni = document.getElementById("universidad").value;
     const carrera = document.getElementById("carrera").value;
+    // --- Si el usuario selecciona "Otra Universidad" ---
+let pond;
+
+if (uni === "otra") {
+    const nombreUni = document.getElementById("uniPersonalizada").value.trim() || "Universidad Personalizada";
+    const nombreCarrera = document.getElementById("carreraPersonalizada").value.trim() || "Carrera Personalizada";
+
+    pond = {
+        nem: Number(document.getElementById("pondNem").value) || 0,
+        ranking: Number(document.getElementById("pondRanking").value) || 0,
+        cl: Number(document.getElementById("pondLenguaje").value) || 0,
+        m1: Number(document.getElementById("pondM1").value) || 0,
+        m2: Number(document.getElementById("pondM2").value) || 0,
+        historia: Number(document.getElementById("pondElectivo").value) || 0,
+        ciencias: Number(document.getElementById("pondElectivo").value) || 0,
+        corte: 0
+    };
+
+    // Verificar que las ponderaciones sumen 100
+    const totalPond = pond.nem + pond.ranking + pond.cl + pond.m1 + pond.m2 + pond.historia;
+    if (totalPond !== 100) {
+        document.getElementById("resultado").innerHTML = 
+            `<span style="color:#c0392b;">⚠️ Las ponderaciones deben sumar 100%. Actualmente suman ${totalPond}%.</span>`;
+        return;
+    }
+
+    // Sobrescribir variables con los nombres personalizados
+    document.getElementById("resultado").dataset.uniPersonalizada = nombreUni;
+    document.getElementById("resultado").dataset.carreraPersonalizada = nombreCarrera;
+}
+
     const nem = parseFloat(document.getElementById("nem").value) || 0;
     const ranking = parseFloat(document.getElementById("ranking").value) || 0;
     const lectura = parseFloat(document.getElementById("lectura").value) || 0;
@@ -1290,12 +1168,38 @@ function invertirColores() {
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+    
+<script>
+document.getElementById("universidad").addEventListener("change", function() {
+  const seleccion = this.value;
+  const otraUni = document.getElementById("opcionOtraUniversidad");
+  const carreraSelect = document.getElementById("carrera");
+
+  // Si el usuario elige "Otra Universidad"
+  if (seleccion === "otra") {
+    otraUni.style.display = "block";
+    carreraSelect.innerHTML = '<option value="">No aplica</option>';
+    return; // detenemos aquí para no cargar carreras del objeto ponderaciones
+  }
+
+  // Si elige una universidad normal
+  otraUni.style.display = "none";
+
+  // Limpiar carreras anteriores
+  carreraSelect.innerHTML = '<option value="">Selecciona...</option>';
+
+  // Cargar las carreras que existen para esa universidad desde "ponderaciones"
+  if (ponderaciones[seleccion]) {
+    const carreras = Object.keys(ponderaciones[seleccion]);
+    carreras.forEach(carrera => {
+      const option = document.createElement("option");
+      option.value = carrera;
+      option.textContent = carrera;
+      carreraSelect.appendChild(option);
+    });
+  }
+});
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
