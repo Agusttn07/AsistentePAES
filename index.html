@@ -1168,23 +1168,42 @@ function invertirColores() {
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+    
 <script>
 document.getElementById("universidad").addEventListener("change", function() {
   const seleccion = this.value;
   const otraUni = document.getElementById("opcionOtraUniversidad");
   const carreraSelect = document.getElementById("carrera");
 
+  // Si el usuario elige "Otra Universidad"
   if (seleccion === "otra") {
     otraUni.style.display = "block";
-    carreraSelect.disabled = true; // Desactivar lista de carreras predefinidas
-  } else {
-    otraUni.style.display = "none";
-    carreraSelect.disabled = false;
+    carreraSelect.innerHTML = '<option value="">No aplica</option>';
+    return; // detenemos aquí para no cargar carreras del objeto ponderaciones
+  }
+
+  // Si elige una universidad normal
+  otraUni.style.display = "none";
+
+  // Limpiar carreras anteriores
+  carreraSelect.innerHTML = '<option value="">Selecciona...</option>';
+
+  // Cargar las carreras que existen para esa universidad desde "ponderaciones"
+  if (ponderaciones[seleccion]) {
+    const carreras = Object.keys(ponderaciones[seleccion]);
+    carreras.forEach(carrera => {
+      const option = document.createElement("option");
+      option.value = carrera;
+      option.textContent = carrera;
+      carreraSelect.appendChild(option);
+    });
   }
 });
 </script>
+
 </body>
 </html>
+
 
 
 
