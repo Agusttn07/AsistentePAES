@@ -869,7 +869,7 @@ const ponderaciones = {
 
       
 };
-/* --- NUEVA LÓGICA UNIVERSIDAD PERSONALIZADA (mejorada) --- */
+/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (versión final integrada) --- */
 
 // Agregar opción "Otra Universidad" al select de universidades (solo una vez)
 const universidadSelect = document.getElementById("universidad");
@@ -880,8 +880,8 @@ if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
   universidadSelect.appendChild(opt);
 }
 
-// Listener principal de universidad
-universidadSelect.addEventListener("change", function() {
+// Escucha cambios en universidad
+universidadSelect.addEventListener("change", function () {
   const uni = this.value;
   const carreraSelect = document.getElementById("carrera");
 
@@ -891,7 +891,6 @@ universidadSelect.addEventListener("change", function() {
     mostrarFormularioPersonalizado();
   } else {
     ocultarFormularioPersonalizado();
-    // Cargar carreras normales
     if (ponderaciones[uni]) {
       carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
       for (const carrera in ponderaciones[uni]) {
@@ -904,10 +903,10 @@ universidadSelect.addEventListener("change", function() {
   }
 });
 
-// Crear formulario personalizado dinámico
+// Crear formulario dinámico arriba del bloque de resultados
 function mostrarFormularioPersonalizado() {
-  const main = document.getElementById("main");
-  if (document.getElementById("customForm")) return;
+  const resultadoDiv = document.getElementById("resultado");
+  if (document.getElementById("customForm")) return; // Evita duplicados
 
   const div = document.createElement("div");
   div.id = "customForm";
@@ -945,7 +944,9 @@ function mostrarFormularioPersonalizado() {
     </div>
     <button class="calc-btn" type="button" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
   `;
-  main.appendChild(div);
+
+  // Insertar antes del resultado
+  resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
 }
 
 function ocultarFormularioPersonalizado() {
@@ -953,7 +954,7 @@ function ocultarFormularioPersonalizado() {
   if (form) form.remove();
 }
 
-// Calcular ponderación personalizada
+// Cálculo de la configuración personalizada
 function calcularPersonalizado() {
   const sum = [
     +document.getElementById("pNEM").value || 0,
@@ -969,7 +970,6 @@ function calcularPersonalizado() {
     return;
   }
 
-  // Puntajes del usuario
   const nem = +document.getElementById("nem").value || 0;
   const ranking = +document.getElementById("ranking").value || 0;
   const lenguaje = +document.getElementById("lectura").value || 0;
@@ -977,13 +977,12 @@ function calcularPersonalizado() {
   const m2 = +document.getElementById("mate2").value || 0;
   const extra = +document.getElementById("valorExtra").value || 0;
 
-  // ✅ Validación obligatoria: Lenguaje, M1 y Extra (Ciencias o Historia)
+  // Validar que tenga Lenguaje, M1 y Extra (Ciencias o Historia)
   if (lenguaje === 0 || m1 === 0 || extra === 0) {
     alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
     return;
   }
 
-  // Cálculo ponderado
   const ponderado =
     nem * (+document.getElementById("pNEM").value / 100) +
     ranking * (+document.getElementById("pRanking").value / 100) +
@@ -996,7 +995,6 @@ function calcularPersonalizado() {
   const carrera = document.getElementById("otraCarrera").value || "Carrera Personalizada";
   const corte = +document.getElementById("pCorte").value || null;
 
-  // Mostrar resultado
   let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
   if (corte) {
     if (ponderado >= corte) {
@@ -1008,6 +1006,16 @@ function calcularPersonalizado() {
 
   document.getElementById("resultado").innerHTML = mensaje;
 }
+
+// Extender el botón "Limpiar campos" para también borrar el formulario personalizado
+const originalLimpiarCampos = window.limpiarCampos;
+window.limpiarCampos = function() {
+  if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
+  const custom = document.getElementById("customForm");
+  if (custom) {
+    custom.querySelectorAll("input").forEach(input => input.value = "");
+  }
+};
 
 
 document.getElementById("carrera").addEventListener("change", function () {
@@ -1225,6 +1233,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
