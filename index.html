@@ -921,6 +921,153 @@ const ponderaciones = {
       
 };
 
+/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (versión final mejorada) --- */
+
+// Agregar opción "Otra Universidad" al select de universidades (solo una vez)
+const universidadSelect = document.getElementById("universidad");
+if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
+  const opt = document.createElement("option");
+  opt.value = "Otra Universidad";
+  opt.textContent = "Otra Universidad";
+  universidadSelect.appendChild(opt);
+}
+
+// Escucha cambios en universidad
+universidadSelect.addEventListener("change", function () {
+  const uni = this.value;
+  const carreraSelect = document.getElementById("carrera");
+
+  // Si selecciona "Otra Universidad"
+  if (uni === "Otra Universidad") {
+    // Mostrar solo "Otra carrera"
+    carreraSelect.innerHTML = `<option value="Otra carrera" selected>Otra carrera</option>`;
+    mostrarFormularioPersonalizado();
+  } else {
+    ocultarFormularioPersonalizado();
+
+    // Cargar carreras normales según ponderaciones
+    if (ponderaciones[uni]) {
+      carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
+      for (const carrera in ponderaciones[uni]) {
+        const opt = document.createElement("option");
+        opt.value = carrera;
+        opt.textContent = carrera;
+        carreraSelect.appendChild(opt);
+      }
+    }
+  }
+});
+
+// Crear formulario dinámico arriba del bloque de resultados
+function mostrarFormularioPersonalizado() {
+  const resultadoDiv = document.getElementById("resultado");
+  if (document.getElementById("customForm")) return; // Evita duplicados
+
+  const div = document.createElement("div");
+  div.id = "customForm";
+  div.style.marginTop = "25px";
+  div.style.padding = "20px";
+  div.style.background = "#ffffff";
+  div.style.border = "1px solid #ccc";
+  div.style.borderRadius = "8px";
+
+  div.innerHTML = `
+    <h3>Configuración personalizada</h3>
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Universidad</label>
+        <input type="text" id="otraUniNombre" placeholder="Ej: Universidad Ejemplo">
+      </div>
+      <div class="input-wrapper">
+        <label>Carrera</label>
+        <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería en Software">
+      </div>
+      <div class="input-wrapper">
+        <label>Puntaje de Corte (opcional)</label>
+        <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 720">
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Ranking</label><input type="number" id="pRanking" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Lenguaje</label><input type="number" id="pLenguaje" min="0" max="100"></div>
+    </div>
+    <div class="input-row">
+      <div class="input-wrapper"><label>% M1</label><input type="number" id="pM1" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% M2</label><input type="number" id="pM2" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
+    </div>
+    <button class="calc-btn" type="button" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
+  `;
+
+  // Insertar el bloque justo antes del resultado
+  resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
+}
+
+function ocultarFormularioPersonalizado() {
+  const form = document.getElementById("customForm");
+  if (form) form.remove();
+}
+
+// Calcular ponderación personalizada
+function calcularPersonalizado() {
+  const sum = [
+    +document.getElementById("pNEM").value || 0,
+    +document.getElementById("pRanking").value || 0,
+    +document.getElementById("pLenguaje").value || 0,
+    +document.getElementById("pM1").value || 0,
+    +document.getElementById("pM2").value || 0,
+    +document.getElementById("pExtra").value || 0
+  ].reduce((a, b) => a + b, 0);
+
+  if (sum !== 100) {
+    alert("❌ La suma de los porcentajes debe ser exactamente 100%.");
+    return;
+  }
+
+  const nem = +document.getElementById("nem").value || 0;
+  const ranking = +document.getElementById("ranking").value || 0;
+  const lenguaje = +document.getElementById("lectura").value || 0;
+  const m1 = +document.getElementById("mate1").value || 0;
+  const m2 = +document.getElementById("mate2").value || 0;
+  const extra = +document.getElementById("valorExtra").value || 0;
+
+  if (lenguaje === 0 || m1 === 0 || extra === 0) {
+    alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
+    return;
+  }
+
+  const ponderado =
+    nem * (+document.getElementById("pNEM").value / 100) +
+    ranking * (+document.getElementById("pRanking").value / 100) +
+    lenguaje * (+document.getElementById("pLenguaje").value / 100) +
+    m1 * (+document.getElementById("pM1").value / 100) +
+    m2 * (+document.getElementById("pM2").value / 100) +
+    extra * (+document.getElementById("pExtra").value / 100);
+
+  const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
+  const carrera = document.getElementById("otraCarrera").value || "Otra carrera";
+  const corte = +document.getElementById("pCorte").value || null;
+
+  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
+  if (corte) {
+    if (ponderado >= corte) {
+      mensaje += `<br>🎉 Tu puntaje supera el corte (${corte}). ¡Felicitaciones!`;
+    } else {
+      mensaje += `<br>⚠️ Tu puntaje está por debajo del corte (${corte}).`;
+    }
+  }
+
+  document.getElementById("resultado").innerHTML = mensaje;
+}
+
+// Ampliar botón "Limpiar campos" para incluir configuración personalizada
+const originalLimpiarCampos = window.limpiarCampos;
+window.limpiarCampos = function () {
+  if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
+  const custom = document.getElementById("customForm");
+  if (custom) custom.querySelectorAll("input").forEach(input => (input.value = ""));
+};
 
 
 document.getElementById("carrera").addEventListener("change", function () {
@@ -1203,3 +1350,4 @@ document.getElementById("universidad").addEventListener("change", function() {
 
 </body>
 </html>
+
