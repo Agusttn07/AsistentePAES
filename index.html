@@ -869,7 +869,7 @@ const ponderaciones = {
 
       
 };
-/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (versión final integrada) --- */
+/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (con integración de botones y texto) --- */
 
 // Agregar opción "Otra Universidad" al select de universidades (solo una vez)
 const universidadSelect = document.getElementById("universidad");
@@ -880,17 +880,27 @@ if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
   universidadSelect.appendChild(opt);
 }
 
-// Escucha cambios en universidad
+// Detectar cambio en universidad
 universidadSelect.addEventListener("change", function () {
   const uni = this.value;
   const carreraSelect = document.getElementById("carrera");
+  const simularBtn = document.getElementById("btnSimular"); // botón Hacer Simulación
 
-  // Si selecciona "Otra Universidad"
   if (uni === "Otra Universidad") {
-    carreraSelect.innerHTML = `<option value="Personalizada">Personalizada</option>`;
+    // Mostrar bloque personalizado
+    carreraSelect.innerHTML = `<option value="Otra carrera" selected>Otra carrera</option>`;
     mostrarFormularioPersonalizado();
+
+    // Ocultar botón "Hacer Simulación"
+    if (simularBtn) simularBtn.style.display = "none";
   } else {
+    // Mostrar botón nuevamente
+    if (simularBtn) simularBtn.style.display = "inline-block";
+
+    // Ocultar formulario personalizado
     ocultarFormularioPersonalizado();
+
+    // Restaurar carreras normales
     if (ponderaciones[uni]) {
       carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
       for (const carrera in ponderaciones[uni]) {
@@ -932,20 +942,36 @@ function mostrarFormularioPersonalizado() {
         <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 720">
       </div>
     </div>
+
     <div class="input-row">
       <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
       <div class="input-wrapper"><label>% Ranking</label><input type="number" id="pRanking" min="0" max="100"></div>
       <div class="input-wrapper"><label>% Lenguaje</label><input type="number" id="pLenguaje" min="0" max="100"></div>
     </div>
+
     <div class="input-row">
       <div class="input-wrapper"><label>% M1</label><input type="number" id="pM1" min="0" max="100"></div>
       <div class="input-wrapper"><label>% M2</label><input type="number" id="pM2" min="0" max="100"></div>
       <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
     </div>
-    <button class="calc-btn" type="button" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
+
+    <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
+
+    <!-- Texto y botones originales debajo -->
+    <p style="margin-top:15px; text-align:center; font-size:0.95rem;">
+      Escala desde el 100 al 1.000<br>
+      En caso de no rendir una prueba, ingresa 0 respectivamente.<br>
+      📌 ¿No conoces las ponderaciones de alguna universidad?<br>
+      👉 <a href="https://demre.cl" target="_blank" style="color:#007bff;">Haz clic aquí para ver la oferta oficial en el DEMRE</a>
+    </p>
+
+    <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+      <button class="secondary-btn" id="btnLimpiarPersonalizado" type="button" onclick="limpiarCampos()">Limpiar Campos</button>
+      <button class="secondary-btn" id="btnInvertir" type="button" onclick="invertirColores()">Invertir Colores</button>
+    </div>
   `;
 
-  // Insertar antes del resultado
+  // Insertar el bloque arriba del resultado
   resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
 }
 
@@ -954,7 +980,7 @@ function ocultarFormularioPersonalizado() {
   if (form) form.remove();
 }
 
-// Cálculo de la configuración personalizada
+// Calcular ponderado personalizado
 function calcularPersonalizado() {
   const sum = [
     +document.getElementById("pNEM").value || 0,
@@ -977,7 +1003,6 @@ function calcularPersonalizado() {
   const m2 = +document.getElementById("mate2").value || 0;
   const extra = +document.getElementById("valorExtra").value || 0;
 
-  // Validar que tenga Lenguaje, M1 y Extra (Ciencias o Historia)
   if (lenguaje === 0 || m1 === 0 || extra === 0) {
     alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
     return;
@@ -992,7 +1017,7 @@ function calcularPersonalizado() {
     extra * (+document.getElementById("pExtra").value / 100);
 
   const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
-  const carrera = document.getElementById("otraCarrera").value || "Carrera Personalizada";
+  const carrera = document.getElementById("otraCarrera").value || "Otra carrera";
   const corte = +document.getElementById("pCorte").value || null;
 
   let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
@@ -1007,14 +1032,12 @@ function calcularPersonalizado() {
   document.getElementById("resultado").innerHTML = mensaje;
 }
 
-// Extender el botón "Limpiar campos" para también borrar el formulario personalizado
+// Ampliar botón "Limpiar Campos" para limpiar también la configuración personalizada
 const originalLimpiarCampos = window.limpiarCampos;
-window.limpiarCampos = function() {
+window.limpiarCampos = function () {
   if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
   const custom = document.getElementById("customForm");
-  if (custom) {
-    custom.querySelectorAll("input").forEach(input => input.value = "");
-  }
+  if (custom) custom.querySelectorAll("input").forEach(input => (input.value = ""));
 };
 
 
@@ -1233,6 +1256,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
