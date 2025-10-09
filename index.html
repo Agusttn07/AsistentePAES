@@ -1175,20 +1175,20 @@ document.getElementById("universidad").addEventListener("change", function() {
   const otraUni = document.getElementById("opcionOtraUniversidad");
   const carreraSelect = document.getElementById("carrera");
 
-  // Si el usuario elige "Otra Universidad"
+  // --- Si el usuario elige "Otra Universidad" ---
   if (seleccion === "otra") {
     otraUni.style.display = "block";
     carreraSelect.innerHTML = '<option value="">No aplica</option>';
-    return; // detenemos aquí para no cargar carreras del objeto ponderaciones
+    return; // detenemos aquí, no cargamos carreras de ponderaciones
   }
 
-  // Si elige una universidad normal
+  // --- Si elige una universidad normal ---
   otraUni.style.display = "none";
 
-  // Limpiar carreras anteriores
+  // Limpiamos el select de carreras
   carreraSelect.innerHTML = '<option value="">Selecciona...</option>';
 
-  // Cargar las carreras que existen para esa universidad desde "ponderaciones"
+  // --- Verificamos si existen carreras en el objeto ponderaciones ---
   if (ponderaciones[seleccion]) {
     const carreras = Object.keys(ponderaciones[seleccion]);
     carreras.forEach(carrera => {
@@ -1197,12 +1197,15 @@ document.getElementById("universidad").addEventListener("change", function() {
       option.textContent = carrera;
       carreraSelect.appendChild(option);
     });
+  } else {
+    // Si no existen carreras registradas
+    carreraSelect.innerHTML = '<option value="">No hay carreras disponibles</option>';
   }
 });
 </script>
-
 </body>
 </html>
+
 
 
 
