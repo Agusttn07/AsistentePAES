@@ -869,7 +869,7 @@ const ponderaciones = {
 
       
 };
- /* --- NUEVA LÓGICA UNIVERSIDAD PERSONALIZADA --- */
+/* --- NUEVA LÓGICA UNIVERSIDAD PERSONALIZADA (mejorada) --- */
 
 // Agregar opción "Otra Universidad" al select de universidades (solo una vez)
 const universidadSelect = document.getElementById("universidad");
@@ -880,7 +880,7 @@ if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
   universidadSelect.appendChild(opt);
 }
 
-// Reemplazamos el listener de universidad (sin romper el anterior)
+// Listener principal de universidad
 universidadSelect.addEventListener("change", function() {
   const uni = this.value;
   const carreraSelect = document.getElementById("carrera");
@@ -891,7 +891,7 @@ universidadSelect.addEventListener("change", function() {
     mostrarFormularioPersonalizado();
   } else {
     ocultarFormularioPersonalizado();
-    // 🔄 Mantiene tu función original para cargar carreras
+    // Cargar carreras normales
     if (ponderaciones[uni]) {
       carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
       for (const carrera in ponderaciones[uni]) {
@@ -904,7 +904,7 @@ universidadSelect.addEventListener("change", function() {
   }
 });
 
-// Crear bloque editable
+// Crear formulario personalizado dinámico
 function mostrarFormularioPersonalizado() {
   const main = document.getElementById("main");
   if (document.getElementById("customForm")) return;
@@ -928,6 +928,10 @@ function mostrarFormularioPersonalizado() {
         <label>Carrera</label>
         <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería en Software">
       </div>
+      <div class="input-wrapper">
+        <label>Puntaje de Corte (opcional)</label>
+        <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 720">
+      </div>
     </div>
     <div class="input-row">
       <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
@@ -949,6 +953,7 @@ function ocultarFormularioPersonalizado() {
   if (form) form.remove();
 }
 
+// Calcular ponderación personalizada
 function calcularPersonalizado() {
   const sum = [
     +document.getElementById("pNEM").value || 0,
@@ -957,13 +962,14 @@ function calcularPersonalizado() {
     +document.getElementById("pM1").value || 0,
     +document.getElementById("pM2").value || 0,
     +document.getElementById("pExtra").value || 0
-  ].reduce((a,b)=>a+b,0);
+  ].reduce((a, b) => a + b, 0);
 
   if (sum !== 100) {
-    alert("La suma de los porcentajes debe ser 100%.");
+    alert("❌ La suma de los porcentajes debe ser exactamente 100%.");
     return;
   }
 
+  // Puntajes del usuario
   const nem = +document.getElementById("nem").value || 0;
   const ranking = +document.getElementById("ranking").value || 0;
   const lenguaje = +document.getElementById("lectura").value || 0;
@@ -971,6 +977,13 @@ function calcularPersonalizado() {
   const m2 = +document.getElementById("mate2").value || 0;
   const extra = +document.getElementById("valorExtra").value || 0;
 
+  // ✅ Validación obligatoria: Lenguaje, M1 y Extra (Ciencias o Historia)
+  if (lenguaje === 0 || m1 === 0 || extra === 0) {
+    alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
+    return;
+  }
+
+  // Cálculo ponderado
   const ponderado =
     nem * (+document.getElementById("pNEM").value / 100) +
     ranking * (+document.getElementById("pRanking").value / 100) +
@@ -981,10 +994,21 @@ function calcularPersonalizado() {
 
   const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
   const carrera = document.getElementById("otraCarrera").value || "Carrera Personalizada";
+  const corte = +document.getElementById("pCorte").value || null;
 
-  document.getElementById("resultado").innerHTML =
-    `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
+  // Mostrar resultado
+  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
+  if (corte) {
+    if (ponderado >= corte) {
+      mensaje += `<br>🎉 Tu puntaje supera el corte (${corte}). ¡Felicitaciones!`;
+    } else {
+      mensaje += `<br>⚠️ Tu puntaje está por debajo del corte (${corte}).`;
+    }
+  }
+
+  document.getElementById("resultado").innerHTML = mensaje;
 }
+
 
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
@@ -1201,5 +1225,6 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
