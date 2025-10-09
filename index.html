@@ -90,6 +90,19 @@ body.dark .fechas-recuadro {
     color: #f5f5f5;
 }
 
+.configuracion-recuadro {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: background 0.3s, color 0.3s;
+}
+body.dark .configuracion-recuadro {
+    background: #444;
+    color: #f5f5f5;
+}
+
 
 /* HEADER */
 header {
@@ -422,24 +435,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
 </div>
   
-<main id="main">
+<div id="configuracion" class="configuracion-recuadro">
+    <h2 style="text-align:center; color:#0e3448;">Configuración personalizada</h2>
+
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre">
         </div>
         <div class="input-wrapper">
-    <label for="curso">Curso</label>
-    <select id="curso">
-        <option value="">Selecciona...</option>
-        <option value="1ro Medio">1ro Medio</option>
-        <option value="2do Medio">2do Medio</option>
-        <option value="4to Medio">3ro Medio</option>
-        <option value="4to Medio">4to Medio</option>
-        <option value="Egresado/a">Egresado/a</option>
-    </select>
-</div>
-
+            <label for="curso">Curso</label>
+            <select id="curso">
+                <option value="">Selecciona...</option>
+                <option value="1ro Medio">1ro Medio</option>
+                <option value="2do Medio">2do Medio</option>
+                <option value="3ro Medio">3ro Medio</option>
+                <option value="4to Medio">4to Medio</option>
+                <option value="Egresado/a">Egresado/a</option>
+            </select>
+        </div>
     </div>
 
     <div class="input-row">
@@ -463,6 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
+    <!-- AÑADIDO: fila NEM + Ranking (tal como pediste) -->
     <div class="input-row">
         <div class="input-wrapper">
             <label for="nem">Notas de Enseñanza Media (NEM) <a href="https://demre.cl/paes/factores-seleccion/notas-ensenanza-media" target="_blank">*</a></label>
@@ -486,41 +501,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="input-row">
-    <div class="input-wrapper">
-        <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
-        <select id="historia_ciencias" onchange="mostrarCampo()">
-            <option value="">Selecciona...</option>
-            <option value="historia">Historia y Ciencias Sociales</option>
-            <option value="ciencias">Ciencias</option>
-        </select>
+        <div class="input-wrapper">
+            <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
+            <select id="historia_ciencias" onchange="mostrarCampo()">
+                <option value="">Selecciona...</option>
+                <option value="historia">Historia y Ciencias Sociales</option>
+                <option value="ciencias">Ciencias</option>
+            </select>
+        </div>
     </div>
-</div>
 
-<div class="input-row" id="campoExtra" style="display:none;">
-    <div class="input-wrapper">
-        <label id="labelExtra" for="valorExtra"></label>
-        <input type="number" id="valorExtra" min="0" max="1000">
+    <div class="input-row" id="campoExtra" style="display:none;">
+        <div class="input-wrapper">
+            <label id="labelExtra" for="valorExtra"></label>
+            <input type="number" id="valorExtra" min="0" max="1000">
+        </div>
     </div>
-</div>
 
     <div class="input-wrapper">
         <label for="mate2">Competencia Matemática 2 (M2)</label>
         <input type="number" id="mate2" min="0" max="1000">
     </div>
 
+    <!-- AÑADIDO: párrafo informativo (tal como pediste) -->
     <p class="info">
         Escala desde el 100 al 1.000<br>
         En caso de no rendir una prueba, ingresa 0 respectivamente.<br>
         📌 ¿No conoces las ponderaciones de alguna universidad? 👉 <a href="https://demre.cl" target="_blank">Haz clic aquí para ver la oferta oficial en el DEMRE</a>
     </p>
 
-    <div class="buttons">
+    <!-- Botones debajo -->
+    <div class="buttons" style="justify-content:center;">
         <button class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
         <button class="calc-btn" onclick="calcular()">Hacer simulación</button>
         <button class="calc-btn" onclick="invertirColores()">Invertir colores</button>
     </div>
+</div>
 
-    <div id="resultado" aria-live="polite"></div>
+<!-- Resultado -->
+<div id="resultado" aria-live="polite"></div>
+
+<!-- ====== FUNCIÓN PARA INVERTIR COLORES (REEMPLAZA O AGREGA EN TU <script>) ====== -->
+<script>
+function invertirColores() {
+    // Alterna el modo oscuro global (y por CSS body.dark afectará .configuracion-recuadro)
+    document.body.classList.toggle('dark');
+}
+</script>
 
 <div class="header-buttons">
   <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
@@ -530,6 +557,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     Fechas
   </button>
 </div>
+
 
 </main>
 
@@ -1264,6 +1292,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
