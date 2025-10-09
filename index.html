@@ -452,6 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
                 <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
                 <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
+                <option value="Otra Universidad">Otra Universidad</option>
             </select>
         </div>
         <div class="input-wrapper">
@@ -868,6 +869,110 @@ const ponderaciones = {
 
       
 };
+    
+<script>
+// Detectar cambio de universidad
+document.getElementById("universidad").addEventListener("change", function() {
+  const uni = this.value;
+  const contenedorCarrera = document.getElementById("carrera");
+
+  // Si se elige "Otra Universidad"
+  if (uni === "Otra Universidad") {
+    // Limpia carreras y muestra inputs personalizados
+    contenedorCarrera.innerHTML = '<option value="Personalizada">Personalizada</option>';
+    mostrarFormularioPersonalizado();
+  } else {
+    ocultarFormularioPersonalizado();
+  }
+});
+
+// Crear formulario dinámico
+function mostrarFormularioPersonalizado() {
+  const main = document.getElementById("main");
+  if (document.getElementById("customForm")) return; // Evita duplicados
+
+  const div = document.createElement("div");
+  div.id = "customForm";
+  div.style.marginTop = "25px";
+  div.style.padding = "20px";
+  div.style.background = "#fff";
+  div.style.border = "1px solid #ccc";
+  div.style.borderRadius = "8px";
+
+  div.innerHTML = `
+    <h3>Configuración personalizada</h3>
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Universidad</label>
+        <input type="text" id="otraUniNombre" placeholder="Ej: Mi Universidad">
+      </div>
+      <div class="input-wrapper">
+        <label>Carrera</label>
+        <input type="text" id="otraCarrera" placeholder="Ej: Psicología">
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Ranking</label><input type="number" id="pRanking" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Lenguaje</label><input type="number" id="pLenguaje" min="0" max="100"></div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper"><label>% M1</label><input type="number" id="pM1" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% M2</label><input type="number" id="pM2" min="0" max="100"></div>
+      <div class="input-wrapper"><label>% Ciencias o Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
+    </div>
+
+    <button class="calc-btn" onclick="calcularPersonalizado()">Calcular puntaje personalizado</button>
+  `;
+
+  main.appendChild(div);
+}
+
+// Ocultar formulario si cambia la universidad
+function ocultarFormularioPersonalizado() {
+  const form = document.getElementById("customForm");
+  if (form) form.remove();
+}
+
+// Calcular ponderado personalizado
+function calcularPersonalizado() {
+  const sum = [
+    +document.getElementById("pNEM").value,
+    +document.getElementById("pRanking").value,
+    +document.getElementById("pLenguaje").value,
+    +document.getElementById("pM1").value,
+    +document.getElementById("pM2").value,
+    +document.getElementById("pExtra").value
+  ].reduce((a,b)=>a+b,0);
+
+  if (sum !== 100) {
+    alert("La suma de los porcentajes debe ser 100%.");
+    return;
+  }
+
+  const nem = +document.getElementById("nem").value;
+  const ranking = +document.getElementById("ranking").value;
+  const lenguaje = +document.getElementById("lectura").value;
+  const m1 = +document.getElementById("mate1").value;
+  const m2 = +document.getElementById("mate2").value;
+  const extra = +document.getElementById("valorExtra").value;
+
+  const ponderado =
+    nem * (+document.getElementById("pNEM").value / 100) +
+    ranking * (+document.getElementById("pRanking").value / 100) +
+    lenguaje * (+document.getElementById("pLenguaje").value / 100) +
+    m1 * (+document.getElementById("pM1").value / 100) +
+    m2 * (+document.getElementById("pM2").value / 100) +
+    extra * (+document.getElementById("pExtra").value / 100);
+
+  const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
+  const carrera = document.getElementById("otraCarrera").value || "Carrera Personalizada";
+
+  document.getElementById("resultado").innerHTML =
+    `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
+}
 
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
@@ -1084,3 +1189,4 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
