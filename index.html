@@ -452,6 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
                 <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
                 <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
+                <option value="otra">Otra Universidad</option>
             </select>
         </div>
         <div class="input-wrapper">
@@ -459,6 +460,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <select id="carrera">
                 <option value="">Selecciona...</option>
             </select>
+            <!-- Campos personalizados para otra universidad -->
+<div id="opcionOtraUniversidad" style="display:none; margin-top: 20px;">
+  <h3>Datos Personalizados</h3>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="uniPersonalizada">Nombre de la Universidad</label>
+      <input type="text" id="uniPersonalizada" placeholder="Ej: Universidad del Futuro">
+    </div>
+    <div class="input-wrapper">
+      <label for="carreraPersonalizada">Nombre de la Carrera</label>
+      <input type="text" id="carreraPersonalizada" placeholder="Ej: Ingeniería en Robótica">
+    </div>
+  </div>
+
+  <h4 style="margin-top:15px;">Ponderaciones Personalizadas (%)</h4>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondNem">NEM</label>
+      <input type="number" id="pondNem" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondRanking">Ranking</label>
+      <input type="number" id="pondRanking" min="0" max="100">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondLenguaje">Lenguaje</label>
+      <input type="number" id="pondLenguaje" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondM1">Matemática 1 (M1)</label>
+      <input type="number" id="pondM1" min="0" max="100">
+    </div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-wrapper">
+      <label for="pondM2">Matemática 2 (M2)</label>
+      <input type="number" id="pondM2" min="0" max="100">
+    </div>
+    <div class="input-wrapper">
+      <label for="pondElectivo">Historia o Ciencias</label>
+      <input type="number" id="pondElectivo" min="0" max="100">
+    </div>
+  </div>
+</div>
+
         </div>
     </div>
 
@@ -869,6 +921,8 @@ const ponderaciones = {
       
 };
 
+
+
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
     const carrera = this.value;
@@ -889,6 +943,7 @@ document.getElementById("carrera").addEventListener("change", function () {
             document.getElementById("campoExtra").style.display = "none";
         }
     }
+
 });
 
 // FUNCIONES AUXILIARES
@@ -996,6 +1051,37 @@ function calcular() {
 
     const uni = document.getElementById("universidad").value;
     const carrera = document.getElementById("carrera").value;
+    // --- Si el usuario selecciona "Otra Universidad" ---
+let pond;
+
+if (uni === "otra") {
+    const nombreUni = document.getElementById("uniPersonalizada").value.trim() || "Universidad Personalizada";
+    const nombreCarrera = document.getElementById("carreraPersonalizada").value.trim() || "Carrera Personalizada";
+
+    pond = {
+        nem: Number(document.getElementById("pondNem").value) || 0,
+        ranking: Number(document.getElementById("pondRanking").value) || 0,
+        cl: Number(document.getElementById("pondLenguaje").value) || 0,
+        m1: Number(document.getElementById("pondM1").value) || 0,
+        m2: Number(document.getElementById("pondM2").value) || 0,
+        historia: Number(document.getElementById("pondElectivo").value) || 0,
+        ciencias: Number(document.getElementById("pondElectivo").value) || 0,
+        corte: 0
+    };
+
+    // Verificar que las ponderaciones sumen 100
+    const totalPond = pond.nem + pond.ranking + pond.cl + pond.m1 + pond.m2 + pond.historia;
+    if (totalPond !== 100) {
+        document.getElementById("resultado").innerHTML = 
+            `<span style="color:#c0392b;">⚠️ Las ponderaciones deben sumar 100%. Actualmente suman ${totalPond}%.</span>`;
+        return;
+    }
+
+    // Sobrescribir variables con los nombres personalizados
+    document.getElementById("resultado").dataset.uniPersonalizada = nombreUni;
+    document.getElementById("resultado").dataset.carreraPersonalizada = nombreCarrera;
+}
+
     const nem = parseFloat(document.getElementById("nem").value) || 0;
     const ranking = parseFloat(document.getElementById("ranking").value) || 0;
     const lectura = parseFloat(document.getElementById("lectura").value) || 0;
@@ -1082,8 +1168,25 @@ function invertirColores() {
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+<script>
+document.getElementById("universidad").addEventListener("change", function() {
+  const seleccion = this.value;
+  const otraUni = document.getElementById("opcionOtraUniversidad");
+  const carreraSelect = document.getElementById("carrera");
+
+  if (seleccion === "otra") {
+    otraUni.style.display = "block";
+    carreraSelect.disabled = true; // Desactivar lista de carreras predefinidas
+  } else {
+    otraUni.style.display = "none";
+    carreraSelect.disabled = false;
+  }
+});
+</script>
 </body>
 </html>
+
+
 
 
 
