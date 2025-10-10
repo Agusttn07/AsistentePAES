@@ -147,6 +147,24 @@ body.dark .header-description {
     color: #ddd; 
 }
 
+/* Estilo base del formulario personalizado */
+.custom-form {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 25px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Estilo cuando el modo oscuro está activado */
+.dark-mode .custom-form {
+  background: #222222;
+  color: #ffffff;
+  border-color: #555;
+}
+
+
 
 /* MAIN*/
 main { 
@@ -945,7 +963,7 @@ function mostrarFormularioPersonalizado() {
   div.id = "customForm";
   div.style.marginTop = "25px";
   div.style.padding = "20px";
-  div.style.background = "#ffffff";
+  div.classList.add("custom-form");
   div.style.border = "1px solid #ccc";
   div.style.borderRadius = "8px";
 
@@ -1239,6 +1257,12 @@ function invertirColores() {
     document.getElementById("main").classList.toggle("dark");
     document.getElementById("header").classList.toggle("dark");
 
+    const customForm = document.getElementById("customForm");
+  if (customForm) {
+    customForm.classList.toggle("dark");
+  }
+}
+
     const logo = document.getElementById("logo");
     if (document.body.classList.contains("dark")) {
         logo.src = "asistente_logo_negro.png";
@@ -1297,6 +1321,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
