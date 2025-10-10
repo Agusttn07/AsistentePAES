@@ -1049,6 +1049,12 @@ window.limpiarCampos = function () {
   if (custom) custom.querySelectorAll("input").forEach(input => (input.value = ""));
 };
 
+    <div class="buttons">
+        <button class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
+        <button class="calc-btn" onclick="calcular()">Hacer simulación</button>
+        <button class="calc-btn" onclick="invertirColores()">Invertir colores</button>
+    </div>
+
 
 document.getElementById("carrera").addEventListener("change", function () {
     const universidad = document.getElementById("universidad").value;
@@ -1290,5 +1296,6 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
