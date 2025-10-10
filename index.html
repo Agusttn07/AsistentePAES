@@ -1256,18 +1256,32 @@ function invertirColores() {
         }
     });
 
-    // cambiar color del formulario personalizado si existe
+    // cambiar color del formulario personalizado
     const customForm = document.getElementById("customForm");
     if (customForm) {
         if (document.body.classList.contains("dark")) {
-            customForm.style.background = "#444";
-            customForm.style.color = "#fff";
+            customForm.style.background = "#333";  // fondo oscuro
+            customForm.style.color = "#fff";       // texto claro
+
+            // cambiar inputs y botones dentro
+            customForm.querySelectorAll("input, select, textarea, button").forEach(el => {
+                el.style.background = "#555";
+                el.style.color = "#fff";
+                el.style.borderColor = "#777";
+            });
         } else {
             customForm.style.background = "#fff";
             customForm.style.color = "#000";
+
+            customForm.querySelectorAll("input, select, textarea, button").forEach(el => {
+                el.style.background = "";
+                el.style.color = "";
+                el.style.borderColor = "";
+            });
         }
     }
 }
+
 
 
 </script>
@@ -1276,4 +1290,5 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
