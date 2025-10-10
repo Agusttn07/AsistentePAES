@@ -90,6 +90,23 @@ body.dark .fechas-recuadro {
     color: #f5f5f5;
 }
 
+/* ponderacion personalizada */
+.custom-form {
+  margin-top: 25px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.dark .custom-form {
+  background: #444;
+  border-color: #777;
+  color: #f5f5f5;
+}
+
+
 
 /* HEADER */
 header {
@@ -943,11 +960,8 @@ function mostrarFormularioPersonalizado() {
 
   const div = document.createElement("div");
   div.id = "customForm";
-  div.style.marginTop = "25px";
-  div.style.padding = "20px";
-  div.style.background = "#ffffff";
-  div.style.border = "1px solid #ccc";
-  div.style.borderRadius = "8px";
+  div.classList.add("custom-form");
+
 
   div.innerHTML = `
     <h3>Ponderación Personalizada</h3>
@@ -1297,3 +1311,4 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
