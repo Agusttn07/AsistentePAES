@@ -517,10 +517,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="resultado" aria-live="polite"></div>
 
     <div class="buttons">
-        <button class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
-        <button class="calc-btn" onclick="calcular()">Hacer simulación</button>
-        <button class="calc-btn" onclick="invertirColores()">Invertir colores</button>
+        <button id="btnLimpiar" class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
+        <button id="btnSimular" class="calc-btn" onclick="calcular()">Hacer simulación</button>
+        <button id="btnInvertir" class="calc-btn" onclick="invertirColores()">Invertir colores</button>
     </div>
+
 
 <div class="header-buttons">
   <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
@@ -901,7 +902,7 @@ universidadSelect.addEventListener("change", function () {
     // Ocultar botón "Hacer Simulación"
     if (btnSimular) btnSimular.style.display = "none";
 
-    // Mover texto y botones debajo de la Configuración Personalizada
+    // Mover texto y botones debajo del formulario personalizado
     const form = document.getElementById("customForm");
     if (form) {
       form.parentNode.insertBefore(textoEscala, form.nextSibling);
@@ -911,12 +912,12 @@ universidadSelect.addEventListener("change", function () {
     }
 
   } else {
-    // Volver a mostrar "Hacer Simulación"
+    // Mostrar botón "Hacer Simulación" nuevamente
     if (btnSimular) btnSimular.style.display = "inline-block";
 
     ocultarFormularioPersonalizado();
 
-    // Restaurar carreras normales
+    // Restaurar carreras normales si existen
     if (ponderaciones[uni]) {
       carreraSelect.innerHTML = `<option value="">Otra Carrera</option>`;
       for (const carrera in ponderaciones[uni]) {
@@ -927,13 +928,14 @@ universidadSelect.addEventListener("change", function () {
       }
     }
 
-    // Devolver los elementos a su posición original (debajo de los resultados)
+    // Devolver texto y botones debajo del resultado
     resultadoDiv.parentNode.insertBefore(textoEscala, resultadoDiv.nextSibling);
     resultadoDiv.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
     resultadoDiv.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
     resultadoDiv.parentNode.insertBefore(btnInvertir, btnSimular.nextSibling);
   }
 });
+
 
 // Crear bloque de Configuración Personalizada
 function mostrarFormularioPersonalizado() {
@@ -1295,6 +1297,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
