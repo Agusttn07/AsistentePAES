@@ -976,7 +976,12 @@ function mostrarFormularioPersonalizado() {
       <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
     </div>
 
-    <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">Hacer simulación personalizada</button>
+    <div class="buttons" style="justify-content: flex-start; margin-top: 25px;">
+      <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">
+        Hacer simulación personalizada
+      </button>
+    </div>
+
   `;
 
   // Insertar el bloque justo antes del resultado
@@ -1290,6 +1295,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
