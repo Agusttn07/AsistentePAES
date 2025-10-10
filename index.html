@@ -918,7 +918,7 @@ universidadSelect.addEventListener("change", function () {
 
     // Restaurar carreras normales
     if (ponderaciones[uni]) {
-      carreraSelect.innerHTML = `<option value="">Selecciona...</option>`;
+      carreraSelect.innerHTML = `<option value="">Otra Carrera</option>`;
       for (const carrera in ponderaciones[uni]) {
         const opt = document.createElement("option");
         opt.value = carrera;
@@ -1290,6 +1290,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
