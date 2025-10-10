@@ -948,18 +948,18 @@ function mostrarFormularioPersonalizado() {
   div.style.borderRadius = "8px";
 
   div.innerHTML = `
-    <h3>Configuración personalizada</h3>
+    <h3>Ponderación Personalizada</h3>
     <div class="input-row">
       <div class="input-wrapper">
         <label>Universidad</label>
-        <input type="text" id="otraUniNombre" placeholder="Ej: Universidad Ejemplo">
+        <input type="text" id="otraUniNombre" placeholder="Ej: Universidad Católica de Valparaíso">
       </div>
       <div class="input-wrapper">
         <label>Carrera</label>
-        <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería en Software">
+        <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería (Plan Común)">
       </div>
       <div class="input-wrapper">
-        <label>Puntaje de Corte (opcional)</label>
+        <label>Puntaje de Corte</label>
         <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 720">
       </div>
     </div>
@@ -976,7 +976,7 @@ function mostrarFormularioPersonalizado() {
       <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
     </div>
 
-    <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">Calcular Puntaje Personalizado</button>
+    <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">Hacer simulación personalizada</button>
   `;
 
   // Insertar el bloque justo antes del resultado
@@ -1028,12 +1028,13 @@ function calcularPersonalizado() {
   const carrera = document.getElementById("otraCarrera").value || "Otra carrera";
   const corte = +document.getElementById("pCorte").value || null;
 
-  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado estimado: <strong>${ponderado.toFixed(2)}</strong>`;
+  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado: <strong>${ponderado.toFixed(2)}</strong>`;
   if (corte) {
     if (ponderado >= corte) {
       mensaje += `<br>🎉 Tu puntaje supera el corte (${corte}). ¡Felicitaciones!`;
     } else {
       mensaje += `<br>⚠️ Tu puntaje está por debajo del corte (${corte}).`;
+      mensaje += `<br>Puedes ayudarte del ChatBot PAES para saber como mejorar tus puntajes!`;
     }
   }
 
@@ -1226,7 +1227,6 @@ function calcular() {
     `;
 }
 
-// modo oscuro
 function invertirColores() {
     document.body.classList.toggle("dark");
     document.getElementById("main").classList.toggle("dark");
@@ -1243,20 +1243,32 @@ function invertirColores() {
     const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
     fechas.forEach(div => {
         if (document.body.classList.contains("dark")) {
-            div.style.background = "#444"; // fondo oscuro
-            div.style.color = "#fff";      // texto claro
+            div.style.background = "#444";
+            div.style.color = "#fff";
         } else {
-            // restaurar colores originales
             if (div.id === "temarioPAES") {
-                div.style.background = "#ffc107"; // amarillo del temario
-                div.style.color = "#000";         // texto negro
+                div.style.background = "#ffc107";
+                div.style.color = "#000";
             } else {
-                div.style.background = "#e9ecef"; // gris original de fechas
-                div.style.color = "#000";         // texto negro
+                div.style.background = "#e9ecef";
+                div.style.color = "#000";
             }
         }
     });
+
+    // cambiar color del formulario personalizado si existe
+    const customForm = document.getElementById("customForm");
+    if (customForm) {
+        if (document.body.classList.contains("dark")) {
+            customForm.style.background = "#444";
+            customForm.style.color = "#fff";
+        } else {
+            customForm.style.background = "#fff";
+            customForm.style.color = "#000";
+        }
+    }
 }
+
 
 </script>
     <script>
@@ -1264,3 +1276,4 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
