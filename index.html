@@ -567,10 +567,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- fechas de cada prueba -->
 <div id="fechasPAES" style="max-width:800px; margin:20px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;">
-    <div class="fechas-recuadro">M2<br>Dic. 1, 15:00</div>
+    <div class="fechas-recuadro">Matemática 2<br>Dic. 1, 15:00</div>
     <div class="fechas-recuadro">Lenguaje<br>Dic. 2, 09:00</div>
-    <div class="fechas-recuadro">Electivo Ciencias<br>Dic. 2, 15:00</div>
-    <div class="fechas-recuadro">M1<br>Dic. 3, 09:00</div>
+    <div class="fechas-recuadro">Ciencias<br>Dic. 2, 15:00</div>
+    <div class="fechas-recuadro">Matemática 1<br>Dic. 3, 09:00</div>
     <div class="fechas-recuadro">Historia y Ciencias Sociales<br>Dic 3, 15:00</div>
     <div class="fechas-recuadro">Entrega de resultados de la PAES Regular<br>Enero 5, 08:00</div>
     <div class="fechas-recuadro">Inicio etapa de postulación a las universidades<br>Enero 5, 09:00</div>
@@ -587,12 +587,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 // contador
 function actualizarContador() {
-    const fechaPAES = new Date("December 1, 2025 09:00:00").getTime();
+    const fechaPAES = new Date("December 1, 2025 15:00:00").getTime();
     const ahora = new Date().getTime();
     const diferencia = fechaPAES - ahora;
 
     if(diferencia <= 0){
-        document.getElementById("tiempo").innerHTML = "¡La PAES ha comenzado!";
+        document.getElementById("tiempo").innerHTML = "¡La PAES ha comenzado, mucho éxito!";
         clearInterval(intervalo);
         return;
     }
@@ -1311,5 +1311,6 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
