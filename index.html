@@ -177,21 +177,22 @@ body.dark .temario-boton:hover {
 }
 
 
-/* Estilo moderno para el título FECHAS IMPORTANTES */
+/* Estilo moderno y centrado para el título FECHAS IMPORTANTES */
 .fechas-titulo {
+  display: block;
+  width: fit-content;
+  margin: 60px auto 25px; /* auto centra el bloque */
   text-align: center;
   font-size: 40px;
   font-weight: 800;
   color: #ffc107;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 60px auto 25px;
-  position: relative;
-  display: inline-block;
-  padding: 10px 30px;
+  padding: 14px 40px;
   background: linear-gradient(90deg, #0e3448, #14506a);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -213,6 +214,7 @@ body.dark .temario-boton:hover {
   left: 130%;
 }
 
+/* animación hover */
 .fechas-titulo:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -224,6 +226,7 @@ body.dark .fechas-titulo {
   color: #ffc107;
   box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
 }
+
 
 
 /* ponderacion personalizada */
@@ -1433,5 +1436,6 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
