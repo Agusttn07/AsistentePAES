@@ -177,79 +177,6 @@ body.dark .temario-boton:hover {
 }
 
 
-/* CONTENEDOR GENERAL */
-.fechas-container {
-  max-width: 900px;
-  margin: 40px auto;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-}
-
-/* TÍTULO DESPLEGABLE */
-.fechas-titulo {
-  background: linear-gradient(135deg, #0e3448, #14506a);
-  color: #fff;
-  font-size: 26px;
-  font-weight: bold;
-  text-align: center;
-  padding: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  user-select: none;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.fechas-titulo:hover {
-  background: linear-gradient(135deg, #14506a, #0e3448);
-  transform: scale(1.02);
-}
-
-/* flecha animada */
-.fechas-titulo .flecha {
-  transition: transform 0.3s;
-}
-
-.fechas-titulo.abierto .flecha {
-  transform: rotate(180deg);
-}
-
-/* LISTA DE FECHAS */
-.fechas-lista {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  background: #e9ecef;
-  padding: 20px;
-  border-top: 2px solid #14506a;
-  transition: max-height 0.6s ease, opacity 0.6s ease, padding 0.3s;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-}
-
-/* visible al abrir */
-.fechas-lista.activa {
-  max-height: 800px;
-  opacity: 1;
-  padding: 25px;
-}
-
-/* MODO OSCURO */
-body.dark .fechas-titulo {
-  background: linear-gradient(135deg, #222, #333);
-  color: #ffc107;
-}
-
-body.dark .fechas-lista {
-  background: #444;
-  border-color: #ffc107;
-}
-
-
 /* ponderacion personalizada */
 .custom-form {
   margin-top: 25px;
@@ -568,7 +495,7 @@ body.dark footer {
 <body>
 
 
-<!-- google tag manager -->
+    <!-- google tag manager -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MGTJJS9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- end gtm -->
@@ -582,10 +509,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
             Simulador
         </button>
-        <button onclick="document.getElementById('fechasContainer').scrollIntoView({behavior: 'smooth'});">
-    Fechas
-</button>
-
+        <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">
+            Fechas
+        </button>
     </div>
 </header>
 
@@ -701,6 +627,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 
+<div class="header-buttons">
+  <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
+    Simulador
+  </button>
+  <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">
+    Fechas
+  </button>
+</div>
+
 </main>
 
 
@@ -712,24 +647,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 
-<!-- MENÚ DESPLEGABLE DE FECHAS -->
-<div id="fechasContainer" class="fechas-container">
-  <div class="fechas-titulo" onclick="toggleFechas()">
-    <span>📅 FECHAS IMPORTANTES</span>
-    <span class="flecha">▼</span>
-  </div>
+<!-- fechas -->
+<h2 style="text-align:center; font-size:32px; margin-top:30px; margin-bottom:15px; font-weight:bold; color:#ffc107;">
+    FECHAS IMPORTANTES
+</h2>
 
-  <div id="fechasPAES" class="fechas-lista">
-    <div class="fechas-recuadro">Matemática 2<br><small>Dic. 1, 15:00</small></div>
-    <div class="fechas-recuadro">Lenguaje<br><small>Dic. 2, 09:00</small></div>
-    <div class="fechas-recuadro">Ciencias<br><small>Dic. 2, 15:00</small></div>
-    <div class="fechas-recuadro">Matemática 1<br><small>Dic. 3, 09:00</small></div>
-    <div class="fechas-recuadro">Historia y Ciencias Sociales<br><small>Dic. 3, 15:00</small></div>
-    <div class="fechas-recuadro">Entrega de resultados de la PAES Regular<br><small>Enero 5, 08:00</small></div>
-    <div class="fechas-recuadro">Inicio etapa de postulación a las universidades<br><small>Enero 5, 09:00</small></div>
-    <div class="fechas-recuadro">Término etapa de postulación a las universidades<br><small>Enero 8, 13:00</small></div>
-    <div class="fechas-recuadro">Entrega de resultados del proceso de selección<br><small>Enero 19, 12:00</small></div>
-  </div>
+<!-- fechas de cada prueba -->
+<div id="fechasPAES" style="max-width:800px; margin:20px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+  <div class="fechas-recuadro">Matemática 2<br><small>Dic. 1, 15:00</small></div>
+  <div class="fechas-recuadro">Lenguaje<br><small>Dic. 2, 09:00</small></div>
+  <div class="fechas-recuadro">Ciencias<br><small>Dic. 2, 15:00</small></div>
+  <div class="fechas-recuadro">Matemática 1<br><small>Dic. 3, 09:00</small></div>
+  <div class="fechas-recuadro">Historia y Ciencias Sociales<br><small>Dic. 3, 15:00</small></div>
+  <div class="fechas-recuadro">Entrega de resultados de la PAES Regular<br><small>Enero 5, 08:00</small></div>
+  <div class="fechas-recuadro">Inicio etapa de postulación a las universidades<br><small>Enero 5, 09:00</small></div>
+  <div class="fechas-recuadro">Término etapa de postulación a las universidades<br><small>Enero 8, 13:00</small></div>
+  <div class="fechas-recuadro">Entrega de resultados del proceso de selección<br><small>Enero 19, 12:00</small></div>
 </div>
 
 <!-- temario -->
@@ -1444,41 +1377,11 @@ function invertirColores() {
 }
 
 
-<script>
-function toggleFechas() {
-  const lista = document.getElementById("fechasPAES");
-  const titulo = document.querySelector(".fechas-titulo");
-  if(!lista || !titulo) return;
-  lista.classList.toggle("activa");
-  titulo.classList.toggle("abierto");
-}
-</script>
 
-<!-- Chatbase (versión no rota) -->
-<script>
-(function(){
-  if(!window.chatbase || (typeof window.chatbase === "function" && window.chatbase("getState")!=="initialized")){
-    window.chatbase=(...args)=>{
-      if(!window.chatbase.q) window.chatbase.q=[];
-      window.chatbase.q.push(args);
-    };
-    window.chatbase=new Proxy(window.chatbase,{
-      get(target, prop){
-        if(prop==="q") return target.q;
-        return (...args)=> target(prop, ...args);
-      }
-    });
-  }
-  const onLoad = function(){
-    const s = document.createElement("script");
-    s.src = "https://www.chatbase.co/embed.min.js";
-    s.async = true;
-    document.body.appendChild(s);
-  };
-  if(document.readyState === "complete") onLoad();
-  else window.addEventListener("load", onLoad);
-})();
 </script>
-
+    <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
 </body>
 </html>
+
