@@ -767,7 +767,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- FECHAS -->
 <h2 class="fechas-titulo" onclick="toggleFechas()">
-  📅 Fechas Importantes
+  📅 Fechas Importantes <span id="flechaFechas">▼</span>
 </h2>
 
 <!-- CONTENEDOR DE FECHAS (oculto al inicio) -->
@@ -787,17 +787,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 function toggleFechas() {
   const contenedor = document.getElementById('fechasPAES');
-  const titulo = document.querySelector('.fechas-titulo');
-  
+  const flecha = document.getElementById('flechaFechas');
+
   if (contenedor.style.display === 'none' || contenedor.style.display === '') {
     contenedor.style.display = 'grid';
-    titulo.innerHTML = '📅 Fechas Importantes ▲';
+    flecha.textContent = '▲';
   } else {
     contenedor.style.display = 'none';
-    titulo.innerHTML = '📅 Fechas Importantes ▼';
+    flecha.textContent = '▼';
   }
 }
 </script>
+
 
 
 <!-- temario -->
@@ -1519,6 +1520,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
