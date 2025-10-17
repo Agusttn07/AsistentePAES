@@ -804,9 +804,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="resultado" aria-live="polite"></div>
 
     <div class="buttons">
-        <button id="btnLimpiar">Limpiar campos</button>
-        <button id="btnSimular">Hacer simulación</button>
-        <button id="invertir">Invertir colores</button>
+        <button id="btnLimpiar" class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
+        <button id="btnSimular" class="calc-btn" onclick="calcular()">Hacer simulación</button>
+        <button id="btnInvertir" class="calc-btn" onclick="invertirColores()">Invertir colores</button>
     </div>
 
 <div class="header-buttons">
@@ -1583,6 +1583,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
