@@ -77,17 +77,50 @@ body.dark {
 
 /* recuadros de fechas */
 .fechas-recuadro {
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: bold;
-    background: #e9ecef;
-    transition: background 0.3s, color 0.3s;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  background: linear-gradient(145deg, #0e3448, #14506a);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-body.dark .fechas-recuadro {
-    background: #444;
-    color: #f5f5f5;
+/* efecto al pasar el mouse */
+.fechas-recuadro:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, #14506a, #0e3448);
+}
+
+/* efecto de brillo animado */
+.fechas-recuadro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.fechas-recuadro:hover::after {
+  left: 130%;
+}
+
+/* texto de la fecha */
+.fechas-recuadro small {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  opacity: 0.9;
 }
 
 /* ponderacion personalizada */
@@ -168,7 +201,7 @@ body.dark .header-description {
 /* MAIN*/
 main { 
     max-width: 1700px; 
-    margin: 40px auto;        /* <-- mantiene centrado */
+    margin: 40px auto;
     background: #e6e6e6; 
     padding: 30px; 
     border-radius: 12px; 
@@ -1296,6 +1329,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
