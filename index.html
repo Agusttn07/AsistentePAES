@@ -177,6 +177,55 @@ body.dark .temario-boton:hover {
 }
 
 
+/* Estilo moderno para el título FECHAS IMPORTANTES */
+.fechas-titulo {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffc107;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 60px auto 25px;
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  background: linear-gradient(90deg, #0e3448, #14506a);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* efecto de luz diagonal */
+.fechas-titulo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-25deg);
+  transition: left 0.6s;
+}
+
+.fechas-titulo:hover::after {
+  left: 130%;
+}
+
+.fechas-titulo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* modo oscuro */
+body.dark .fechas-titulo {
+  background: linear-gradient(90deg, #222, #333);
+  color: #ffc107;
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+}
+
+
 /* ponderacion personalizada */
 .custom-form {
   margin-top: 25px;
@@ -648,8 +697,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- fechas -->
-<h2 style="text-align:center; font-size:32px; margin-top:30px; margin-bottom:15px; font-weight:bold; color:#ffc107;">
-    FECHAS IMPORTANTES
+<h2 class="fechas-titulo">
+  📅 Fechas Importantes
 </h2>
 
 <!-- fechas de cada prueba -->
@@ -1384,4 +1433,5 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
