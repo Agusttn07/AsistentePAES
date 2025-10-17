@@ -228,6 +228,73 @@ body.dark .fechas-titulo {
 }
 
 
+/* CONTENEDOR DEL CONTADOR */
+#contadorPAES {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #0e3448, #14506a);
+  color: #fff;
+  border-radius: 18px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de brillo diagonal animado */
+#contadorPAES::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+
+#contadorPAES:hover::before {
+  left: 130%;
+}
+
+#contadorPAES:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Texto del contador */
+#contadorPAES div {
+  margin: 10px 0;
+}
+
+/* Número del contador */
+#tiempo {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffc107;
+  margin-top: 15px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+}
+
+/* Modo oscuro */
+body.dark #contadorPAES {
+  background: linear-gradient(135deg, #222, #333);
+  color: #ffc107;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
+}
+body.dark #tiempo {
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+
+
 
 /* ponderacion personalizada */
 .custom-form {
@@ -692,11 +759,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- contador -->
-<div id="contadorPAES" style="max-width:1635px; margin:40px auto; padding:30px; background:#0e3448; color:#fff; border-radius:12px; text-align:center; font-size:32px; box-shadow:0px 4px 12px rgba(0,0,0,0.1);">
-    <div>Faltan:</div>
-    <div id="tiempo" style="font-size:36px; font-weight:bold; margin-top:15px;">Cargando...</div>
-    <div>para la PAES ⏳</div>
+<div id="contadorPAES">
+  <div>Faltan:</div>
+  <div id="tiempo">Cargando...</div>
+  <div>para la PAES ⏳</div>
 </div>
+
 
 
 <!-- fechas -->
@@ -1436,6 +1504,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
