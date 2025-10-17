@@ -123,6 +123,30 @@ body.dark {
   opacity: 0.9;
 }
 
+/* === MODO OSCURO PARA FECHAS === */
+body.dark .fechas-recuadro {
+  background: linear-gradient(145deg, #2b2b2b, #3a3a3a);
+  color: #ffc107;
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
+  border: 1px solid #555;
+}
+
+body.dark .fechas-recuadro:hover {
+  background: linear-gradient(145deg, #3a3a3a, #2b2b2b);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+body.dark .fechas-titulo {
+  background: linear-gradient(90deg, #222, #333);
+  color: #ffc107;
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark #flechaFechas {
+  color: #ffc107;
+}
+
+
 /* BOTÓN TEMARIO PAES */
 .temario-boton {
   max-width: 750px;
@@ -1627,6 +1651,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
