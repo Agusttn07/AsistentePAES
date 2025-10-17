@@ -568,7 +568,7 @@ body.dark footer {
 <body>
 
 
-    <!-- google tag manager -->
+<!-- google tag manager -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MGTJJS9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- end gtm -->
@@ -582,9 +582,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
             Simulador
         </button>
-        <button onclick="document.getElementById('fechasPAES').scrollIntoView({behavior: 'smooth'});">
-            Fechas
-        </button>
+        <button onclick="document.getElementById('fechasContainer').scrollIntoView({behavior: 'smooth'});">
+    Fechas
+</button>
+
     </div>
 </header>
 
@@ -721,7 +722,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- MENÚ DESPLEGABLE DE FECHAS -->
-<div class="fechas-container">
+<div id="fechasContainer" class="fechas-container">
   <div class="fechas-titulo" onclick="toggleFechas()">
     <span>📅 FECHAS IMPORTANTES</span>
     <span class="flecha">▼</span>
@@ -1466,5 +1467,6 @@ function toggleFechas() {
 </script>
 </body>
 </html>
+
 
 
