@@ -408,10 +408,10 @@ body.dark footer {
 <body>
 
 
-    <!-- google tag manager (noscript) -->
+    <!-- google tag manager -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MGTJJS9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- end gtm (noscript) -->
+<!-- end gtm -->
 
 <header>
     <img src="asistente_logo_negro1.png" alt="Logo Asistente" class="logo light-logo">
@@ -886,20 +886,17 @@ const ponderaciones = {
 
       
 };
-/* --- LÓGICA UNIVERSIDAD PERSONALIZADA (usa los botones y texto originales) --- */
+/* carrera y universidad personalizada --- */
 
-// Obtener referencias a elementos que ya existen
 const universidadSelect = document.getElementById("universidad");
 const carreraSelect = document.getElementById("carrera");
 const resultadoDiv = document.getElementById("resultado");
 
-// Botones y texto ya existentes en tu HTML
-const textoEscala = document.getElementById("textoEscala"); // contenedor de "Escala desde el 100 al 1.000..."
+const textoEscala = document.getElementById("textoEscala");
 const btnLimpiar = document.getElementById("btnLimpiar");
 const btnSimular = document.getElementById("btnSimular");
 const btnInvertir = document.getElementById("btnInvertir");
 
-// Agregar "Otra Universidad" si no existe aún
 if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
   const opt = document.createElement("option");
   opt.value = "Otra Universidad";
@@ -907,7 +904,6 @@ if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
   universidadSelect.appendChild(opt);
 }
 
-// Escuchar cambios de universidad
 universidadSelect.addEventListener("change", function () {
   const uni = this.value;
 
@@ -915,10 +911,8 @@ universidadSelect.addEventListener("change", function () {
     carreraSelect.innerHTML = `<option value="Otra carrera" selected>Otra carrera</option>`;
     mostrarFormularioPersonalizado();
 
-    // Ocultar botón "Hacer Simulación"
     if (btnSimular) btnSimular.style.display = "none";
 
-    // Mover texto y botones debajo del formulario personalizado
     const form = document.getElementById("customForm");
     if (form) {
       form.parentNode.insertBefore(textoEscala, form.nextSibling);
@@ -928,12 +922,10 @@ universidadSelect.addEventListener("change", function () {
     }
 
   } else {
-    // Mostrar botón "Hacer Simulación" nuevamente
     if (btnSimular) btnSimular.style.display = "inline-block";
 
     ocultarFormularioPersonalizado();
 
-    // Restaurar carreras normales si existen
     if (ponderaciones[uni]) {
       carreraSelect.innerHTML = `<option value="">Otra Carrera</option>`;
       for (const carrera in ponderaciones[uni]) {
@@ -944,7 +936,6 @@ universidadSelect.addEventListener("change", function () {
       }
     }
 
-    // Devolver texto y botones debajo del resultado
     resultadoDiv.parentNode.insertBefore(textoEscala, resultadoDiv.nextSibling);
     resultadoDiv.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
     resultadoDiv.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
@@ -952,10 +943,8 @@ universidadSelect.addEventListener("change", function () {
   }
 });
 
-
-// Crear bloque de Configuración Personalizada
 function mostrarFormularioPersonalizado() {
-  if (document.getElementById("customForm")) return; // Evita duplicados
+  if (document.getElementById("customForm")) return;
 
   const div = document.createElement("div");
   div.id = "customForm";
@@ -999,7 +988,6 @@ function mostrarFormularioPersonalizado() {
 
   `;
 
-  // Insertar el bloque justo antes del resultado
   resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
 }
 
@@ -1008,7 +996,6 @@ function ocultarFormularioPersonalizado() {
   if (form) form.remove();
 }
 
-// Cálculo del puntaje personalizado
 function calcularPersonalizado() {
   const sum = [
     +document.getElementById("pNEM").value || 0,
@@ -1061,7 +1048,6 @@ function calcularPersonalizado() {
   resultadoDiv.innerHTML = mensaje;
 }
 
-// Ampliar botón "Limpiar Campos" para incluir Configuración Personalizada
 const originalLimpiarCampos = window.limpiarCampos;
 window.limpiarCampos = function () {
   if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
@@ -1092,7 +1078,7 @@ document.getElementById("carrera").addEventListener("change", function () {
     }
 });
 
-// FUNCIONES AUXILIARES
+// funciones auxiliares
 function mostrarCampo() {
     const seleccion = document.getElementById("historia_ciencias").value;
     const campo = document.getElementById("campoExtra");
@@ -1310,6 +1296,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
