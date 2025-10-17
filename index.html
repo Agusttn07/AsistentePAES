@@ -123,6 +123,60 @@ body.dark {
   opacity: 0.9;
 }
 
+/* BOTÓN TEMARIO PAES */
+.temario-boton {
+  max-width: 750px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffc107, #ffda47);
+  color: #0e3448;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* efecto hover */
+.temario-boton:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffda47, #ffc107);
+}
+
+/* brillo animado */
+.temario-boton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.temario-boton:hover::after {
+  left: 130%;
+}
+
+/* modo oscuro */
+body.dark .temario-boton {
+  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+  color: #ffc107;
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .temario-boton:hover {
+  background: linear-gradient(135deg, #3a3a3a, #2b2b2b);
+}
+
+
 /* ponderacion personalizada */
 .custom-form {
   margin-top: 25px;
@@ -612,9 +666,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- temario -->
-<div style="max-width:750px; margin:30px auto; padding:25px; background:#ffc107; color:#000; border-radius:12px; text-align:center; font-size:20px; font-weight:bold; box-shadow:0px 4px 12px rgba(0,0,0,0.1); cursor:pointer;" 
+<div class="temario-boton"
      onclick="window.open('https://demre.cl/la-prueba/pruebas-y-temarios/presentacion-pruebas-temarios-paes-regular','_blank')">
-    Haz click aquí para conocer el temario de la PAES Regular - Admisión 2026
+  📘 Haz clic aquí para conocer el temario de la PAES Regular – Admisión 2026
 </div>
 
 <script>
@@ -1329,6 +1383,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
