@@ -605,41 +605,84 @@ body.dark footer {
         border-radius: 6px;
     }
 
-    /* Contador PAES */
-  #contadorPAES {
-    margin: 30px 15px;
-    padding: 25px 20px;
-    font-size: 22px;
-    border-radius: 12px;
+    /* Ajustes visuales para contador y fechas */
+#contadorPAES,
+#fechasPAES {
+  max-width: 700px; /* mismo ancho */
+  margin: 40px auto;
+}
+
+/* Contador PAES: más grande y limpio */
+#contadorPAES {
+  padding: 35px;
+  font-size: 28px; /* texto principal más grande */
+}
+
+#contadorPAES div {
+  font-size: 24px;
+}
+
+#tiempo {
+  font-size: 54px; /* tiempo más destacado */
+  letter-spacing: 2px;
+}
+
+/* Fechas Importantes: más compacto */
+.fechas-titulo {
+  font-size: 34px;
+  padding: 12px 30px;
+  margin: 50px auto 25px;
+}
+
+#fechasPAES {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.fechas-recuadro {
+  padding: 16px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+.fechas-recuadro small {
+  font-size: 13px;
+}
+
+  #contadorPAES,
+  #fechasPAES {
+    max-width: 90%;
+    margin: 25px auto;
   }
 
-  #contadorPAES div {
+  #contadorPAES {
+    padding: 25px 20px;
     font-size: 20px;
   }
 
+  #contadorPAES div {
+    font-size: 18px;
+  }
+
   #tiempo {
-    font-size: 28px;
-    letter-spacing: 1px;
+    font-size: 38px;
   }
 
-  /* Título FECHAS IMPORTANTES */
   .fechas-titulo {
-    font-size: 26px;
-    padding: 10px 20px;
-    margin: 40px auto 20px;
+    font-size: 24px;
+    padding: 8px 20px;
   }
 
-  /* Recuadros de fechas */
   .fechas-recuadro {
-    font-size: 14px;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
   }
 
   .fechas-recuadro small {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
+
 
 }
 
@@ -1555,6 +1598,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
