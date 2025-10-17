@@ -629,78 +629,7 @@ body.dark footer {
         border-radius: 6px;
     }
 
-    /* === CONTADOR PAES === */
-#contadorPAES {
-  max-width: 600px;       /* más angosto */
-  margin: 40px auto;
-  padding: 25px 20px;     /* recuadro más pequeño */
-  background: linear-gradient(135deg, #0e3448, #14506a);
-  color: #fff;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 24px;         /* texto general más grande */
-  font-weight: 600;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-}
-
-#tiempo {
-  font-size: 28px;         /* tiempo muy destacado */
-  font-weight: 800;
-  color: #ffc107;
-  margin-top: 10px;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
-
-/* === TÍTULO "FECHAS IMPORTANTES" === */
-.fechas-titulo {
-  display: block;
-  width: fit-content;
-  margin: 50px auto 25px;
-  text-align: center;
-  font-size: 12px;          /* mismo tamaño que el tiempo del contador */
-  font-weight: 800;
-  color: #ffc107;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 28px;       /* recuadro más pequeño */
-  background: linear-gradient(90deg, #0e3448, #14506a);
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Flecha dentro del título */
-#flechaFechas {
-  font-size: 40px;          /* tamaño visualmente equilibrado */
-  vertical-align: middle;
-  margin-left: 10px;
-}
-
-/* === CONTENEDOR DE FECHAS === */
-#fechasPAES {
-  max-width: 400px;         /* igual ancho que el contador */
-  margin: 20px auto;
-  display: none;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
-
-/* Recuadros de fechas más compactos */
-.fechas-recuadro {
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 12px;
-}
-
-/* Texto pequeño dentro de los recuadros */
-.fechas-recuadro small {
-  font-size: 13px;
-}
-
-/* === MODO MÓVIL === */
-@media (max-width: 600px) {
+    
   #contadorPAES,
   #fechasPAES {
     max-width: 90%;
@@ -1651,6 +1580,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
