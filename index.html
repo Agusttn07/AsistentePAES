@@ -765,45 +765,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div>para la PAES ⏳</div>
 </div>
 
-
-
-<!-- fechas -->
-<h2 class="fechas-titulo">
+<!-- FECHAS -->
+<h2 class="fechas-titulo" onclick="toggleFechas()">
   📅 Fechas Importantes
 </h2>
 
-<!-- FECHAS IMPORTANTE - MENÚ DESPLEGABLE -->
-<div id="fechasPAES" style="max-width:600px; margin:30px auto; text-align:center;">
-  <label for="listaFechas" style="display:block; font-weight:bold; font-size:20px; color:#0e3448; margin-bottom:12px;">
-    📅 Selecciona una fecha importante:
-  </label>
-
-  <select id="listaFechas" onchange="mostrarFechaSeleccionada()" 
-          style="width:100%; padding:14px; border-radius:12px; border:none; 
-                 background:linear-gradient(145deg,#0e3448,#14506a); color:#fff; 
-                 font-size:16px; font-weight:600; text-align:center; cursor:pointer;">
-    <option value="">-- Haz clic para ver las fechas --</option>
-    <option value="Matemática 2 - Dic. 1, 15:00">Matemática 2 – Dic. 1, 15:00</option>
-    <option value="Lenguaje - Dic. 2, 09:00">Lenguaje – Dic. 2, 09:00</option>
-    <option value="Ciencias - Dic. 2, 15:00">Ciencias – Dic. 2, 15:00</option>
-    <option value="Matemática 1 - Dic. 3, 09:00">Matemática 1 – Dic. 3, 09:00</option>
-    <option value="Historia y Ciencias Sociales - Dic. 3, 15:00">Historia y Cs. Sociales – Dic. 3, 15:00</option>
-    <option value="Entrega resultados PAES Regular - Ene. 5, 08:00">Entrega resultados PAES Regular – Ene. 5, 08:00</option>
-    <option value="Inicio postulaciones - Ene. 5, 09:00">Inicio postulaciones – Ene. 5, 09:00</option>
-    <option value="Término postulaciones - Ene. 8, 13:00">Término postulaciones – Ene. 8, 13:00</option>
-    <option value="Resultados de selección - Ene. 19, 12:00">Resultados de selección – Ene. 19, 12:00</option>
-  </select>
-
-  <div id="fechaSeleccionada" 
-       style="margin-top:20px; font-size:18px; font-weight:bold; color:#14506a;">
-  </div>
+<!-- CONTENEDOR DE FECHAS (oculto al inicio) -->
+<div id="fechasPAES" 
+     style="max-width:800px; margin:20px auto; display:none; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; transition:all 0.4s ease;">
+  <div class="fechas-recuadro">Matemática 2<br><small>Dic. 1, 15:00</small></div>
+  <div class="fechas-recuadro">Lenguaje<br><small>Dic. 2, 09:00</small></div>
+  <div class="fechas-recuadro">Ciencias<br><small>Dic. 2, 15:00</small></div>
+  <div class="fechas-recuadro">Matemática 1<br><small>Dic. 3, 09:00</small></div>
+  <div class="fechas-recuadro">Historia y Ciencias Sociales<br><small>Dic. 3, 15:00</small></div>
+  <div class="fechas-recuadro">Entrega de resultados de la PAES Regular<br><small>Ene. 5, 08:00</small></div>
+  <div class="fechas-recuadro">Inicio etapa de postulación a las universidades<br><small>Ene. 5, 09:00</small></div>
+  <div class="fechas-recuadro">Término etapa de postulación a las universidades<br><small>Ene. 8, 13:00</small></div>
+  <div class="fechas-recuadro">Entrega de resultados del proceso de selección<br><small>Ene. 19, 12:00</small></div>
 </div>
 
 <script>
-function mostrarFechaSeleccionada() {
-  const select = document.getElementById("listaFechas");
-  const salida = document.getElementById("fechaSeleccionada");
-  salida.innerText = select.value ? "📌 " + select.value : "";
+function toggleFechas() {
+  const contenedor = document.getElementById('fechasPAES');
+  const titulo = document.querySelector('.fechas-titulo');
+  
+  if (contenedor.style.display === 'none' || contenedor.style.display === '') {
+    contenedor.style.display = 'grid';
+    titulo.innerHTML = '📅 Fechas Importantes ▲';
+  } else {
+    contenedor.style.display = 'none';
+    titulo.innerHTML = '📅 Fechas Importantes ▼';
+  }
 }
 </script>
 
@@ -1527,6 +1519,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
