@@ -317,6 +317,39 @@ body.dark #tiempo {
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
+
+/* === ESTILO UNIFICADO PARA BOTONES (mismo que fechas) === */
+.boton-estilo {
+  background: linear-gradient(145deg, #0e3448, #14506a);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease-in-out;
+}
+
+.boton-estilo:hover {
+  background: linear-gradient(145deg, #14506a, #0e3448);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* === MODO OSCURO === */
+body.dark .boton-estilo {
+  background: linear-gradient(145deg, #2b2b2b, #3a3a3a);
+  color: #ffc107;
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .boton-estilo:hover {
+  background: linear-gradient(145deg, #3a3a3a, #2b2b2b);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
 /* ponderacion personalizada */
 .custom-form {
   margin-top: 25px;
@@ -803,9 +836,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="resultado" aria-live="polite"></div>
 
     <div class="buttons">
-        <button id="btnLimpiar" class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
-        <button id="btnSimular" class="calc-btn" onclick="calcular()">Hacer simulación</button>
-        <button id="btnInvertir" class="calc-btn" onclick="invertirColores()">Invertir colores</button>
+        <button id="btnLimpiar" class="boton-estilo">Limpiar campos</button>
+        <button id="btnSimular" class="boton-estilo">Hacer simulación</button>
+        <button id="invertir" class="boton-estilo">Invertir colores</button>
+
     </div>
 
 
@@ -1583,6 +1617,7 @@ function invertirColores() {
 </script>
 </body>
 </html>
+
 
 
 
