@@ -1569,30 +1569,67 @@ function invertirColores() {
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+
+<!-- BOTÓN DE VOZ PARA CHATBASE -->
+<button id="vozChatbase"
+  style="position:fixed; bottom:100px; right:20px; z-index:1000;
+         background:#0e3448; color:white; border:none; border-radius:50%;
+         width:60px; height:60px; font-size:28px; cursor:pointer;
+         box-shadow:0 4px 10px rgba(0,0,0,0.3);">
+  🎤
+</button>
+
+<script>
+  // --- CONFIGURAR RECONOCIMIENTO DE VOZ ---
+  const reconocimiento = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  reconocimiento.lang = 'es-CL';
+  reconocimiento.continuous = false;
+  reconocimiento.interimResults = false;
+
+  const botonVoz = document.getElementById('vozChatbase');
+
+  botonVoz.addEventListener('click', () => {
+    reconocimiento.start();
+    botonVoz.innerHTML = '🎧'; // Cambia el ícono mientras escucha
+  });
+
+  reconocimiento.onresult = (event) => {
+    const texto = event.results[0][0].transcript;
+    botonVoz.innerHTML = '🎤';
+    enviarAlChatbase(texto);
+  };
+
+  reconocimiento.onerror = () => {
+    botonVoz.innerHTML = '🎤';
+  };
+
+  // --- ENVIAR MENSAJE DE VOZ AL CHATBASE ---
+  function enviarAlChatbase(mensaje) {
+    // Chatbase embebido como widget global
+    if (window.chatbase) {
+      window.chatbase("sendUserMessage", mensaje);
+      hablar(`Preguntaste: ${mensaje}`);
+    } else {
+      alert("El chatbot de Chatbase aún no está listo.");
+    }
+  }
+
+  // --- CONVERTIR TEXTO A VOZ ---
+  function hablar(texto) {
+    const msg = new SpeechSynthesisUtterance(texto);
+    msg.lang = "es-CL";
+    window.speechSynthesis.speak(msg);
+  }
+
+  // --- OPCIONAL: LEER LAS RESPUESTAS DEL CHATBOT ---
+  window.addEventListener("message", (event) => {
+    // Detectar mensajes del iframe de Chatbase
+    if (event.data?.type === "chatbase_bot_message") {
+      const respuesta = event.data.message;
+      if (respuesta) hablar(respuesta);
+    }
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
