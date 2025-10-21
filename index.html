@@ -1570,66 +1570,92 @@ function invertirColores() {
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 
-<!-- BOTÓN DE VOZ PARA CHATBASE -->
-<button id="vozChatbase"
-  style="position:fixed; bottom:100px; right:20px; z-index:1000;
-         background:#0e3448; color:white; border:none; border-radius:50%;
-         width:60px; height:60px; font-size:28px; cursor:pointer;
-         box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-  🎤
-</button>
-
 <script>
-  // --- CONFIGURAR RECONOCIMIENTO DE VOZ ---
+// Esperar a que el chat de Chatbase cargue
+window.addEventListener("load", () => {
+  const checkBubble = setInterval(() => {
+    // Busca el botón flotante del chat
+    const chatBubble = document.querySelector('iframe[src*="chatbase"]')?.parentElement;
+    if (chatBubble) {
+      clearInterval(checkBubble);
+
+      // Crear el botón de micrófono
+      const micButton = document.createElement("button");
+      micButton.id = "micButton";
+      micButton.innerHTML = "🎤";
+      micButton.style.position = "absolute";
+      micButton.style.bottom = "10px";
+      micButton.style.right = "10px";
+      micButton.style.background = "#0e3448";
+      micButton.style.color = "white";
+      micButton.style.border = "none";
+      micButton.style.borderRadius = "50%";
+      micButton.style.width = "40px";
+      micButton.style.height = "40px";
+      micButton.style.fontSize = "20px";
+      micButton.style.cursor = "pointer";
+      micButton.style.boxShadow = "0 3px 6px rgba(0,0,0,0.3)";
+      micButton.style.zIndex = "999999";
+
+      chatBubble.style.position = "relative"; // Asegura posicionamiento correcto
+      chatBubble.appendChild(micButton);
+
+      // Activar reconocimiento de voz
+      inicializarVoz(micButton);
+    }
+  }, 1000);
+});
+
+function inicializarVoz(botonVoz) {
+  if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window)) {
+    console.warn("El reconocimiento de voz no es compatible con este navegador.");
+    return;
+  }
+
   const reconocimiento = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  reconocimiento.lang = 'es-CL';
+  reconocimiento.lang = "es-CL";
   reconocimiento.continuous = false;
   reconocimiento.interimResults = false;
 
-  const botonVoz = document.getElementById('vozChatbase');
-
-  botonVoz.addEventListener('click', () => {
+  botonVoz.addEventListener("click", () => {
     reconocimiento.start();
-    botonVoz.innerHTML = '🎧'; // Cambia el ícono mientras escucha
+    botonVoz.innerHTML = "🎧";
   });
 
   reconocimiento.onresult = (event) => {
     const texto = event.results[0][0].transcript;
-    botonVoz.innerHTML = '🎤';
+    botonVoz.innerHTML = "🎤";
     enviarAlChatbase(texto);
   };
 
   reconocimiento.onerror = () => {
-    botonVoz.innerHTML = '🎤';
+    botonVoz.innerHTML = "🎤";
   };
+}
 
-  // --- ENVIAR MENSAJE DE VOZ AL CHATBASE ---
-  function enviarAlChatbase(mensaje) {
-    // Chatbase embebido como widget global
-    if (window.chatbase) {
-      window.chatbase("sendUserMessage", mensaje);
-      hablar(`Preguntaste: ${mensaje}`);
-    } else {
-      alert("El chatbot de Chatbase aún no está listo.");
-    }
+function enviarAlChatbase(mensaje) {
+  if (window.chatbase) {
+    window.chatbase("sendUserMessage", mensaje);
+    hablar(`Preguntaste: ${mensaje}`);
+  } else {
+    alert("El chatbot de Chatbase aún no está listo.");
   }
+}
 
-  // --- CONVERTIR TEXTO A VOZ ---
-  function hablar(texto) {
-    const msg = new SpeechSynthesisUtterance(texto);
-    msg.lang = "es-CL";
-    window.speechSynthesis.speak(msg);
+function hablar(texto) {
+  const msg = new SpeechSynthesisUtterance(texto);
+  msg.lang = "es-CL";
+  window.speechSynthesis.speak(msg);
+}
+
+window.addEventListener("message", (event) => {
+  if (event.data?.type === "chatbase_bot_message") {
+    const respuesta = event.data.message;
+    if (respuesta) hablar(respuesta);
   }
-
-  // --- OPCIONAL: LEER LAS RESPUESTAS DEL CHATBOT ---
-  window.addEventListener("message", (event) => {
-    // Detectar mensajes del iframe de Chatbase
-    if (event.data?.type === "chatbase_bot_message") {
-      const respuesta = event.data.message;
-      if (respuesta) hablar(respuesta);
-    }
-  });
+});
 </script>
 
 </body>
 </html>
+
