@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
     <meta name="twitter:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
 
-    <!-- favicon (google y navegador) -->
+    <!-- favicon -->
 <link rel="icon" href="https://asistentepaes.cl/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
 
@@ -98,7 +98,7 @@ body.dark {
   background: linear-gradient(145deg, #14506a, #0e3448);
 }
 
-/* efecto de brillo animado */
+/* brillo */
 .fechas-recuadro::after {
   content: "";
   position: absolute;
@@ -123,7 +123,6 @@ body.dark {
   opacity: 0.9;
 }
 
-/* === MODO OSCURO PARA FECHAS === */
 body.dark .fechas-recuadro {
   background: linear-gradient(145deg, #2b2b2b, #3a3a3a);
   color: #ffc107;
@@ -200,12 +199,10 @@ body.dark .temario-boton:hover {
   background: linear-gradient(135deg, #3a3a3a, #2b2b2b);
 }
 
-
-/* Estilo moderno y centrado para el título FECHAS IMPORTANTES */
 .fechas-titulo {
   display: block;
   width: fit-content;
-  margin: 60px auto 25px; /* auto centra el bloque */
+  margin: 60px auto 25px;
   text-align: center;
   font-size: 40px;
   font-weight: 800;
@@ -221,7 +218,7 @@ body.dark .temario-boton:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* efecto de luz diagonal */
+/* efecto de luz */
 .fechas-titulo::after {
   content: "";
   position: absolute;
@@ -238,7 +235,7 @@ body.dark .temario-boton:hover {
   left: 130%;
 }
 
-/* animación hover */
+/* animacion hover */
 .fechas-titulo:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -269,7 +266,7 @@ body.dark .fechas-titulo {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto de brillo diagonal animado */
+/* brillo */
 #contadorPAES::before {
   content: "";
   position: absolute;
@@ -291,12 +288,12 @@ body.dark .fechas-titulo {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Texto del contador */
+/* texto del contador */
 #contadorPAES div {
   margin: 10px 0;
 }
 
-/* Número del contador */
+/* numero del contador */
 #tiempo {
   font-size: 48px;
   font-weight: 800;
@@ -306,7 +303,7 @@ body.dark .fechas-titulo {
   text-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
 }
 
-/* Modo oscuro */
+/* modo oscuro */
 body.dark #contadorPAES {
   background: linear-gradient(135deg, #222, #333);
   color: #ffc107;
@@ -367,7 +364,7 @@ body.dark .dark-logo { display: block; }
     gap: 20px;
 }
 
-/* Título y descripción */
+/* titulo y descripcion */
 .header-text {
     text-align: left;
     margin: 20px 0 20px 30px;
@@ -583,7 +580,6 @@ body.dark footer {
         padding: 25px;
     }
 
-    /* inputs y select verticales */
     .input-row {
         display: flex;
         flex-direction: column;
@@ -597,7 +593,6 @@ body.dark footer {
         width: 100%;
     }
 
-    /* botones verticalmente */
     .buttons {
         display: flex;
         flex-direction: column;
@@ -631,8 +626,8 @@ body.dark footer {
 }
 
 #contadorPAES {
-  padding: 15px 12px;        /* recuadro más chico */
-  font-size: 26px;           /* texto general reducido */
+  padding: 15px 12px;
+  font-size: 26px;
 }
 
 #contadorPAES div {
@@ -644,7 +639,7 @@ body.dark footer {
   letter-spacing: 1px;
 }
 
-/* titulo FECHAS IMPORTANTES */
+/* FECHAS IMPORTANTES */
 .fechas-titulo {
   font-size: 18px;
   padding: 8px 12px;
@@ -655,7 +650,6 @@ body.dark footer {
   font-size: px;
 }
 
-/* Recuadros de fechas más pequeños */
 .fechas-recuadro {
   padding: 2px;
   font-size: 20px;
@@ -1161,8 +1155,8 @@ const ponderaciones = {
 
       
 };
+    
 /* carrera y universidad personalizada --- */
-
 const universidadSelect = document.getElementById("universidad");
 const carreraSelect = document.getElementById("carrera");
 const resultadoDiv = document.getElementById("resultado");
@@ -1404,7 +1398,6 @@ function aplicarValidaciones() {
     });
 }
 
-// Llamar cuando cargue la página
 aplicarValidaciones();
 
 let lastEdited = null;
@@ -1520,7 +1513,6 @@ function invertirColores() {
         logo.src = "asistente_logo.png";
     }
 
-    // cambiar color de los recuadros de fechas y temario
     const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
     fechas.forEach(div => {
         if (document.body.classList.contains("dark")) {
@@ -1537,14 +1529,12 @@ function invertirColores() {
         }
     });
 
-    // cambiar color del formulario personalizado
     const customForm = document.getElementById("customForm");
     if (customForm) {
         if (document.body.classList.contains("dark")) {
             customForm.style.background = "#333";  // fondo oscuro
             customForm.style.color = "#fff";       // texto claro
 
-            // cambiar inputs y botones dentro
             customForm.querySelectorAll("input, select, textarea, button").forEach(el => {
                 el.style.background = "#555";
                 el.style.color = "#fff";
@@ -1572,5 +1562,6 @@ function invertirColores() {
     
 </body>
 </html>
+
 
 
