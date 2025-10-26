@@ -29,17 +29,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 25px 60px;
       animation: slideDown 1s ease forwards;
     }
 
     .logo img {
-      height: 60px;
-      transition: transform 0.3s ease;
+      height: 85px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.4));
     }
 
     .logo img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.6));
     }
 
     nav a {
@@ -72,7 +74,7 @@
 
     .text-content h1 {
       font-family: "Manrope", sans-serif;
-      font-size: 3.5em;
+      font-size: 3.8em;
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 20px;
@@ -117,17 +119,15 @@
       animation: fadeInRight 1.2s ease forwards 0.6s;
     }
 
-    .video-section video, 
-.video-section iframe {
-  max-width: 30%;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
-}
+    .video-section video {
+      width: 80%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
 
-    .video-section video:hover,
-    .video-section iframe:hover {
+    .video-section video:hover {
       transform: scale(1.03);
     }
 
@@ -161,25 +161,51 @@
     }
 
     @media (max-width: 950px) {
-      main {
-        flex-direction: column;
-        text-align: center;
-        padding: 80px 30px;
-      }
-
-      .video-section {
-        margin-top: 50px;
-      }
-
-      .video-section video,
-      .video-section iframe {
-        width: 90%;
-        height: auto;
-      }
-
       header {
         flex-direction: column;
         gap: 15px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .logo img {
+        height: 90px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin: 10px 15px;
+        font-size: 1.1em;
+      }
+
+      main {
+        flex-direction: column;
+        text-align: center;
+        padding: 70px 20px;
+      }
+
+      .text-content h1 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+      }
+
+      .text-content p {
+        font-size: 1.05em;
+        margin-bottom: 30px;
+      }
+
+      .video-section {
+        margin-top: 40px;
+      }
+
+      .video-section video {
+        width: 90%;
+        height: auto;
       }
     }
   </style>
@@ -204,9 +230,8 @@
     </div>
 
     <div class="video-section">
-  <video src="robot_paes.mp4" autoplay loop muted playsinline></video>
-</div>
-
+      <video src="robot_paes.mp4" autoplay loop muted playsinline></video>
+    </div>
   </main>
 
   <footer>
