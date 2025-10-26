@@ -1,1561 +1,216 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MGTJJS9');</script>
-<!--tag manager-->
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--titulo google -->
-    <title>Simulador PAES - Asistente</title>
-
-    <link rel="canonical" href="https://asistentepaes.cl/" />
-
-    <!-- descripcion google-->
-    <meta name="description" content="Simula tus puntajes con Asistente PAES. Conoce tus resultados, hazle preguntas al ChatBot PAES y prepárate mejor para postular a la admisión 2026.">
-
-    <!-- palabras clave -->
-    <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes,">
-
-    <!-- icono web-->
-    <link rel="icon" type="image/png" href="logo.png">
-
-    <!-- compartir en redes-->
-    <meta property="og:title" content="Simulador de Puntajes PAES">
-    <meta property="og:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
-    <meta property="og:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
-    <meta property="og:url" content="https://asistentepaes.cl/">
-    <meta property="og:type" content="website">
-
-    <!-- twitter card-->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Simulador de Puntajes PAES">
-    <meta name="twitter:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
-    <meta name="twitter:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
-
-    <!-- favicon -->
-<link rel="icon" href="https://asistentepaes.cl/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
-
-<!-- datos para google -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Asistente PAES",
-  "url": "https://asistentepaes.cl/",
-  "logo": "https://asistentepaes.cl/logo.png",
-  "sameAs": [
-    "http://asistentepaes.cl/"
-  ]
-}
-
-</script>
-
-</head>
-
-<style>
-body {
-    
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background: #f5f5f5; 
-    color: #333; 
-    margin: 0; 
-    padding: 0; 
-    transition: background 0.3s, color 0.3s; 
-}
-body.dark { 
-    background: #333; 
-    color: #f5f5f5; 
-}
-
-.fechas-recuadro {
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 16px;
-  background: linear-gradient(145deg, #0e3448, #14506a);
-  color: #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-  transition: all 0.35s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.fechas-recuadro:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(145deg, #14506a, #0e3448);
-}
-
-.fechas-recuadro::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.25);
-  transform: skewX(-25deg);
-  transition: 0.6s;
-}
-
-.fechas-recuadro:hover::after {
-  left: 130%;
-}
-
-.fechas-recuadro small {
-  display: block;
-  font-size: 14px;
-  font-weight: normal;
-  opacity: 0.9;
-}
-
-body.dark .fechas-recuadro {
-  background: linear-gradient(145deg, #2b2b2b, #3a3a3a);
-  color: #ffc107;
-  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
-  border: 1px solid #555;
-}
-
-body.dark .fechas-recuadro:hover {
-  background: linear-gradient(145deg, #3a3a3a, #2b2b2b);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
-}
-
-body.dark .fechas-titulo {
-  background: linear-gradient(90deg, #222, #333);
-  color: #ffc107;
-  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
-}
-
-body.dark #flechaFechas {
-  color: #ffc107;
-}
-
-.temario-boton {
-  max-width: 750px;
-  margin: 40px auto;
-  padding: 25px 30px;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffc107, #ffda47);
-  color: #0e3448;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* efecto hover */
-.temario-boton:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #ffda47, #ffc107);
-}
-
-/* brillo animado */
-.temario-boton::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.35);
-  transform: skewX(-25deg);
-  transition: 0.6s;
-}
-
-.temario-boton:hover::after {
-  left: 130%;
-}
-
-/* modo oscuro */
-body.dark .temario-boton {
-  background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
-  color: #ffc107;
-  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
-}
-
-body.dark .temario-boton:hover {
-  background: linear-gradient(135deg, #3a3a3a, #2b2b2b);
-}
-
-.fechas-titulo {
-  display: block;
-  width: fit-content;
-  margin: 60px auto 25px;
-  text-align: center;
-  font-size: 40px;
-  font-weight: 800;
-  color: #ffc107;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px 40px;
-  background: linear-gradient(90deg, #0e3448, #14506a);
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* efecto de luz */
-.fechas-titulo::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: skewX(-25deg);
-  transition: left 0.6s;
-}
-
-.fechas-titulo:hover::after {
-  left: 130%;
-}
-
-/* animacion hover */
-.fechas-titulo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-/* modo oscuro */
-body.dark .fechas-titulo {
-  background: linear-gradient(90deg, #222, #333);
-  color: #ffc107;
-  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
-}
-
-
-/* CONTENEDOR DEL CONTADOR */
-#contadorPAES {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 40px;
-  background: linear-gradient(135deg, #0e3448, #14506a);
-  color: #fff;
-  border-radius: 18px;
-  text-align: center;
-  font-size: 32px;
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* brillo */
-#contadorPAES::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  transform: skewX(-25deg);
-  transition: left 0.6s ease;
-}
-
-#contadorPAES:hover::before {
-  left: 130%;
-}
-
-#contadorPAES:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* texto del contador */
-#contadorPAES div {
-  margin: 10px 0;
-}
-
-/* numero del contador */
-#tiempo {
-  font-size: 48px;
-  font-weight: 800;
-  color: #ffc107;
-  margin-top: 15px;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
-}
-
-/* modo oscuro */
-body.dark #contadorPAES {
-  background: linear-gradient(135deg, #222, #333);
-  color: #ffc107;
-  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
-}
-body.dark #tiempo {
-  color: #fff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
-
-/* ponderacion personalizada */
-.custom-form {
-  margin-top: 25px;
-  padding: 20px;
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-
-body.dark .custom-form {
-  background: #444;
-  border-color: #777;
-  color: #f5f5f5;
-}
-
-/* HEADER */
-header {
-    height: 80px;
-    background: #fff;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-}
-
-body.dark header {
-    background: #222;
-    border-color: #555;
-}
-
-
-/* logos */
-header .logo {
-    max-height: 120px;
-    width: auto;
-}
-
-header .dark-logo { display: none; }
-body.dark .light-logo { display: none; }
-body.dark .dark-logo { display: block; }
-
-/* botones */
-.header-buttons {
-    display: flex;
-    gap: 20px;
-}
-
-/* titulo y descripcion */
-.header-text {
-    text-align: left;
-    margin: 20px 0 20px 30px;
-}
-
-.header-text h1 {
-    font-size: 56px;
-    margin: 0;
-    font-family: 'Impact', sans-serif;
-}
-
-.header-description {
-    font-size: 15px;
-    color: #555;
-    margin-top: 8px;
-    line-height: 1.5;
-}
-
-body.dark .header-description { 
-    color: #ddd; 
-}
-
-
-/* MAIN*/
-main { 
-    max-width: 1700px; 
-    margin: 40px auto;
-    background: #e6e6e6; 
-    padding: 30px; 
-    border-radius: 12px; 
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1); 
-    transition: background 0.3s, color 0.3s; 
-}
-main.dark { 
-    background: #444; 
-    color: #f5f5f5; 
-}
-
-
-/* inputs */
-.input-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    margin-bottom: 15px; 
-}
-.input-wrapper label { 
-    margin-bottom: 5px; 
-    font-weight: 600; 
-}
-.input-wrapper input, 
-.input-wrapper select { 
-    padding: 10px; 
-    border-radius: 6px; 
-    border: 1px solid #ccc; 
-    font-size: 14px; 
-    width: 100%; 
-    box-sizing: border-box; 
-    transition: background 0.3s, border-color 0.3s, color 0.3s; 
-}
-body.dark .input-wrapper input, 
-body.dark .input-wrapper select { 
-    background: #666; 
-    border-color: #aaa; 
-    color: #f5f5f5; 
-}
-
-/* filas */
-.input-row { 
-    display: flex; 
-    gap: 20px; 
-}
-.input-row .input-wrapper { 
-    flex: 1; 
-}
-
-/* botones */
-.buttons { 
-    display: flex; 
-    justify-content: flex-end; 
-    gap: 10px; 
-    margin-top: 20px; 
-}
-.buttons button { 
-    padding: 10px 20px; 
-    font-size: 14px; 
-    border: none; 
-    border-radius: 6px; 
-    cursor: pointer; 
-    transition: 0.3s; 
-}
-.buttons .clear-btn { 
-    background: #fff; 
-    border: 1px solid #0e3448; 
-    color: #0e3448; 
-}
-.buttons .clear-btn:hover { 
-    background: #0e3448; 
-    color: #fff; 
-}
-.buttons .calc-btn { 
-    background: #0e3448; 
-    color: #fff; 
-}
-.buttons .calc-btn:hover { 
-    background: #0e3448; 
-}
-
-/* SCROLLEAR */
-.header-buttons {
-    position: absolute;
-    top: 17.5px;
-    right: 30px;
-    display: flex;
-    gap: 50px;
-}
-
-.header-buttons button {
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #0e3448;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-    transition: background 0.3s, transform 0.2s;
-}
-
-.header-buttons button:hover {
-    background: #14506a;
-    transform: scale(1.05);
-}
-
-/* resultado */
-#resultado { 
-    margin-top: 25px; 
-    padding: 15px; 
-    background: #fff; 
-    border-radius: 8px; 
-    border: 1px solid #ccc; 
-}
-body.dark #resultado { 
-    background: #555; 
-    border-color: #777; 
-    color: #f5f5f5; 
-}
-
-/* informacion */
-p.info { 
-    font-size: 13px; 
-    color: #555; 
-    margin-top: 15px; 
-}
-body.dark p.info { 
-    color: #ddd; 
-}
-
-/* links */
-a { 
-    color: #007bff; 
-    text-decoration: none; 
-}
-a:hover { 
-    text-decoration: underline; 
-}
-
-/* footer */
-footer { 
-    max-width: 800px; 
-    margin: 40px auto; 
-    font-size: 12px; 
-    color: #555; 
-    text-align: center; 
-}
-body.dark footer { 
-    color: #ddd; 
-}
-
-/* CELULAR */
-@media (max-width: 600px) {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistente PAES - Página de Inicio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0E3448, #174A63);
+      color: white;
+      font-family: "Inter", sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      animation: fadeIn 1.2s ease;
+    }
 
     header {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        padding: 0px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      animation: slideDown 1s ease forwards;
     }
 
-    header .logo {
-        width: 120px;
-        margin: 0 0 10px 0;
-        align-self: flex-start;
-        clip-path: inset(12px 2px 25px 2px);
-        margin-top: 5px;
+    .logo img {
+      height: 60px;
+      transition: transform 0.3s ease;
     }
 
-    .header-text h1 {
-    font-size: 36px;
-    margin: 0;
-    font-family: 'Impact', sans-serif;
-}
+    .logo img:hover {
+      transform: scale(1.05);
+    }
 
-    .header-description {
-        font-size: 14px;
-        margin-top: 6px;
-        max-width: 90%;
-        line-height: 1.4;
+    nav a {
+      color: #E0F7FA;
+      text-decoration: none;
+      margin-left: 35px;
+      font-size: 1.05em;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #4FC3F7;
     }
 
     main {
-        margin: 20px auto;
-        padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 100px 60px;
     }
 
-    .input-row {
-        display: flex;
+    .text-content {
+      max-width: 550px;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: fadeInLeft 1s ease forwards 0.3s;
+    }
+
+    .text-content h1 {
+      font-family: "Manrope", sans-serif;
+      font-size: 3.5em;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #E1F5FE;
+      text-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
+    }
+
+    .text-content p {
+      font-size: 1.15em;
+      margin-bottom: 40px;
+      color: #CDEBF7;
+      line-height: 1.6em;
+      font-weight: 400;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #4FC3F7, #29B6F6);
+      color: #0E3448;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.05em;
+      cursor: pointer;
+      transition: 0.4s ease;
+      box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
+      font-family: "Manrope", sans-serif;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(79, 195, 247, 0.8);
+    }
+
+    .video-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: fadeInRight 1.2s ease forwards 0.6s;
+    }
+
+    .video-section video, 
+.video-section iframe {
+  max-width: 30%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+    .video-section video:hover,
+    .video-section iframe:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #B0BEC5;
+      font-size: 0.9em;
+      margin-top: auto;
+      animation: fadeIn 2s ease forwards 1.5s;
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 950px) {
+      main {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 30px;
+      }
+
+      .video-section {
+        margin-top: 50px;
+      }
+
+      .video-section video,
+      .video-section iframe {
+        width: 90%;
+        height: auto;
+      }
+
+      header {
         flex-direction: column;
         gap: 15px;
-    }
-
-    .input-wrapper input,
-    .input-wrapper select {
-        font-size: 16px;
-        padding: 14px;
-        width: 100%;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 30px;
-    }
-
-    .buttons button {
-        width: 100%;
-        padding: 14px;
-        font-size: 16px;
-    }
-
-
-    .header-buttons {
-        top: 25px;
-        right: 20px;
-        gap: 25px;
-    }
-
-    .header-buttons button {
-        padding: 10px 16px;
-        font-size: 14px;
-        border-radius: 6px;
-    }
-
-#contadorPAES,
-#fechasPAES {
-  max-width: 85%;
-  margin: 20px auto;
-}
-
-#contadorPAES {
-  padding: 15px 12px;
-  font-size: 26px;
-}
-
-#contadorPAES div {
-  font-size: 26px;
-}
-
-#tiempo {
-  font-size: 34px;         
-  letter-spacing: 1px;
-}
-
-/* FECHAS IMPORTANTES */
-.fechas-titulo {
-  font-size: 18px;
-  padding: 8px 12px;
-  margin: 35px auto 20px;
-}
-
-#flechaFechas {
-  font-size: px;
-}
-
-.fechas-recuadro {
-  padding: 2px;
-  font-size: 20px;
-  border-radius: 10px;
-  width: 350px;
-  margin: 0 auto;
-}
-
-.fechas-recuadro small {
-  font-size: 18px;
-
-}
-
-}
-
-</style>
-</head>
-<body>
-
-    <!-- google tag manager -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MGTJJS9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- end gtm -->
-
-<header>
-    <img src="asistente_logo_negro1.png" alt="Logo Asistente" class="logo light-logo">
-    <img src="asistente_logo_blanco.png" alt="Logo Asistente" class="logo dark-logo">
-
-</header>
-
-<!-- titulo y descripcion -->
-<div class="header-text">
-    <h1>ASISTENTE DE POSTULACIONES</h1>
-    <p class="header-description">
-        Simula tus puntajes PAES y explora toda la variedad de universidades y carreras dentro de nuestro Asistente PAES.<br>
-        El simulador está diseñado para guiarte en el proceso de admisión,
-        ayudarte a comparar alternativas y tomar decisiones informadas
-        para alcanzar tus metas académicas.
-    </p>
-</div>
-  
-<main id="main">
-    <div class="input-row">
-        <div class="input-wrapper">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre">
-        </div>
-        <div class="input-wrapper">
-    <label for="curso">Curso</label>
-    <select id="curso">
-        <option value="">Selecciona...</option>
-        <option value="1ro Medio">1ro Medio</option>
-        <option value="2do Medio">2do Medio</option>
-        <option value="4to Medio">3ro Medio</option>
-        <option value="4to Medio">4to Medio</option>
-        <option value="Egresado/a">Egresado/a</option>
-    </select>
-</div>
-
-    </div>
-
-    <div class="input-row">
-        <div class="input-wrapper">
-            <label for="universidad">Universidad</label>
-            <select id="universidad">
-                <option value="">Selecciona...</option>
-                <option value="Universidad de Chile">Universidad de Chile</option>
-                <option value="Universidad Técnica Federico Santa María">Universidad Técnica Federico Santa María</option>
-                <option value="Pontificia Universidad Católica de Chile">Pontificia Universidad Católica de Chile</option>
-                <option value="Universidad de Santiago de Chile">Universidad de Santiago de Chile</option>
-                <option value="Universidad Adolfo Ibáñez">Universidad Adolfo Ibáñez</option>
-                <option value="Otra Universidad">Otra Universidad</option>
-            </select>
-        </div>
-        <div class="input-wrapper">
-            <label for="carrera">Carrera</label>
-            <select id="carrera">
-                <option value="">Selecciona...</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="input-row">
-        <div class="input-wrapper">
-            <label for="nem">Notas de Enseñanza Media (NEM) <a href="https://demre.cl/paes/factores-seleccion/notas-ensenanza-media" target="_blank">*</a></label>
-            <input type="number" id="nem" min="100" max="1000">
-        </div>
-        <div class="input-wrapper">
-            <label for="ranking">Ranking <a href="https://demre.cl/paes/factores-seleccion/puntaje-ranking" target="_blank">*</a></label>
-            <input type="number" id="ranking" min="100" max="1000">
-        </div>
-    </div>
-
-    <div class="input-row">
-        <div class="input-wrapper">
-            <label for="lectura">Competencia Lectora</label>
-            <input type="number" id="lectura" min="100" max="1000">
-        </div>
-        <div class="input-wrapper">
-            <label for="mate1">Competencia Matemática 1 (M1)</label>
-            <input type="number" id="mate1" min="100" max="1000">
-        </div>
-    </div>
-
-    <div class="input-row">
-    <div class="input-wrapper">
-        <label for="historia_ciencias">Seleccione Historia o Ciencias</label>
-        <select id="historia_ciencias" onchange="mostrarCampo()">
-            <option value="">Selecciona...</option>
-            <option value="historia">Historia y Ciencias Sociales</option>
-            <option value="ciencias">Ciencias</option>
-        </select>
-    </div>
-</div>
-
-<div class="input-row" id="campoExtra" style="display:none;">
-    <div class="input-wrapper">
-        <label id="labelExtra" for="valorExtra"></label>
-        <input type="number" id="valorExtra" min="0" max="1000">
-    </div>
-</div>
-
-    <div class="input-wrapper">
-        <label for="mate2">Competencia Matemática 2 (M2)</label>
-        <input type="number" id="mate2" min="0" max="1000">
-    </div>
-
-    <p class="info">
-        Escala desde el 100 al 1.000<br>
-        En caso de no rendir una prueba, ingresa 0 respectivamente.<br>
-        📌 ¿No conoces las ponderaciones de alguna universidad? 👉 <a href="https://demre.cl" target="_blank">Haz clic aquí para ver la oferta oficial en el DEMRE</a>
-    </p>
-
-    <div id="resultado" aria-live="polite"></div>
-
-    <div class="buttons">
-        <button id="btnLimpiar" class="clear-btn" onclick="limpiarCampos()">Limpiar campos</button>
-        <button id="btnSimular" class="calc-btn" onclick="calcular()">Hacer simulación</button>
-        <button id="btnInvertir" class="calc-btn" onclick="invertirColores()">Invertir colores</button>
-    </div>
-
-<div class="header-buttons">
-  <button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth'});">
-    Simulador
-  </button>
-  <button onclick="document.getElementById('flechaFechas').scrollIntoView({behavior: 'smooth'});">
-    Fechas
-  </button>
-</div>
-
-</main>
-
-
-<!-- contador -->
-<div id="contadorPAES">
-  <div>Faltan:</div>
-  <div id="tiempo">Cargando...</div>
-  <div>para la PAES ⏳</div>
-</div>
-
-<!-- FECHAS -->
-<h2 class="fechas-titulo" onclick="toggleFechas()">
-  📅 Fechas Importantes <span id="flechaFechas">▼</span>
-</h2>
-
-<!-- CONTENEDOR DE FECHAS (oculto al inicio) -->
-<div id="fechasPAES" 
-     style="max-width:800px; margin:20px auto; display:none; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; transition:all 0.4s ease;">
-  <div class="fechas-recuadro">Matemática 2<br><small>Dic. 1, 15:00</small></div>
-  <div class="fechas-recuadro">Lenguaje<br><small>Dic. 2, 09:00</small></div>
-  <div class="fechas-recuadro">Ciencias<br><small>Dic. 2, 15:00</small></div>
-  <div class="fechas-recuadro">Matemática 1<br><small>Dic. 3, 09:00</small></div>
-  <div class="fechas-recuadro">Historia y Ciencias Sociales<br><small>Dic. 3, 15:00</small></div>
-  <div class="fechas-recuadro">Entrega de resultados de la PAES Regular<br><small>Ene. 5, 08:00</small></div>
-  <div class="fechas-recuadro">Inicio etapa de postulación a las universidades<br><small>Ene. 5, 09:00</small></div>
-  <div class="fechas-recuadro">Término etapa de postulación a las universidades<br><small>Ene. 8, 13:00</small></div>
-  <div class="fechas-recuadro">Entrega de resultados del proceso de selección<br><small>Ene. 19, 12:00</small></div>
-</div>
-
-<script>
-function toggleFechas() {
-  const contenedor = document.getElementById('fechasPAES');
-  const flecha = document.getElementById('flechaFechas');
-
-  if (contenedor.style.display === 'none' || contenedor.style.display === '') {
-    contenedor.style.display = 'grid';
-    flecha.textContent = '▲';
-  } else {
-    contenedor.style.display = 'none';
-    flecha.textContent = '▼';
-  }
-}
-</script>
-
-
-
-<!-- temario -->
-<div class="temario-boton"
-     onclick="window.open('https://demre.cl/la-prueba/pruebas-y-temarios/presentacion-pruebas-temarios-paes-regular','_blank')">
-  📘 Haz clic aquí para conocer el temario de la PAES Regular – Admisión 2026
-</div>
-
-
-<script>
-// contador
-function actualizarContador() {
-    const fechaPAES = new Date("December 1, 2025 15:00:00").getTime();
-    const ahora = new Date().getTime();
-    const diferencia = fechaPAES - ahora;
-
-    if(diferencia <= 0){
-        document.getElementById("tiempo").innerHTML = "¡La PAES ha comenzado, mucho éxito!";
-        clearInterval(intervalo);
-        return;
-    }
-
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    document.getElementById("tiempo").innerHTML = 
-        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-}
-
-const intervalo = setInterval(actualizarContador, 1000);
-actualizarContador();
-</script>
-
-
-<footer>
-    Toda la información presentada en esta plataforma ha sido recopilada y organizada a partir de los datos oficiales publicados por el Departamento de Evaluación, Medición y Registro Educacional (DEMRE) de la Universidad de Chile.
-    <p>© 2025 Asistente PAES | Desarrollado por Agustín Moraga - Estudiante de IV Medio | Todos los derechos reservados</p>
-</footer>
-    
-<script>
-
-const ponderaciones = {
-  "Universidad de Chile": {
-    "Arquitectura": { nem: 10, ranking: 20, cl: 20, m1: 30, m2: 10, ciencias: 10, historia: 10, corte: 746.80 },
-    "Diseño": { nem: 10, ranking: 30, cl: 25, m1: 25, m2: 0, ciencias: 10, historia: 10, corte: 727.85 },
-    "Geografía": { nem: 10, ranking: 25, cl: 20, m1: 25, m2: 0, ciencias: 20, historia: 20, corte: 629.7 },
-    "Actuación Teatral": { nem: 10, ranking: 10, cl: 10, m1: 10, m2: 0, ciencias: 0, historia: 10, corte: 653.80 },
-    "Artes Visuales": { nem: 10, ranking: 20, cl: 35, m1: 10, m2: 0, ciencias: 25, historia: 0, corte: 645.05 },
-    "Danza": { nem: 10, ranking: 10, cl: 10, m1: 10, m2: 0, ciencias: 10, historia: 0, corte: 741.00 },
-    "Diseño Teatral": { nem: 10, ranking: 20, cl: 25, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 616.50 },
-    "Ingeniería en Sonido": { nem: 10, ranking: 20, cl: 20, m1: 30, m2: 10, ciencias: 0, historia: 10, corte: 789.90 },
-    "Teoría de la Música": { nem: 10, ranking: 20, cl: 30, m1: 15, m2: 0, ciencias: 25, historia: 0, corte: 636.50 },
-    "Teoría e Historia del Arte, con mención en Lic. en Artes": { nem: 10, ranking: 20, cl: 35, m1: 10, m2: 0, ciencias: 25, historia: 0, corte: 540.55 },
-    "Composición": { nem: 10, ranking: 10, cl: 10, m1: 10, m2: 0, ciencias: 10, historia: 0, corte: 637.60 },
-    "Biología, Lic. en Ciencias": { nem: 10, ranking: 20, cl: 20, m1: 15, m2: 15, ciencias: 20, historia: 0, corte: 694.75 },
-    "Biología con mención en Medio Ambiente": { nem: 10, ranking: 20, cl: 20, m1: 10, m2: 15, ciencias: 25, historia: 0, corte: 706.35 },
-    "Física, Lic. en Ciencias con mención en": { nem: 10, ranking: 20, cl: 20, m1: 20, m2: 20, ciencias: 10, historia: 0, corte: 793.40 },
-    "Ingeniería en Biotecnología Molecular": { nem: 10, ranking: 20, cl: 20, m1: 10, m2: 15, ciencias: 25, historia: 0, corte: 831.45 },
-    "Matemáticas, Lic. en Ciencias": { nem: 10, ranking: 20, cl: 20, m1: 20, m2: 20, ciencias: 10, historia: 0, corte: 610.70 },
-    "Pedagogía en Ed. Media en Biología y Química": { nem: 10, ranking: 20, cl: 20, m1: 15, m2: 10, ciencias: 25, historia: 0, corte: 508.60 },
-    "Pedagogía en Ed. Media en Matemática y Física": { nem: 10, ranking: 20, cl: 20, m1: 20, m2: 15, ciencias: 15, historia: 0, corte: 637.40 },
-    "Química, Lic. en Ciencias": { nem: 10, ranking: 20, cl: 20, m1: 10, m2: 15, ciencias: 25, historia: 0, corte: 578.10 },
-    "Química Ambiental": { nem: 10, ranking: 20, cl: 20, m1: 10, m2: 15, ciencias: 25, historia: 0, corte: 616.20 },
-    "Ingeniería Agronómica": { nem: 20, ranking: 40, cl: 10, m1: 20, m2: 0, ciencias: 10, historia: 10, corte: 637.50 },
-    "Ingeniería en Recursos Naturales Renovables": { nem: 20, ranking: 40, cl: 10, m1: 15, m2: 5, ciencias: 10, historia: 10, corte: 538.55 },
-    "Ingeniería (Plan Común)": { nem: 10, ranking: 25, cl: 10, m1: 20, m2: 20, ciencias: 15, historia: 0, corte: 834.65 },
-    "Ingeniería Forestal": { nem: 10, ranking: 35, cl: 10, m1: 25, m2: 0, ciencias: 20, historia: 20, corte: 437.70 },
-    "Ingeniería en Recursos Hídricos": { nem: 10, ranking: 30, cl: 10, m1: 25, m2: 5, ciencias: 20, historia: 20, corte: 508.45 },
-    "Bioquímica": { nem: 10, ranking: 20, cl: 10, m1: 20, m2: 10, ciencias: 30, historia: 0, corte: 794.40 },
-    "Ingeniería en Alimentos": { nem: 10, ranking: 20, cl: 10, m1: 20, m2: 10, ciencias: 30, historia: 0, corte: 632.80 },
-    "Química": { nem: 10, ranking: 20, cl: 10, m1: 20, m2: 10, ciencias: 30, historia: 0, corte: 726.70 },
-    "Química y Farmacia": { nem: 10, ranking: 20, cl: 10, m1: 20, m2: 10, ciencias: 30, historia: 0, corte: 801.60 },
-    "Antropología - Arqueología": { nem: 20, ranking: 20, cl: 20, m1: 15, m2: 0, ciencias: 25, historia: 25, corte: 742.40 },
-    "Pedagogía en Educación Parvularia": { nem: 30, ranking: 20, cl: 20, m1: 15, m2: 0, ciencias: 15, historia: 15, corte: 669.00 },
-    "Psicología": { nem: 10, ranking: 30, cl: 25, m1: 20, m2: 0, ciencias: 15, historia: 15, corte: 862.95 },
-    "Sociología": { nem: 20, ranking: 20, cl: 25, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 709.15 },
-    "Trabajo Social": { nem: 20, ranking: 20, cl: 25, m1: 20, m2: 0, ciencias: 15, historia: 15, corte: 680.55 },
-    "Pedagogía en Educación Física": { nem: 20, ranking: 20, cl: 20, m1: 15, m2: 0, ciencias: 25, historia: 25, corte: 665.15 },
-    "Pedagogía en Educación Especial": { nem: 20, ranking: 20, cl: 20, m1: 20, m2: 0, ciencias: 20, historia: 20, corte: 648.00 },
-    "Medicina Veterinaria": { nem: 10, ranking: 20, cl: 20, m1: 35, m2: 0, ciencias: 15, historia: 0, corte: 766.20 },
-    "Cine y Televisión": { nem: 15, ranking: 25, cl: 25, m1: 20, m2: 0, ciencias: 15, historia: 15, corte: 724.60 },
-    "Periodismo": { nem: 15, ranking: 25, cl: 25, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 718.25 },
-    "Derecho, Lic. en Ciencias Jurídicas y Sociales": { nem: 20, ranking: 20, cl: 25, m1: 10, m2: 0, ciencias: 0, historia: 25, corte: 844.90 },
-    "Contador Auditor": { nem: 10, ranking: 20, cl: 10, m1: 35, m2: 15, ciencias: 10, historia: 10, corte: 764.35 },
-    "Ingeniería en Información y Control de Gestión": { nem: 10, ranking: 20, cl: 10, m1: 35, m2: 15, ciencias: 10, historia: 10, corte: 777.65 },
-    "Ingeniería Comercial": { nem: 10, ranking: 20, cl: 10, m1: 35, m2: 15, ciencias: 10, historia: 10, corte: 833.75 },
-    "Estudios Internacionales": { nem: 15, ranking: 20, cl: 25, m1: 20, m2: 0, ciencias: 20, historia: 20, corte: 836.85 },
-    "Filosofía, Licenciatura en": { nem: 10, ranking: 20, cl: 35, m1: 15, m2: 0, ciencias: 20, historia: 20, corte: 464.05 },
-    "Historia, Licenciatura en": { nem: 10, ranking: 20, cl: 20, m1: 15, m2: 0, ciencias: 35, historia: 35, corte: 688.40 },
-    "Lingüística y Literatura con mención, Lic. en": { nem: 10, ranking: 20, cl: 35, m1: 15, m2: 0, ciencias: 20, historia: 20, corte: 623.40 },
-    "Lingüística y Literatura Inglesas, Lic. en": { nem: 10, ranking: 20, cl: 30, m1: 15, m2: 0, ciencias: 25, historia: 25, corte: 542.25 },
-    "Pedagogía en Educación Básica": { nem: 10, ranking: 20, cl: 25, m1: 25, m2: 0, ciencias: 20, historia: 20, corte: 662.45 },
-    "Administración Pública": { nem: 10, ranking: 30, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 20, corte: 759.60 },
-    "Ciencia Política": { nem: 10, ranking: 30, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 20, corte: 770.60 },
-    "Enfermería": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 783.75 },
-    "Fonoaudiología": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 619.10 },
-    "Kinesiología": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 760.45 },
-    "Medicina": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 924.80 },
-    "Nutrición y Dietética": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 693.20 },
-    "Obstetricia y Puericultura": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 778.90 },
-    "Tecnología Médica": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 796.20 },
-    "Terapia Ocupacional": { nem: 10, ranking: 20, cl: 20, m1: 20, m2: 0, ciencias: 30, historia: 0, corte: 689.20 },
-    "Odontología": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 782.80 },
-    "Programa Académico de Bachillerato": { nem: 10, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 35, historia: 0, corte: 800.35 }
-  },
-
-  "Universidad Técnica Federico Santa María": {
-    "Arquitectura (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 737.25 },
-    "Arquitectura (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 759.90 },
-    "Construcción Civil": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 625.95 },
-    "Ingeniería Civil (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 747.35 },
-    "Ingeniería Civil (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 798.45 },
-    "Ingeniería Civil Ambiental": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 690.35 },
-    "Ingeniería Civil de Minas": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 799.35 },
-    "Ingeniería Civil Eléctrica (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 782.30 },
-    "Ingeniería Civil Eléctrica (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 803.45 },
-    "Ingeniería Civil Electrónica": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 748.95 },
-    "Ingeniería Civil en Biotecnología": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 756.85 },
-    "Ingeniería Civil Física (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 718.50 },
-    "Ingeniería Civil Física (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 762.05 },
-    "Ingeniería Civil Industrial (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 810.65 },
-    "Ingeniería Civil Industrial (Vitacura)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 840.05 },
-    "Ingeniería Civil Informática (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 771.15 },
-    "Ingeniería Civil Informática (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 830.00 },
-    "Ingeniería Civil Matemática (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 795.95 },
-    "Ingeniería Civil Matemática (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 815.35 },
-    "Ingeniería Civil Mecánica (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 758.55 },
-    "Ingeniería Civil Mecánica (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 811.35 },
-    "Ingeniería Civil Metalúrgica": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 730.30 },
-    "Ingeniería Civil Plan Común (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 745.50 },
-    "Ingeniería Civil Plan Común (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 815.60 },
-    "Ingeniería Civil Química (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 769.25 },
-    "Ingeniería Civil Química (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 806.95 },
-    "Ingeniería Civil Telemática (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 685.95 },
-    "Ingeniería Civil Telemática (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 750.00 },
-    "Ingeniería Comercial (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 724.90 },
-    "Ingeniería Comercial (Vitacura)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 786.45 },
-    "Ingeniería en Aviación Comercial": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 709.40 },
-    "Ingeniería en Biotecnología (Viña del Mar)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 598.10 },
-    "Ingeniería en Biotecnología (Concepción)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 545.05 },
-    "Ingeniería en Diseño de Productos (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 624.90 },
-    "Ingeniería en Diseño de Productos (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 638.50 },
-    "Ingeniería en Fabricación y Diseño Industrial": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 583.00 },
-    "Ingeniería en Informática (Viña del Mar)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 663.30 },
-    "Ingeniería en Informática (Concepción)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 591.60 },
-    "Ingeniería en Mantenimiento Industrial (Viña del Mar)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 587.90 },
-    "Ingeniería en Mantenimiento Industrial (Concepción)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 593.05 },
-    "Ingeniería en Prevención de Riesgos Laborales y Ambientales (Viña del Mar)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 544.20 },
-    "Ingeniería en Prevención de Riesgos Laborales y Ambientales (Concepción)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 500.70 },
-    "Licenciatura en Astrofísica (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 706.45 },
-    "Licenciatura en Astrofísica (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 738.55 },
-    "Licenciatura en Física (Valparaíso)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 694.15 },
-    "Licenciatura en Física (San Joaquin)": { nem: 15, ranking: 20, cl: 10, m1: 35, m2: 10, ciencias: 10, historia: 10, corte: 721.70 }
-  },
-
-  "Pontificia Universidad Católica de Chile": {
-    "Administración Pública": { nem: 20, ranking: 20, cl: 20, m1: 30, m2: 0, ciencias: 10, historia: 10, corte: 779.90 },
-    "Agronomía": { nem: 20, ranking: 30, cl: 10, m1: 30, m2: 0, ciencias: 10, historia: 0, corte: 723.20 },
-    "Antropología": { nem: 20, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 780.55 },
-    "Arqueología": { nem: 20, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 780.55 },
-    "Arquitectura": { nem: 20, ranking: 20, cl: 15, m1: 35, m2: 0, ciencias: 10, historia: 10, corte: 871.20 },
-    "Arte": { nem: 20, ranking: 30, cl: 20, m1: 15, m2: 0, ciencias: 0, historia: 15, corte: 718.45 },
-    "Astronomía": { nem: 20, ranking: 20, cl: 10, m1: 35, m2: 0, ciencias: 15, historia: 0, corte: 908.40 },
-    "Biología": { nem: 20, ranking: 20, cl: 10, m1: 25, m2: 0, ciencias: 25, historia: 0, corte: 789.65 },
-    "Biología Marina": { nem: 20, ranking: 20, cl: 10, m1: 25, m2: 0, ciencias: 25, historia: 0, corte: 783.35 },
-    "Bioquímica": { nem: 20, ranking: 20, cl: 10, m1: 30, m2: 0, ciencias: 20, historia: 0, corte: 886.90 },
-    "Ciencia Política": { nem: 20, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 837.30 },
-    "College Artes y Humanidades": { nem: 20, ranking: 20, cl: 25, m1: 25, m2: 0, ciencias: 0, historia: 10, corte: 742.25 },
-    "College Ciencias Naturales y Matemáticas": { nem: 20, ranking: 20, cl: 10, m1: 35, m2: 0, ciencias: 15, historia: 0, corte: 859.65 },
-    "College Ciencias Sociales": { nem: 20, ranking: 20, cl: 25, m1: 25, m2: 0, ciencias: 0, historia: 10, corte: 762.50 },
-    "Construcción Civil": { nem: 20, ranking: 20, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 0, corte: 711.10 },
-    "Derecho": { nem: 20, ranking: 20, cl: 25, m1: 10, m2: 0, ciencias: 0, historia: 25, corte: 869.35 },
-    "Dirección Audiovisual": { nem: 15, ranking: 25, cl: 25, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 811.50 },
-    "Diseño": { nem: 25, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 10, historia: 10, corte: 798.15 },
-    "Enfermería": { nem: 20, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 840.25 },
-    "Estadística": { nem: 20, ranking: 10, cl: 10, m1: 45, m2: 5, ciencias: 10, historia: 0, corte: 785.55 },
-    "Filosofía": { nem: 25, ranking: 25, cl: 25, m1: 15, m2: 0, ciencias: 0, historia: 10, corte: 673.95 },
-    "Física": { nem: 20, ranking: 10, cl: 10, m1: 45, m2: 0, ciencias: 15, historia: 0, corte: 884.15 },
-    "Fonoaudiología": { nem: 20, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 697.45 },
-    "Geografía": { nem: 20, ranking: 20, cl: 20, m1: 25, m2: 0, ciencias: 0, historia: 15, corte: 658.40 },
-    "Historia": { nem: 20, ranking: 20, cl: 15, m1: 10, m2: 0, ciencias: 0, historia: 35, corte: 736.15 },
-    "Ingeniería (Plan Común)": { nem: 20, ranking: 20, cl: 10, m1: 25, m2: 10, ciencias: 15, historia: 0, corte: 899.95 },
-    "Ingeniería Comercial": { nem: 20, ranking: 20, cl: 10, m1: 30, m2: 10, ciencias: 10, historia: 10, corte: 880.40 },
-    "Ingeniería en Recursos Naturales": { nem: 15, ranking: 25, cl: 10, m1: 25, m2: 10, ciencias: 15, historia: 0, corte: 677.25 },
-    "Ingeniería Forestal": { nem: 20, ranking: 30, cl: 10, m1: 30, m2: 0, ciencias: 10, historia: 0, corte: 723.20 },
-    "Interpretación Musical": { nem: 12, ranking: 12, cl: 12, m1: 14, m2: 0, ciencias: 14, historia: 14, corte: 768.80 },
-    "Kinesiología": { nem: 20, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 801.95 },
-    "Letras Hispánicas": { nem: 25, ranking: 25, cl: 25, m1: 15, m2: 0, ciencias: 0, historia: 10, corte: 714.55 },
-    "Letras Inglesas": { nem: 25, ranking: 25, cl: 25, m1: 15, m2: 0, ciencias: 0, historia: 10, corte: 733.75 },
-    "Licenciatura en Ingeniería en Ciencia de Datos": { nem: 20, ranking: 20, cl: 10, m1: 30, m2: 10, ciencias: 10, historia: 0, corte: 798.90 },
-    "Licenciatura en Ingeniería em Ciencia de la Computación": { nem: 20, ranking: 20, cl: 10, m1: 25, m2: 10, ciencias: 15, historia: 0, corte: 810.90 },
-    "Matemática": { nem: 20, ranking: 10, cl: 10, m1: 45, m2: 0, ciencias: 15, historia: 0, corte: 827.90 },
-    "Medicina": { nem: 20, ranking: 20, cl: 15, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 954.45 },
-    "Medicina Veterinaria": { nem: 20, ranking: 20, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 825.50 },
-    "Música": { nem: 25, ranking: 25, cl: 25, m1: 25, m2: 0, ciencias: 0, historia: 10, corte: 659.24 },
-    "Nutrición y Dietética": { nem: 20, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 760.15 },
-    "Odontología": { nem: 20, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 25, historia: 0, corte: 865.40 },
-    "Pedagogía en Educación Especial": { nem: 20, ranking: 20, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 20, corte: 725.60 },
-    "Pedagogía en Educación Física y Salud para Educación Básica y Media": { nem: 20, ranking: 30, cl: 10, m1: 30, m2: 0, ciencias: 10, historia: 0, corte: 741.60 },
-    "Pedagogía en Educación General Básica": { nem: 25, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 10, historia: 10, corte: 690.00 },
-    "Pedagogía en Educación Media en Ciencias Naturales y Biología": { nem: 20, ranking: 20, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 0, corte: 765.60 },
-    "Pedagogía en Educación Media en Física": { nem: 20, ranking: 20, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 0, corte: 729.90 },
-    "Pedagogía en Educación Media en Matemática": { nem: 20, ranking: 20, cl: 10, m1: 35, m2: 5, ciencias: 10, historia: 0, corte: 808.35 },
-    "Pedagogía en Educación Media en Química": { nem: 20, ranking: 20, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 0, corte: 649.70 },
-    "Pedagogía en Educación Parvularia": { nem: 25, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 10, historia: 10, corte: 721.75 },
-    "Pedagogía en Inglés para Educación Básica y Media": { nem: 20, ranking: 20, cl: 30, m1: 20, m2: 0, ciencias: 0, historia: 10, corte: 760.30 },
-    "Periodismo": { nem: 15, ranking: 25, cl: 25, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 811.50 },
-    "Psicología": { nem: 25, ranking: 25, cl: 10, m1: 20, m2: 0, ciencias: 20, historia: 20, corte: 880.90 },
-    "Publicidad": { nem: 15, ranking: 25, cl: 25, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 811.50 },
-    "Química": { nem: 20, ranking: 20, cl: 10, m1: 35, m2: 0, ciencias: 15, historia: 0, corte: 847.40 },
-    "Química y Farmacia": { nem: 20, ranking: 20, cl: 10, m1: 35, m2: 0, ciencias: 15, historia: 0, corte: 905.30 },
-    "Sociología": { nem: 20, ranking: 25, cl: 20, m1: 20, m2: 0, ciencias: 0, historia: 15, corte: 703.40 },
-    "Teología": { nem: 25, ranking: 25, cl: 25, m1: 10, m2: 0, ciencias: 0, historia: 15, corte: 546.00 },
-    "Terapia Ocupacional": { nem: 20, ranking: 20, cl: 20, m1: 20, m2: 0, ciencias: 20, historia: 0, corte: 746.80 },
-    "Trabajo Social": { nem: 25, ranking: 25, cl: 15, m1: 15, m2: 0, ciencias: 0, historia: 20, corte: 690.40 }
-  },
-
-  "Universidad de Santiago de Chile": {
-    "Administración Pública": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 0, "corte": 713.2 },
-    "Análisis y Gestión de Procesos Productivos": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 453.25 },
-    "Analista en Computación Científica": { "nem": 10, "ranking": 40, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 674.4 },
-    "Arquitectura": { "nem": 10, "ranking": 40, "cl": 20, "m1": 15, "m2": 0, "historia": 15, "ciencias": 0, "corte": 765.75 },
-    "Astrofísica con Mención en Ciencia de Datos": { "nem": 10, "ranking": 40, "cl": 10, "m1": 10, "m2": 20, "historia": 0, "ciencias": 10, "corte": 693 },
-    "Bachillerato en Ciencias y Humanidades": { "nem": 10, "ranking": 40, "cl": 20, "m1": 20, "m2": 0, "historia": 10, "ciencias": 10, "corte": 763.5 },
-    "Bioquímica": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 0, "historia": 0, "ciencias": 15, "corte": 808.15 },
-    "Contador Público y Auditor (Diurno)": { "nem": 10, "ranking": 40, "cl": 10, "m1": 25, "m2": 5, "historia": 10, "ciencias": 10, "corte": 694.1 },
-    "Contador Público y Auditor (Vespertino)": { "nem": 10, "ranking": 40, "cl": 10, "m1": 25, "m2": 5, "historia": 10, "ciencias": 10, "corte": 682.85 },
-    "Derecho": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 20, "ciencias": 0, "corte": 776.4 },
-    "Diseño en Comunicación Visual": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 10, "corte": 676.7 },
-    "Diseño Industrial": { "nem": 10, "ranking": 40, "cl": 20, "m1": 20, "m2": 0, "historia": 10, "ciencias": 10, "corte": 641.8 },
-    "Enfermería": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 810.75 },
-    "Gestión de Personas": { "nem": 10, "ranking": 40, "cl": 20, "m1": 20, "m2": 0, "historia": 10, "ciencias": 10, "corte": 555.1 },
-    "Ingeniería Civil Biomédica": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 750.4 },
-    "Ingeniería Civil en Ambiente": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 658.9 },
-    "Ingeniería Civil en Biotecnología": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 735.55 },
-    "Ingeniería Civil en Electricidad": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 753.3 },
-    "Ingeniería Civil en Geomensura y Geomática": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 613.05 },
-    "Ingeniería Civil Industrial": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 791.6 },
-    "Ingeniería Civil en Informática": { "nem": 25, "ranking": 25, "cl": 15, "m1": 10, "m2": 15, "historia": 0, "ciencias": 10, "corte": 784.9 },
-    "Ingeniería Civil en Mecánica": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 730.7 },
-    "Ingeniería Civil en Metalurgia": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 718.4 },
-    "Ingeniería Civil en Minas": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 776.35 },
-    "Ingeniería Civil en Obras Civiles": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 709 },
-    "Ingeniería Civil en Química": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 730.75 },
-    "Ingeniería Civil en Telemática": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 676.2 },
-    "Ingeniería Civil en Territorio y Medioambiente": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 552.95 },
-    "Ingeniería Civil Mecatrónica": { "nem": 25, "ranking": 25, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 706.3 },
-    "Ingeniería Comercial": { "nem": 10, "ranking": 40, "cl": 10, "m1": 25, "m2": 5, "historia": 10, "ciencias": 10, "corte": 735.05 },
-    "Ingeniería de Alimentos": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 5, "historia": 0, "ciencias": 10, "corte": 571.95 },
-    "Ingeniería de Ejecución en Climatización": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 557.7 },
-    "Ingeniería de Ejecución en Computación e Informática": { "nem": 25, "ranking": 25, "cl": 15, "m1": 10, "m2": 15, "historia": 0, "ciencias": 10, "corte": 743.25 },
-    "Ingeniería de Ejecución en Electricidad": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 698.4 },
-    "Ingeniería de Ejecución Industrial": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 715.85 },
-    "Ingeniería de Ejecución en Mecánica": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 661.75 },
-    "Ingeniería de Ejecución en Metalurgia": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 643.2 },
-    "Ingeniería de Ejecución en Minas": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 684.9 },
-    "Ingeniería de Ejecución en Química": { "nem": 25, "ranking": 25, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 604.2 },
-    "Ingeniería en Agronegocios": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 573.1 },
-    "Ingeniería Estadística": { "nem": 10, "ranking": 40, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 701.9 },
-    "Ingeniería Física": { "nem": 10, "ranking": 40, "cl": 10, "m1": 15, "m2": 15, "historia": 0, "ciencias": 10, "corte": 657.35 },
-    "Ingeniería Matemática": { "nem": 10, "ranking": 40, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 674.2 },
-    "Kinesiología": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 764.4 },
-    "Licenciatura en Ciencias de la Actividad Física / Entrenador Deportivo": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 666.8 },
-    "Licenciatura en Ciencias de la Actividad Física / Terapeuta en Actividad Física y Salud": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 579.15 },
-    "Licenciatura en Estudios Internacionales": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 20, "ciencias": 0, "corte": 789 },
-    "Licenciatura en Historia": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 20, "ciencias": 0, "corte": 576.4 },
-    "Licenciatura en Linguística Aplicada a la Traducción Inglés - Japonés e Inglés - Portugués": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 0, "corte": 785.5 },
-    "Medicina": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 934.2 },
-    "Obstetricia y Puericultura": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 800.9 },
-    "Pedagogía en Castellano": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 0, "corte": 672.4 },
-    "Pedagogía en Educación Física": { "nem": 10, "ranking": 40, "cl": 15, "m1": 15, "m2": 0, "historia": 0, "ciencias": 20, "corte": 642.25 },
-    "Pedagogía en Educación General Básica": { "nem": 10, "ranking": 40, "cl": 20, "m1": 20, "m2": 0, "historia": 10, "ciencias": 10, "corte": 650.3 },
-    "Pedagogía en Filosofía": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 0, "corte": 524.1 },
-    "Pedagogía en Física y Matemática": { "nem": 10, "ranking": 40, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 614.9 },
-    "Pedagogía en Historia y Ciencias Sociales": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 20, "ciencias": 0, "corte": 667.8 },
-    "Pedagogía en Inglés": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 0, "corte": 685.2 },
-    "Pedagogía en Matemática y Computación": { "nem": 10, "ranking": 40, "cl": 10, "m1": 20, "m2": 10, "historia": 0, "ciencias": 10, "corte": 620.3 },
-    "Pedagogía en Química y Biología": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 0, "historia": 0, "ciencias": 15, "corte": 652.35 },
-    "Periodismo": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 0, "corte": 684.1 },
-    "Psicología": { "nem": 10, "ranking": 40, "cl": 25, "m1": 15, "m2": 0, "historia": 10, "ciencias": 0, "corte": 812.1 },
-    "Publicidad": { "nem": 10, "ranking": 40, "cl": 30, "m1": 10, "m2": 0, "historia": 10, "ciencias": 10, "corte": 687.8 },
-    "Química": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 0, "historia": 0, "ciencias": 15, "corte": 765.55 },
-    "Química y Farmacia": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 0, "historia": 0, "ciencias": 15, "corte": 855.45 },
-    "Técnico Universitario en Análisis Químico y Físico": { "nem": 10, "ranking": 40, "cl": 15, "m1": 20, "m2": 0, "historia": 0, "ciencias": 15, "corte": 612.8 },
-    "Tecnología en Alimentos": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 513.55 },
-    "Tecnología en Automatización Industrial": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 571.5 },
-    "Tecnología en Construcciones": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 484.65 },
-    "Tecnología en Mantenimiento Industrial": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 469.4 },
-    "Tecnología en Telecomunicaciones": { "nem": 10, "ranking": 40, "cl": 15, "m1": 25, "m2": 0, "historia": 10, "ciencias": 10, "corte": 527.3 },
-    "Terapia Ocupacional": { "nem": 10, "ranking": 40, "cl": 20, "m1": 10, "m2": 0, "historia": 0, "ciencias": 20, "corte": 708.1 }
-  },
-
-  "Universidad Adolfo Ibáñez": {
-    "Bachillerato de Ingeniería Civil (Santiago)": { nem: 10, ranking: 30, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 10, corte: 800.5 },
-    "Bachillerato de Ingeniería Comercial (Santiago)": { nem: 10, ranking: 30, cl: 10, m1: 40, m2: 0, ciencias: 10, historia: 10, corte: 744.7 },
-    "Doble Título Comunicación Estratégica - Periodismo (Santiago)": { nem: 10, ranking: 30, cl: 40, m1: 10, m2: 0, ciencias: 10, historia: 10, corte: 690.3 },
-    "Doble Título Comunicación Estratégica - Periodismo (Viña del Mar)": { nem: 10, ranking: 30, cl: 40, m1: 10, m2: 0, ciencias: 10, historia: 10, corte: 635.1 },
-    "Derecho (Santiago)": { nem: 10, ranking: 30, cl: 40, m1: 10, m2: 0, ciencias: 10, historia: 10, corte: 756.7 },
-    "Derecho (Viña del Mar)": { nem: 10, ranking: 30, cl: 40, m1: 10, m2: 0, ciencias: 10, historia: 10, corte: 718.8 },
-    "Doble Grado Derecho - Ingeniería Comercial (Santiago)": { nem: 10, ranking: 30, cl: 25, m1: 25, m2: 0, ciencias: 10, historia: 10, corte: 832.8 },
-    "Doble Grado Derecho - Ingeniería Comercial (Viña del Mar)": { nem: 10, ranking: 30, cl: 25, m1: 25, m2: 0, ciencias: 10, historia: 10, corte: 788.95 },
-    "Doble Título Arquitectura - Ingeniería Civil Industrial (Santiago)": { nem: 10, ranking: 30, cl: 10, m1: 35, m2: 5, ciencias: 10, historia: 10, corte: "No hay información (Nueva Carrera)"},
-    "Doble Título Ingeniería Comercial - Sociología (Santiago)": { nem: 10, ranking: 30, cl: 20, m1: 30, m2: 0, ciencias: 10, historia: 10, corte: 770.5 },
-    
-    
-  },
-
-      
-};
-    
-/* carrera y universidad personalizada --- */
-const universidadSelect = document.getElementById("universidad");
-const carreraSelect = document.getElementById("carrera");
-const resultadoDiv = document.getElementById("resultado");
-
-const textoEscala = document.getElementById("textoEscala");
-const btnLimpiar = document.getElementById("btnLimpiar");
-const btnSimular = document.getElementById("btnSimular");
-const btnInvertir = document.getElementById("btnInvertir");
-
-if (![...universidadSelect.options].some(o => o.value === "Otra Universidad")) {
-  const opt = document.createElement("option");
-  opt.value = "Otra Universidad";
-  opt.textContent = "Otra Universidad";
-  universidadSelect.appendChild(opt);
-}
-
-universidadSelect.addEventListener("change", function () {
-  const uni = this.value;
-
-  if (uni === "Otra Universidad") {
-    carreraSelect.innerHTML = `<option value="Otra carrera" selected>Otra carrera</option>`;
-    mostrarFormularioPersonalizado();
-
-    if (btnSimular) btnSimular.style.display = "none";
-
-    const form = document.getElementById("customForm");
-    if (form) {
-      form.parentNode.insertBefore(textoEscala, form.nextSibling);
-      form.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
-      form.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
-      form.parentNode.insertBefore(btnInvertir, btnSimular.nextSibling);
-    }
-
-  } else {
-    if (btnSimular) btnSimular.style.display = "inline-block";
-
-    ocultarFormularioPersonalizado();
-
-    if (ponderaciones[uni]) {
-      carreraSelect.innerHTML = `<option value="">Otra Carrera</option>`;
-      for (const carrera in ponderaciones[uni]) {
-        const opt = document.createElement("option");
-        opt.value = carrera;
-        opt.textContent = carrera;
-        carreraSelect.appendChild(opt);
       }
     }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="asistente_logo_blanco.png" alt="Logo Asistente PAES">
+    </div>
+    <nav>
+      <a href="simulador.html">Ir al simulador</a>
+      <a href="#quienes">Quienes somos</a>
+      <a href="#faq">Preguntas frecuentes</a>
+    </nav>
+  </header>
 
-    resultadoDiv.parentNode.insertBefore(textoEscala, resultadoDiv.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnLimpiar, textoEscala.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnSimular, btnLimpiar.nextSibling);
-    resultadoDiv.parentNode.insertBefore(btnInvertir, btnSimular.nextSibling);
-  }
-});
-
-function mostrarFormularioPersonalizado() {
-  if (document.getElementById("customForm")) return;
-
-  const div = document.createElement("div");
-  div.id = "customForm";
-  div.classList.add("custom-form");
-
-
-  div.innerHTML = `
-    <h3>Ponderación Personalizada</h3>
-    <div class="input-row">
-      <div class="input-wrapper">
-        <label>Universidad</label>
-        <input type="text" id="otraUniNombre" placeholder="Ej: Universidad Católica de Valparaíso">
-      </div>
-      <div class="input-wrapper">
-        <label>Carrera</label>
-        <input type="text" id="otraCarrera" placeholder="Ej: Ingeniería Civil Industrial">
-      </div>
-      <div class="input-wrapper">
-        <label>Puntaje de Corte</label>
-        <input type="number" id="pCorte" min="100" max="1000" placeholder="Ej: 782">
-      </div>
+  <main>
+    <div class="text-content">
+      <h1>Prepárate para tu futuro con el Asistente PAES</h1>
+      <p>Descubre tus posibilidades de ingreso, conoce fechas importantes y recibe orientación personalizada impulsada por inteligencia artificial. Todo desde una plataforma intuitiva y moderna.</p>
+      <button class="btn" onclick="window.location.href='simulador.html'">Ir al simulador</button>
     </div>
 
-    <div class="input-row">
-      <div class="input-wrapper"><label>% NEM</label><input type="number" id="pNEM" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Ranking</label><input type="number" id="pRanking" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Lenguaje</label><input type="number" id="pLenguaje" min="0" max="100"></div>
-    </div>
+    <div class="video-section">
+  <video src="robot_paes.mp4" autoplay loop muted playsinline></video>
+</div>
 
-    <div class="input-row">
-      <div class="input-wrapper"><label>% M1</label><input type="number" id="pM1" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% M2</label><input type="number" id="pM2" min="0" max="100"></div>
-      <div class="input-wrapper"><label>% Ciencias/Historia</label><input type="number" id="pExtra" min="0" max="100"></div>
-    </div>
+  </main>
 
-    <div class="buttons" style="justify-content: flex-start; margin-top: 25px;">
-      <button class="calc-btn" type="button" id="btnPersonalizado" onclick="calcularPersonalizado()">
-        Hacer simulación personalizada
-      </button>
-    </div>
-
-  `;
-
-  resultadoDiv.parentNode.insertBefore(div, resultadoDiv);
-}
-
-function ocultarFormularioPersonalizado() {
-  const form = document.getElementById("customForm");
-  if (form) form.remove();
-}
-
-function calcularPersonalizado() {
-  const sum = [
-    +document.getElementById("pNEM").value || 0,
-    +document.getElementById("pRanking").value || 0,
-    +document.getElementById("pLenguaje").value || 0,
-    +document.getElementById("pM1").value || 0,
-    +document.getElementById("pM2").value || 0,
-    +document.getElementById("pExtra").value || 0
-  ].reduce((a, b) => a + b, 0);
-
-  if (sum !== 100) {
-    alert("❌ La suma de los porcentajes debe ser exactamente 100%.");
-    return;
-  }
-
-  const nem = +document.getElementById("nem").value || 0;
-  const ranking = +document.getElementById("ranking").value || 0;
-  const lenguaje = +document.getElementById("lectura").value || 0;
-  const m1 = +document.getElementById("mate1").value || 0;
-  const m2 = +document.getElementById("mate2").value || 0;
-  const extra = +document.getElementById("valorExtra").value || 0;
-
-  if (lenguaje === 0 || m1 === 0 || extra === 0) {
-    alert("⚠️ Debes ingresar los puntajes de Lenguaje, M1 y Ciencias o Historia para continuar.");
-    return;
-  }
-
-  const ponderado =
-    nem * (+document.getElementById("pNEM").value / 100) +
-    ranking * (+document.getElementById("pRanking").value / 100) +
-    lenguaje * (+document.getElementById("pLenguaje").value / 100) +
-    m1 * (+document.getElementById("pM1").value / 100) +
-    m2 * (+document.getElementById("pM2").value / 100) +
-    extra * (+document.getElementById("pExtra").value / 100);
-
-  const uni = document.getElementById("otraUniNombre").value || "Universidad Personalizada";
-  const carrera = document.getElementById("otraCarrera").value || "Otra carrera";
-  const corte = +document.getElementById("pCorte").value || null;
-
-  let mensaje = `<strong>${uni} - ${carrera}</strong><br>Puntaje ponderado: <strong>${ponderado.toFixed(2)}</strong>`;
-  if (corte) {
-    if (ponderado >= corte) {
-      mensaje += `<br>🎉 Tu puntaje supera el corte (${corte}). ¡Felicitaciones!`;
-    } else {
-      mensaje += `<br>⚠️ Tu puntaje está por debajo del corte (${corte}).`;
-      mensaje += `<br>Puedes ayudarte del ChatBot PAES para saber como mejorar tus puntajes!`;
-    }
-  }
-
-  resultadoDiv.innerHTML = mensaje;
-}
-
-const originalLimpiarCampos = window.limpiarCampos;
-window.limpiarCampos = function () {
-  if (typeof originalLimpiarCampos === "function") originalLimpiarCampos();
-  const custom = document.getElementById("customForm");
-  if (custom) custom.querySelectorAll("input").forEach(input => (input.value = ""));
-};
-
-
-document.getElementById("carrera").addEventListener("change", function () {
-    const universidad = document.getElementById("universidad").value;
-    const carrera = this.value;
-
-    if (universidad && carrera && ponderaciones[universidad] && ponderaciones[universidad][carrera]) {
-        const pond = ponderaciones[universidad][carrera];
-
-        const selectHC = document.getElementById("historia_ciencias");
-
-        if (pond.historia > 0 && pond.ciencias === 0) {
-            selectHC.value = "historia";
-            mostrarCampo();
-        } else if (pond.ciencias > 0 && pond.historia === 0) {
-            selectHC.value = "ciencias";
-            mostrarCampo();
-        } else {
-            selectHC.value = "";
-            document.getElementById("campoExtra").style.display = "none";
-        }
-    }
-});
-
-// funciones auxiliares
-function mostrarCampo() {
-    const seleccion = document.getElementById("historia_ciencias").value;
-    const campo = document.getElementById("campoExtra");
-    const label = document.getElementById("labelExtra");
-    if(seleccion){
-        campo.style.display = "flex";
-        label.innerText = seleccion === "historia" ? "Historia y Ciencias Sociales" : "Ciencias";
-    } else {
-        campo.style.display = "none";
-    }
-}
-
-function limpiarCampos(){
-    const campos = ["nombre","curso","universidad","carrera","nem","ranking","lectura","mate1","mate2","historia_ciencias","valorExtra"];
-    campos.forEach(id => document.getElementById(id).value="");
-    document.getElementById("campoExtra").style.display="none";
-    document.getElementById("resultado").innerHTML="";
-    lastEdited=null;
-}
-
-function aplicarValidaciones() {
-    const reglas = {
-        nem: { min: 100, max: 1000, permitirCero: false },
-        ranking: { min: 100, max: 1000, permitirCero: false },
-        lectura: { min: 100, max: 1000, permitirCero: false },
-        mate1: { min: 100, max: 1000, permitirCero: false },
-        valorExtra: { min: 100, max: 1000, permitirCero: true },
-        mate2: { min: 100, max: 1000, permitirCero: true }
-    };
-
-    Object.keys(reglas).forEach(id => {
-        const input = document.getElementById(id);
-        if (!input) return;
-
-        input.addEventListener("change", () => {
-            let val = parseInt(input.value);
-            const { min, max, permitirCero } = reglas[id];
-
-            if (isNaN(val)) return;
-
-            if (permitirCero && val === 0) {
-                return;
-            }
-
-            if (val < min) input.value = min;
-            if (val > max) input.value = max;
-        });
-    });
-}
-
-aplicarValidaciones();
-
-let lastEdited = null;
-["lectura","mate1","mate2","valorExtra","nem","ranking"].forEach(id => {
-    document.getElementById(id).addEventListener("input", ()=>{lastEdited=id;});
-});
-
-document.getElementById("universidad").addEventListener("change", function(){
-    const uni = this.value;
-    const select = document.getElementById("carrera");
-    select.innerHTML = '<option value="">Selecciona...</option>';
-    if(ponderaciones[uni]){
-        Object.keys(ponderaciones[uni]).forEach(carrera=>{
-            const opt = document.createElement("option");
-            opt.value = carrera;
-            opt.textContent = carrera;
-            select.appendChild(opt);
-        });
-    }
-});
-
-
-// FUNCION CALCULAR
-function calcular() {
-    function validarInputs() {
-    const nem = document.getElementById("nem");
-    const ranking = document.getElementById("ranking");
-    const lectura = document.getElementById("lectura");
-    const mate1 = document.getElementById("mate1");
-    const valorExtra = document.getElementById("valorExtra");
-    const mate2 = document.getElementById("mate2");
-
-    // nem, ranking, lenguaje y m1: entre 100 y 1000
-    [nem, ranking, lectura, mate1].forEach(input => {
-        if (input.value !== "") {
-            let val = parseInt(input.value);
-            if (val < 100) input.value = 100;
-            if (val > 1000) input.value = 1000;
-        }
-    });
-
-    // historia/ciencias y m2: 0 o entre 100 y 1000
-    [valorExtra, mate2].forEach(input => {
-        if (input.value !== "") {
-            let val = parseInt(input.value);
-            if (val !== 0 && val < 100) input.value = 100;
-            if (val > 1000) input.value = 1000;
-        }
-    });
-}
-
-    const uni = document.getElementById("universidad").value;
-    const carrera = document.getElementById("carrera").value;
-    const nem = parseFloat(document.getElementById("nem").value) || 0;
-    const ranking = parseFloat(document.getElementById("ranking").value) || 0;
-    const lectura = parseFloat(document.getElementById("lectura").value) || 0;
-    const mate1 = parseFloat(document.getElementById("mate1").value) || 0;
-    const mate2 = parseFloat(document.getElementById("mate2").value) || 0;
-    const seleccionElectiva = document.getElementById("historia_ciencias").value;
-    const valorExtra = parseFloat(document.getElementById("valorExtra").value) || 0;
-
-    if (!uni || !carrera || lectura === 0 || mate1 === 0 || valorExtra === 0) {
-        document.getElementById("resultado").innerHTML = 
-            '<span style="color:#c0392b; font-weight:600;">Debes ingresar los puntajes en Lectura, M1 y la electiva (Historia o Ciencias)</span>';
-        return;
-    }
-
-    const pond = ponderaciones[uni][carrera];
-    if (!pond) {
-        document.getElementById("resultado").innerHTML = 
-            '<span style="color:#c0392b;">No hay ponderaciones disponibles para esta carrera.</span>';
-        return;
-    }
-
-    // calcular puntaje ponderado
-    const puntaje = Math.round(
-        lectura * pond.cl / 100 +
-        mate1 * pond.m1 / 100 +
-        mate2 * pond.m2 / 100 +
-        valorExtra * (seleccionElectiva === 'historia' ? pond.historia / 100 : pond.ciencias / 100) +
-        nem * pond.nem / 100 +
-        ranking * pond.ranking / 100
-    );
-
-    // calcular diferencia con el puntaje de corte
-    const diferencia = Math.round(puntaje - pond.corte);
-    let estado = '';
-    if (diferencia >= 0) {
-        estado = `✅ Felicidades, estás sobre el puntaje de corte por ${diferencia} puntos`;
-    } else {
-        estado = `❌ No alcanza el puntaje mínimo por ${Math.abs(diferencia)} puntos`;
-    }
-
-    // mostrar resultados
-    document.getElementById("resultado").innerHTML = `
-        <b>Universidad:</b> ${uni}<br>
-        <b>Carrera:</b> ${carrera}<br>
-        <b>Puntaje ponderado estimado:</b> ${puntaje}<br>
-        <b>Puntaje de Corte:</b> ${pond.corte}<br>
-        <b>Estado:</b> ${estado}
-    `;
-}
-
-function invertirColores() {
-    document.body.classList.toggle("dark");
-    document.getElementById("main").classList.toggle("dark");
-    document.getElementById("header").classList.toggle("dark");
-
-    const logo = document.getElementById("logo");
-    if (document.body.classList.contains("dark")) {
-        logo.src = "asistente_logo_negro.png";
-    } else {
-        logo.src = "asistente_logo.png";
-    }
-
-    const fechas = document.querySelectorAll("#fechasPAES > div, #temarioPAES");
-    fechas.forEach(div => {
-        if (document.body.classList.contains("dark")) {
-            div.style.background = "#444";
-            div.style.color = "#fff";
-        } else {
-            if (div.id === "temarioPAES") {
-                div.style.background = "#ffc107";
-                div.style.color = "#000";
-            } else {
-                div.style.background = "#e9ecef";
-                div.style.color = "#000";
-            }
-        }
-    });
-
-    const customForm = document.getElementById("customForm");
-    if (customForm) {
-        if (document.body.classList.contains("dark")) {
-            customForm.style.background = "#333";  // fondo oscuro
-            customForm.style.color = "#fff";       // texto claro
-
-            customForm.querySelectorAll("input, select, textarea, button").forEach(el => {
-                el.style.background = "#555";
-                el.style.color = "#fff";
-                el.style.borderColor = "#777";
-            });
-        } else {
-            customForm.style.background = "#fff";
-            customForm.style.color = "#000";
-
-            customForm.querySelectorAll("input, select, textarea, button").forEach(el => {
-                el.style.background = "";
-                el.style.color = "";
-                el.style.borderColor = "";
-            });
-        }
-    }
-}
-
-
-
-</script>
-    <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="xpAdjyorppIPJ_A763pYA";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
-    
+  <footer>
+    © 2025 Asistente PAES | Innovando en educación con IA
+  </footer>
 </body>
 </html>
-
-
-
-
