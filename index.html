@@ -1,19 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];
+    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5MGTJJS9');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asistente PAES - Página de Inicio</title>
 
-  <!-- Fuentes profesionales -->
+  <title>Simulador PAES - Asistente</title>
+
+  <link rel="canonical" href="https://asistentepaes.cl/" />
+
+  <meta name="description" content="Simula tus puntajes con Asistente PAES. Conoce tus resultados, hazle preguntas al ChatBot PAES y prepárate mejor para postular a la admisión 2026.">
+
+  <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes">
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <meta property="og:title" content="Simulador de Puntajes PAES">
+  <meta property="og:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
+  <meta property="og:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
+  <meta property="og:url" content="https://asistentepaes.cl/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulador de Puntajes PAES">
+  <meta name="twitter:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
+  <meta name="twitter:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
+
+  <link rel="icon" href="https://asistentepaes.cl/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Asistente PAES",
+    "url": "https://asistentepaes.cl/",
+    "logo": "https://asistentepaes.cl/logo.png",
+    "sameAs": [
+      "http://asistentepaes.cl/"
+    ]
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: linear-gradient(135deg, #0E3448, #174A63);
@@ -26,17 +67,16 @@
       animation: fadeIn 1.2s ease;
     }
 
-    /* ---------- HEADER ---------- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 50px; /* Más cerca de los bordes */
+      padding: 25px 50px;
       animation: slideDown 1s ease forwards;
     }
 
     .logo img {
-      height: 120px; /* Logo mucho más grande */
+      height: 120px;
       transition: transform 0.3s ease, filter 0.3s ease;
       filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.4));
     }
@@ -55,11 +95,8 @@
       transition: color 0.3s ease;
     }
 
-    nav a:hover {
-      color: #4FC3F7;
-    }
+    nav a:hover { color: #4FC3F7; }
 
-    /* ---------- MAIN CONTENT ---------- */
     main {
       display: flex;
       justify-content: space-between;
@@ -112,7 +149,6 @@
       box-shadow: 0 0 35px rgba(79, 195, 247, 0.8);
     }
 
-    /* ---------- VIDEO SECTION ---------- */
     .video-section {
       flex: 1;
       display: flex;
@@ -123,19 +159,17 @@
       animation: fadeInRight 1.2s ease forwards 0.6s;
     }
 
+    /* Mantener tu video original */
     .video-section video {
-      width: 30%; /* Tamaño reducido al 30% */
+      width: 30%;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease;
     }
 
-    .video-section video:hover {
-      transform: scale(1.05);
-    }
+    .video-section video:hover { transform: scale(1.05); }
 
-    /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
       padding: 20px;
@@ -145,75 +179,30 @@
       animation: fadeIn 2s ease forwards 1.5s;
     }
 
-    /* ---------- ANIMATIONS ---------- */
     @keyframes fadeInLeft {
       from { opacity: 0; transform: translateX(-50px); }
       to { opacity: 1; transform: translateX(0); }
     }
-
     @keyframes fadeInRight {
       from { opacity: 0; transform: translateX(50px); }
       to { opacity: 1; transform: translateX(0); }
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- RESPONSIVE (Celulares y tablets) ---------- */
     @media (max-width: 950px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .logo img {
-        height: 90px; /* Logo grande también en móvil */
-      }
-
-      nav {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      nav a {
-        margin: 10px 15px;
-        font-size: 1.1em;
-      }
-
-      main {
-        flex-direction: column;
-        text-align: center;
-        padding: 70px 20px;
-      }
-
-      .text-content h1 {
-        font-size: 2.5em;
-        margin-bottom: 15px;
-      }
-
-      .text-content p {
-        font-size: 1.05em;
-        margin-bottom: 30px;
-      }
-
-      .video-section {
-        margin-top: 40px;
-      }
-
-      .video-section video {
-        width: 90%; /* En móvil ocupa casi todo el ancho */
-        height: auto;
-      }
+      header { flex-direction: column; gap: 15px; text-align: center; padding: 20px; }
+      .logo img { height: 90px; }
+      nav { display: flex; justify-content: center; flex-wrap: wrap; }
+      nav a { margin: 10px 15px; font-size: 1.1em; }
+      main { flex-direction: column; text-align: center; padding: 70px 20px; }
+      .text-content h1 { font-size: 2.5em; margin-bottom: 15px; }
+      .text-content p { font-size: 1.05em; margin-bottom: 30px; }
+      .video-section { margin-top: 40px; }
+      .video-section video { width: 90%; height: auto; }
     }
   </style>
 </head>
