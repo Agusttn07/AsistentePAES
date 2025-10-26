@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asistente PAES - Página de Inicio</title>
 
+  <!-- Fuentes profesionales -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -25,16 +26,17 @@
       animation: fadeIn 1.2s ease;
     }
 
+    /* ---------- HEADER ---------- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 60px;
+      padding: 25px 50px; /* Más cerca de los bordes */
       animation: slideDown 1s ease forwards;
     }
 
     .logo img {
-      height: 85px;
+      height: 120px; /* Logo mucho más grande */
       transition: transform 0.3s ease, filter 0.3s ease;
       filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.4));
     }
@@ -57,6 +59,7 @@
       color: #4FC3F7;
     }
 
+    /* ---------- MAIN CONTENT ---------- */
     main {
       display: flex;
       justify-content: space-between;
@@ -109,6 +112,7 @@
       box-shadow: 0 0 35px rgba(79, 195, 247, 0.8);
     }
 
+    /* ---------- VIDEO SECTION ---------- */
     .video-section {
       flex: 1;
       display: flex;
@@ -120,7 +124,7 @@
     }
 
     .video-section video {
-      width: 80%;
+      width: 30%; /* Tamaño reducido al 30% */
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
@@ -128,9 +132,10 @@
     }
 
     .video-section video:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
+    /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
       padding: 20px;
@@ -140,6 +145,7 @@
       animation: fadeIn 2s ease forwards 1.5s;
     }
 
+    /* ---------- ANIMATIONS ---------- */
     @keyframes fadeInLeft {
       from { opacity: 0; transform: translateX(-50px); }
       to { opacity: 1; transform: translateX(0); }
@@ -160,6 +166,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ---------- RESPONSIVE (Celulares y tablets) ---------- */
     @media (max-width: 950px) {
       header {
         flex-direction: column;
@@ -169,7 +176,7 @@
       }
 
       .logo img {
-        height: 90px;
+        height: 90px; /* Logo grande también en móvil */
       }
 
       nav {
@@ -204,7 +211,7 @@
       }
 
       .video-section video {
-        width: 90%;
+        width: 90%; /* En móvil ocupa casi todo el ancho */
         height: auto;
       }
     }
