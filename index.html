@@ -1,16 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];
-    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-    f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5MGTJJS9');
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,9 +10,10 @@
 
   <meta name="description" content="Simula tus puntajes con Asistente PAES. Conoce tus resultados, hazle preguntas al ChatBot PAES y prepárate mejor para postular a la admisión 2026.">
 
-  <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes">
+  <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes,">
 
   <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
 
   <meta property="og:title" content="Simulador de Puntajes PAES">
   <meta property="og:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
@@ -34,9 +25,6 @@
   <meta name="twitter:title" content="Simulador de Puntajes PAES">
   <meta name="twitter:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
   <meta name="twitter:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
-
-  <link rel="icon" href="https://asistentepaes.cl/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
 
   <script type="application/ld+json">
   {
@@ -52,19 +40,27 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static/font/lucide.css">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --bg-color: #0E3448;
+      --text-color: #E1F5FE;
+      --accent-color: #4FC3F7;
+      --accent-dark: #29B6F6;
+      --nav-text: #E0F7FA;
+    }
+
     body {
-      background: linear-gradient(135deg, #0E3448, #174A63);
-      color: white;
+      background: linear-gradient(135deg, var(--bg-color), #174A63);
+      color: var(--text-color);
       font-family: "Inter", sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
-      animation: fadeIn 1.2s ease;
     }
 
     header {
@@ -72,11 +68,16 @@
       justify-content: space-between;
       align-items: center;
       padding: 25px 50px;
-      animation: slideDown 1s ease forwards;
+      background: rgba(14, 52, 72, 0.65);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .logo img {
-      height: 120px;
+      height: 110px;
       transition: transform 0.3s ease, filter 0.3s ease;
       filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.4));
     }
@@ -87,7 +88,7 @@
     }
 
     nav a {
-      color: #E0F7FA;
+      color: var(--nav-text);
       text-decoration: none;
       margin-left: 35px;
       font-size: 1.05em;
@@ -95,7 +96,7 @@
       transition: color 0.3s ease;
     }
 
-    nav a:hover { color: #4FC3F7; }
+    nav a:hover { color: var(--accent-color); }
 
     main {
       display: flex;
@@ -109,7 +110,12 @@
       max-width: 550px;
       opacity: 0;
       transform: translateX(-50px);
-      animation: fadeInLeft 1s ease forwards 0.3s;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .text-content.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .text-content h1 {
@@ -118,33 +124,34 @@
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 20px;
-      color: #E1F5FE;
       text-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
     }
 
     .text-content p {
       font-size: 1.15em;
       margin-bottom: 40px;
-      color: #CDEBF7;
       line-height: 1.6em;
       font-weight: 400;
+      color: #CDEBF7;
     }
 
     .btn {
-      background: linear-gradient(135deg, #4FC3F7, #29B6F6);
-      color: #0E3448;
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+      background-size: 200% 200%;
+      color: var(--bg-color);
       padding: 15px 35px;
       border: none;
       border-radius: 12px;
       font-weight: 700;
       font-size: 1.05em;
       cursor: pointer;
-      transition: 0.4s ease;
+      transition: background-position 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
       font-family: "Manrope", sans-serif;
     }
 
     .btn:hover {
+      background-position: right center;
       transform: scale(1.08);
       box-shadow: 0 0 35px rgba(79, 195, 247, 0.8);
     }
@@ -156,60 +163,56 @@
       align-items: center;
       opacity: 0;
       transform: translateX(50px);
-      animation: fadeInRight 1.2s ease forwards 0.6s;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    /* Mantener tu video original */
+    .video-section.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     .video-section video {
-      width: 30%;
+      width: 35%;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease;
     }
 
-    .video-section video:hover { transform: scale(1.05); }
+    .video-section video:hover {
+      transform: scale(1.05);
+    }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       color: #B0BEC5;
       font-size: 0.9em;
       margin-top: auto;
-      animation: fadeIn 2s ease forwards 1.5s;
+      background: rgba(14, 52, 72, 0.7);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-50px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes fadeInRight {
-      from { opacity: 0; transform: translateX(50px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 950px) {
-      header { flex-direction: column; gap: 15px; text-align: center; padding: 20px; }
+      header { flex-direction: column; gap: 10px; text-align: center; padding: 20px; }
       .logo img { height: 90px; }
       nav { display: flex; justify-content: center; flex-wrap: wrap; }
       nav a { margin: 10px 15px; font-size: 1.1em; }
       main { flex-direction: column; text-align: center; padding: 70px 20px; }
       .text-content h1 { font-size: 2.5em; margin-bottom: 15px; }
-      .text-content p { font-size: 1.05em; margin-bottom: 30px; }
       .video-section { margin-top: 40px; }
       .video-section video { width: 90%; height: auto; }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header role="banner">
     <div class="logo">
-      <img src="asistente_logo_blanco.png" alt="Logo Asistente PAES">
+      <img src="asistente_logo_blanco.webp" alt="Logo Asistente PAES" loading="lazy">
     </div>
     <nav>
       <a href="simulador.html">Ir al simulador</a>
@@ -218,20 +221,30 @@
     </nav>
   </header>
 
-  <main>
-    <div class="text-content">
+  <main role="main">
+    <section class="text-content">
       <h1>Prepárate para tu futuro con el Asistente PAES</h1>
       <p>Descubre tus posibilidades de ingreso, conoce fechas importantes y recibe orientación personalizada impulsada por inteligencia artificial. Todo desde una plataforma intuitiva y moderna.</p>
       <button class="btn" onclick="window.location.href='simulador.html'">Ir al simulador</button>
-    </div>
+    </section>
 
-    <div class="video-section">
-      <video src="robot_paes.mp4" autoplay loop muted playsinline></video>
-    </div>
+    <section class="video-section">
+      <video src="robot_paes.mp4" autoplay loop muted playsinline loading="lazy"></video>
+    </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     © 2025 Asistente PAES | Innovando en educación con IA
   </footer>
+
+  <script>
+    // Animaciones de aparición
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll(".text-content, .video-section");
+      elements.forEach((el, i) => {
+        setTimeout(() => el.classList.add("visible"), i * 300);
+      });
+    });
+  </script>
 </body>
 </html>
