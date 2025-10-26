@@ -5,27 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Simulador PAES - Asistente</title>
-
   <link rel="canonical" href="https://asistentepaes.cl/" />
-
   <meta name="description" content="Simula tus puntajes con Asistente PAES. Conoce tus resultados, hazle preguntas al ChatBot PAES y prepárate mejor para postular a la admisión 2026.">
-
   <meta name="keywords" content="PAES, asistente PAES, postulaciones, universidades, preparación, exámenes, simulador, fecha paes,">
-
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="https://asistentepaes.cl/logo.png">
-
   <meta property="og:title" content="Simulador de Puntajes PAES">
   <meta property="og:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
   <meta property="og:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
   <meta property="og:url" content="https://asistentepaes.cl/">
   <meta property="og:type" content="website">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Simulador de Puntajes PAES">
   <meta name="twitter:description" content="Simula tus puntajes PAES con Asistente PAES. Conoce tus resultados, revisa fechas importantes y prepárate mejor para postular a la admisión 2026.">
   <meta name="twitter:image" content="https://asistentepaes.cl/asistente_logo_negro1.png">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,16 +44,17 @@
       --accent-color: #4FC3F7;
       --accent-dark: #29B6F6;
       --nav-text: #E0F7FA;
+      --section-bg: rgba(14,52,72,0.4);
+      --faq-bg: rgba(255,255,255,0.05);
+      --faq-hover: rgba(79,195,247,0.2);
     }
 
     body {
       background: linear-gradient(135deg, var(--bg-color), #174A63);
       color: var(--text-color);
       font-family: "Inter", sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
+      display: block;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -76,64 +70,24 @@
       z-index: 10;
     }
 
-    .logo img {
-      height: 110px;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.4));
-    }
+    .logo img { height: 110px; transition: transform 0.3s ease, filter 0.3s ease; }
+    .logo img:hover { transform: scale(1.08); filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.6)); }
 
-    .logo img:hover {
-      transform: scale(1.08);
-      filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.6));
-    }
-
-    nav a {
-      color: var(--nav-text);
-      text-decoration: none;
-      margin-left: 35px;
-      font-size: 1.05em;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
+    nav a { color: var(--nav-text); text-decoration: none; margin-left: 35px; font-size: 1.05em; font-weight: 500; transition: color 0.3s ease; }
     nav a:hover { color: var(--accent-color); }
 
-    main {
+    main { display: block; width: 100%; }
+
+    .hero {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       padding: 100px 60px;
     }
-
-    .text-content {
-      max-width: 550px;
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .text-content.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .text-content h1 {
-      font-family: "Manrope", sans-serif;
-      font-size: 3.8em;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
-    }
-
-    .text-content p {
-      font-size: 1.15em;
-      margin-bottom: 40px;
-      line-height: 1.6em;
-      font-weight: 400;
-      color: #CDEBF7;
-    }
+    .hero .text-content { max-width: 550px; text-align: left; }
+    .hero .text-content h1 { font-family: "Manrope", sans-serif; font-size: 3.8em; font-weight: 800; margin-bottom: 20px; color: #E1F5FE; }
+    .hero .text-content p { font-size: 1.15em; margin-bottom: 40px; line-height: 1.6em; color: #CDEBF7; }
 
     .btn {
       background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
@@ -149,63 +103,51 @@
       box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
       font-family: "Manrope", sans-serif;
     }
+    .btn:hover { background-position: right center; transform: scale(1.08); box-shadow: 0 0 35px rgba(79, 195, 247, 0.8); }
 
-    .btn:hover {
-      background-position: right center;
-      transform: scale(1.08);
-      box-shadow: 0 0 35px rgba(79, 195, 247, 0.8);
-    }
-
-    .video-section {
+    .hero .video-section {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 1s ease, transform 1s ease;
     }
-
-    .video-section.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .video-section video {
+    .hero .video-section video {
       width: 35%;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
       transition: transform 0.3s ease;
     }
+    .hero .video-section video:hover { transform: scale(1.05); }
 
-    .video-section video:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
+    #quienes {
+      background: linear-gradient(135deg, rgba(79,195,247,0.2), rgba(14,52,72,0.4));
+      border-radius: 15px;
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 40px 30px;
       text-align: center;
-      padding: 25px;
-      color: #B0BEC5;
-      font-size: 0.9em;
-      margin-top: auto;
-      background: rgba(14, 52, 72, 0.7);
-      backdrop-filter: blur(6px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
+    #quienes h2 { font-size: 2.5em; margin-bottom: 0; color: #FFF; }
+    #quienes p { display: none; font-size: 1.2em; line-height: 1.6em; margin-top: 20px; }
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    #faq { background: rgba(0,0,0,0.3); border-radius: 15px; margin: 40px auto; max-width: 1000px; padding: 60px 30px; text-align: center; }
+    #faq h2 { font-size: 2.5em; margin-bottom: 40px; color: #FFF; }
+    .faq-item { background: var(--faq-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; cursor: pointer; transition: all 0.3s ease; text-align: left; }
+    .faq-item:hover { background: var(--faq-hover); transform: translateY(-3px); }
+    .faq-item strong { display: block; margin-bottom: 10px; font-size: 1.2em; }
+
+    footer { text-align: center; padding: 25px; color: #B0BEC5; font-size: 0.9em; margin-top: 40px; background: rgba(14, 52, 72, 0.7); }
 
     @media (max-width: 950px) {
       header { flex-direction: column; gap: 10px; text-align: center; padding: 20px; }
       .logo img { height: 90px; }
-      nav { display: flex; justify-content: center; flex-wrap: wrap; }
       nav a { margin: 10px 15px; font-size: 1.1em; }
-      main { flex-direction: column; text-align: center; padding: 70px 20px; }
-      .text-content h1 { font-size: 2.5em; margin-bottom: 15px; }
-      .video-section { margin-top: 40px; }
-      .video-section video { width: 90%; height: auto; }
+      .hero { flex-direction: column; text-align: center; padding: 70px 20px; }
+      .hero .text-content h1 { font-size: 2.5em; margin-bottom: 20px; }
+      .hero .video-section video { width: 90%; margin-top: 30px; }
     }
   </style>
 </head>
@@ -222,14 +164,30 @@
   </header>
 
   <main role="main">
-    <section class="text-content">
-      <h1>Prepárate para tu futuro con el Asistente PAES</h1>
-      <p>Descubre tus posibilidades de ingreso, conoce fechas importantes y recibe orientación personalizada impulsada por inteligencia artificial. Todo desde una plataforma intuitiva y moderna.</p>
-      <button class="btn" onclick="window.location.href='simulador.html'">Ir al simulador</button>
+
+    <section class="hero">
+      <div class="text-content">
+        <h1>Prepárate para tu futuro con el Asistente PAES</h1>
+        <p>Descubre tus posibilidades de ingreso, conoce fechas importantes y recibe orientación personalizada impulsada por inteligencia artificial. Todo desde una plataforma intuitiva y moderna.</p>
+        <button class="btn" onclick="window.location.href='simulador.html'">Ir al simulador</button>
+      </div>
+      <div class="video-section">
+        <video src="robot_paes.mp4" autoplay loop muted playsinline loading="lazy"></video>
+      </div>
     </section>
 
-    <section class="video-section">
-      <video src="robot_paes.mp4" autoplay loop muted playsinline loading="lazy"></video>
+    <section id="quienes">
+      <h2>¿Quiénes Somos?</h2>
+      <p>Soy un estudiante de 4° Medio apasionado por la innovación, la tecnología y el futuro de la educación. Creé Asistente PAES para ayudar a otros estudiantes a prepararse de manera eficiente y moderna, combinando simulaciones de puntajes, orientación personalizada y herramientas inteligentes que facilitan la comprensión de la información y potencian el aprendizaje. Mi objetivo es transformar la forma en que los jóvenes acceden a sus oportunidades académicas, haciendo que la preparación para la PAES sea intuitiva, motivadora y accesible para todos.</p>
+    </section>
+
+    <section id="faq">
+      <h2>Preguntas Frecuentes</h2>
+      <div class="faq-item"><strong>¿Qué es Asistente PAES?</strong><p>Una plataforma que te permite simular puntajes, conocer fechas y recibir orientación personalizada.</p></div>
+      <div class="faq-item"><strong>¿Cómo uso el simulador?</strong><p>Ingresa tus datos, la universidad a la que quieres ingresar y tendras tus resultados y recomendaciones para tus postulaciones.</p></div>
+      <div class="faq-item"><strong>¿Mis datos son seguros?</strong><p>Todos tus datos se manejan de forma segura y no se comparten con terceros.</p></div>
+      <div class="faq-item"><strong>¿Necesito registrarme?</strong><p>No. Puedes usar todas las funciones de la página sin crear cuenta.</p></div>
+      <div class="faq-item"><strong>¿Es de pago?</strong><p>No. Todas las funciones de la Asistente PAES estan disponibles para todo el mundo.</p></div>
     </section>
   </main>
 
@@ -238,14 +196,30 @@
   </footer>
 
   <script>
-    // Animaciones de aparición
     document.addEventListener("DOMContentLoaded", () => {
       const elements = document.querySelectorAll(".text-content, .video-section");
-      elements.forEach((el, i) => {
-        setTimeout(() => el.classList.add("visible"), i * 300);
+      elements.forEach((el, i) => { setTimeout(() => el.classList.add("visible"), i*300); });
+
+      const links = document.querySelectorAll('nav a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute("href"));
+          target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      const quienes = document.getElementById("quienes");
+      const quienesP = quienes.querySelector("p");
+      quienes.addEventListener("click", () => {
+        if (quienesP.style.display === "block") {
+          quienesP.style.display = "none";
+        } else {
+          quienesP.style.display = "block";
+          quienes.scrollIntoView({ behavior: "smooth" });
+        }
       });
     });
   </script>
 </body>
 </html>
-
